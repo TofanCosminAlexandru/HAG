@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+  <head>
+  	<meta charset="utf-8">
+  	<title> HTTP Adventure Game </title>
+	    
+  	<meta name="author" content="Mihalachi Bogdan-Marian, Tofan Cosmin-Alexandru, Nemtoc Ciprian">
+  	<meta name="description" content="HAG (HTTP Adventure Game) is a platform for students to learn the HTTP Protocol while playing through a real
+  									  game.">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<link rel="stylesheet" href="levels.css">
+  	<link rel="shortcut icon" href="images/logoV2.svg" type="image/x-icon">
+  	<script type="text/javascript">
+	  	function myacount() {
+			el = document.getElementById("myacount");
+			el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
+		}
+  	</script>
+  </head>
+  
+  <body>
+
+  	<div id="myacount">
+		<img src="images/profile.png" class="profile">
+		<div class="stats">
+			<img src="images/diamond.png" id="stats">
+			<h2 class="score">20</h2>
+			<img src="images/star.png" id="stats">
+			<h2 class="score">15</h2>
+		</div>
+		<form class="myacount">
+			<h1>User Name</h1>
+			<input type="text" id="uname" placeholder="username">
+		
+			<input type="email" id="email" placeholder="Email">
+			
+			<input type="file" name="fileToUpload" id="fileToUpload">
+
+			<button type="submit" id="myacount">Update Info</button>
+			
+		</form>
+	</div>
+
+	<main>
+		
+		<div class="portal">
+			<img class="logo-header" src="images/logoV2.svg" alt="Hag" width="20%">
+
+			<div class="portals" id="box">
+
+				<div class="level ground" onclick="location.href='ground.html'">
+					<div class="level-label">
+						<h2 class="level-name">
+							<span>Ground</span>
+						</h2>
+					</div>
+				</div>
+
+				<div class="level water">
+					<div class="level-label">
+						<h2 class="level-name">
+							<span>Water</span>
+						</h2>
+						<h3 class="level-locked">Locked
+						</h3>
+					</div>
+				</div>
+
+				<div class="level cloud">
+					<div class="level-label">
+						<h2 class="level-name">
+							<span>Clouds</span>
+						</h2>
+						<h3 class="level-locked">Locked
+						</h3>
+					</div>
+				</div>
+
+				<div class="level fire">
+					<div class="level-label">
+						<h2 class="level-name">
+							<span>Fire</span>
+						</h2>
+						<h3 class="level-locked">Locked
+						</h3>
+					</div>
+				</div>
+
+				<div class="level desert">
+					<div class="level-label">
+						<h2 class="level-name">
+							<span>Desert</span>
+						</h2>
+						<h3 class="level-locked">Locked
+						</h3>
+					</div>
+				</div>
+			</div>
+
+			<div clss="rewards">
+				<div class="gems">
+					<h3 class="gems-score">15</h3>
+				</div>
+				<div class="stars">
+					<h3 class="stars-score">25</h3>
+				</div>
+			</div>
+
+			<div class="menu" id="menu">
+				<a href="index.html"><button class="color-change1">Home</button></a>
+				<button class="color-change2" onclick='myacount()'>Profile</button>
+				<a href="index.html"><button class="color-change3">LogOut</button></a>
+			</div>
+
+		</div>
+
+	</main>
+	<script src="orizontalNav.js"></script>
+
+  </body>
+  
+</html>

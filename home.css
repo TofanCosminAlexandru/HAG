@@ -1,0 +1,320 @@
+body {
+    background: url(images/clouds.png) fixed;
+	font-family: Lato, sans-serif;
+}
+.menu-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 5px;
+    overflow: hidden;
+    background-color: rgba(232, 104, 40, 0.5);
+}
+.menu-list li {
+    float: right;
+    margin-left: 2%;
+}
+.menu-list li:nth-child(1) {
+	margin-right: 10%;
+}
+.menu-list li a {
+    display: block;
+    color: white;
+    text-align: center;
+    font-size: 150%;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+.menu-list li a:hover {
+    background-color: #E86828;
+    color: white;
+}
+.show-menu {
+	font-family: 'Lato', sans-serif;
+	text-decoration: none;
+	color: white;
+	background: rgba(232, 104, 40, 0.5);
+	text-align: center;
+	padding: 2% 0;
+	padding-left: 6%;
+	font-size: 150%;
+	display: none;
+	border: 1px solid #1fb58f;
+}
+.show-menu:hover {
+	color: white;
+	background: #E86828;
+	cursor: pointer;
+}
+input[type=checkbox] {
+    display: none;
+}
+input[type=checkbox]:checked ~ #menu {
+    display: block;
+}
+@media screen and (max-width : 870px) {
+	.menu {
+		position: static;
+		display: none;
+	}
+	.menu-list .nav-items, .nav-items a {
+		width: 100%;
+	}
+	.show-menu {
+		display: block;
+	}
+	.menu-list li {
+    	border: 1px solid #1fb58f;
+	}
+	.menu-list li:nth-child(1) {
+		margin-right: 0%;
+	}
+	.introduction3 .introduction31 .introduction312, main .introduction3 .introduction32 .introduction321 {
+		flex-direction: column;
+	}
+	.introduction3 .introduction31 .introduction312 img, .introduction3 .introduction32 .introduction321 img {
+		width: 75%;
+	}
+	main .introduction3 .introduction32 .introduction321 p {
+		margin-left: 0%;
+	}
+	.introduction3 {
+		margin-bottom: 20%;
+	}
+}
+
+.logo-header {
+	position: absolute;
+	z-index: 2;
+}
+
+.introduction1 {
+	background: url(images/game.jpg) no-repeat;
+	background-size: cover;
+	background-position: center center;
+	height: 750px;
+	position: relative;
+}
+.introduction1 p {
+	font-size: 2rem;
+	color: white;
+}
+.introduction1 div {
+	position: absolute;
+	top: 30%;
+	left: 20%;
+}
+
+.introduction2 {
+	margin-top: 7%;
+}
+.introduction2 .introduction21 {
+	display: flex;
+	justify-content: center;
+}
+.introduction2 .introduction21 div {
+	width: 100%;
+  	height: 100%;
+  	margin: auto;
+}
+.introduction2 .introduction21 .main-image {
+	margin-left: 5%;
+}
+.introduction2 .introduction21 article {
+	margin-left: -10%;
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+.introduction2 .introduction21 article h2 {
+	color: #0b4134;
+}
+.secondary-images {
+	margin-top: 3%;
+	display: flex;
+	justify-content: center;
+}
+.secondary-images img {
+	padding-right: 10px;
+	cursor: pointer;
+}
+.introduction2 .text {
+	display: flex;
+	justify-content: center;
+}
+
+.introduction3 {
+	margin-top: 7%;
+}
+.introduction3 h2 {
+	font-size: 2rem;
+	color: #0b4134;
+	display: flex;
+	justify-content: center;
+}
+.introduction3 .introduction31, .introduction3 .introduction32 {
+	margin-top: 5%;
+	display: flex;
+	justify-content: center;
+}
+.introduction3 .introduction31 .introduction311, .introduction3 .introduction32 .introduction322 {
+	font-size: 1.5rem;
+    text-decoration: none;
+}
+.introduction3 .introduction31 .introduction312, .introduction3 .introduction32 .introduction321 {
+	height: 250px;
+	border-radius: 25px;
+	font-size: 2rem;
+}
+.introduction3 .introduction31 .introduction311 {
+	margin-left: 3%;
+}
+.introduction3 .introduction31 .introduction312 {
+	height: 200px;
+	background-color: rgba(242, 76, 78, 0.7);
+	margin-left: 5%;
+	display: flex;
+	padding-left: 2%;
+	padding-right: 5%;
+}
+.introduction3 .introduction32 .introduction321 {
+	background-color: rgba(27, 123, 52, 0.7);
+	margin-right: 5%;
+	display: flex;
+	flex-direction: row-reverse;
+	padding-left: 5%;
+	padding-right: 2%;
+}
+.introduction3 .introduction32 .introduction321 p {
+	margin-left: 25%;
+}
+.introduction3 .introduction32 .introduction322 {
+	margin-right: 3%;
+}
+
+footer {
+	margin-top: 5%;
+	float: right;
+	width: 100%;
+	height: 100%;
+    background: url(images/grass.png);
+}
+.logo-footer {
+	vertical-align: middle;
+	padding-top: 2%;
+	height: 150px;
+	float: left;
+}
+.footer-details {
+	padding-top: 5.7%;
+	font-family: 'Lato', sans-serif;
+	color: #072c23;
+}
+
+
+
+
+
+div#login{
+    visibility: hidden;
+    background-color: rgba(0, 0, 0, 0.7);
+    margin:auto;
+	display: flex; 
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+    align-content: center;
+    position: absolute;
+	width: 60%;
+    z-index: 1;
+    left:0;
+    right:0;
+    margin-left:auto;
+    margin-right:auto;
+    padding: 20px;
+}
+div#register{
+    visibility: hidden;
+    background-color: rgba(0, 0, 0, 0.7);
+    margin:auto;
+    display: flex; 
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+    align-content: center;
+    position: absolute;
+    width: 60%;
+    z-index: 1;
+    left:0;
+    right:0;
+    margin-left:auto;
+    margin-right:auto;
+    padding: 10px;
+}
+
+
+
+img.logo{
+    width: 60%;
+    margin: auto;
+    padding: 10px;
+}
+
+form.login {
+    background: white;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.9);
+    font-family: lato;
+    color: #333;
+    width: 90%;
+    padding: 10px;
+    z-index: 1;
+    margin: auto;
+}
+form.login button{
+    background-color: #E86828;
+}
+form.login input{
+    background-color: rgba(232, 104, 40, 0.5);
+}
+form.register button{
+    background-color: rgb(254,218,23);
+}
+form.register input{
+    background-color: rgba(254,218,23,0.5);
+}
+form.register {
+    background: white;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.9);
+    font-family: lato;
+    color: #333;
+    width: 90%;
+    padding: 5px;
+    z-index: 1;
+    margin: auto;
+}
+p#notreg{
+    font-family: "Roboto", sans-serif;
+    margin-top: 5px;
+    margin-bottom: 0;
+    font-size: 10px;
+}
+input{
+	font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+button {
+	font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    cursor: pointer;
+}

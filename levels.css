@@ -1,8 +1,8 @@
 body{
-    background: url(images/cloudsV3.png) fixed;
+	background: url(images/cloudsV3.png) fixed;
 	font-family: Lato, sans-serif;
-    margin: 0 !important;
-    padding: 0 !important;
+	margin: 0 !important;
+	padding: 0 !important;
 }
 
 .portal{
@@ -16,17 +16,18 @@ body{
 
 .logo-header {
 	position: absolute;
-	top: 0.5%;
-	left: 30px;
+	top: 2%;
+	left: 2%;
 	z-index: 2;
 }
 
 .portals{
 	position: absolute;
+
 }
 
 .portal .portals{
-	height: 750.8px;
+	height: 752px;
 	flex-wrap: nowrap;
 	display: flex;
 	overflow: hidden;
@@ -59,40 +60,34 @@ body{
 }
 
 .portal .portals .level.locked {
-	filter: grayscale(100%);
-    -webkit-filter: contrast(90%) brightness(10%);
+	-webkit-filter: contrast(90%) brightness(10%);
     -moz-filter: contrast(90%) brightness(80%);
     -o-filter: contrast(90%) brightness(80%);
     filter: contrast(90%) brightness(10%);    
 }
 
 .portal .portals .level.ground {
-	background: transparent url(images/ground.svg) no-repeat 0 0;
-    background-position: center center;
+	background: transparent url(images/ground.svg) no-repeat center center;
 }
 
 .portal .portals .level.water {
-	background: transparent url(images/bubble.svg) no-repeat 0 0;
-    background-position: center center;
-    filter: grayscale(60%);
+	background: transparent url(images/bubble.svg) no-repeat center center;
+	filter: grayscale(80%);
 }
 
 .portal .portals .level.cloud {
-	background: transparent url(images/cloud.svg) no-repeat 0 0;
-    background-position: center center;
-    filter: grayscale(60%);
+	background: transparent url(images/cloud.svg) no-repeat center center;
+	filter: grayscale(80%);
 }
 
 .portal .portals .level.fire {
-    background: transparent url(images/fire.svg) no-repeat 0 0;
-    background-position: center center;
-    filter: grayscale(60%); 
+	background: transparent url(images/fire.svg) no-repeat center center;
+	filter: grayscale(80%);
 }
 
 .portal .portals .level.desert {
-   	background: transparent url(images/desert.svg) no-repeat 0 0;
-    background-position: center center;
-    filter: grayscale(60%); 
+	background: transparent url(images/desert.svg) no-repeat center center;
+	filter: grayscale(80%);
 }
 
 .level.ground{
@@ -129,7 +124,7 @@ body{
 .portal .portals .level .level-label .level-name, .portal .portals .level .level-label .level-locked{
 	margin: 0;
 	color: white;
-	text-shadow: black 2px 2px 0, black -2px -2px 0, black 2px -2px 0, black -2px 2px 0, black 2px 0px 0, black 0px -2px 0, black -2px 0px 0, black 0px 2px 0;
+	text-shadow: black 2px 2px 0, black -2px -2px 0, black 2px -2px 0, black -2px 2px 0, black 2px 0 0, black 0 -2px 0, black -2px 0 0, black 0 2px 0;
 }
 
 .portal .portals .level .level-label .level-locked{
@@ -148,7 +143,7 @@ body{
 	position: absolute;
 	margin: 0;
 	color: white;
-	text-shadow: black 2px 2px 0, black -2px -2px 0, black 2px -2px 0, black -2px 2px 0, black 2px 0px 0, black 0px -2px 0, black -2px 0px 0, black 0px 2px 0;
+	text-shadow: black 2px 2px 0, black -2px -2px 0, black 2px -2px 0, black -2px 2px 0, black 2px 0 0, black 0 -2px 0, black -2px 0 0, black 0 2px 0;
 	text-align: center;
 	bottom: 30px;
 	left: 28px;
@@ -168,7 +163,7 @@ body{
 	position: absolute;
 	margin: 0;
 	color: white;
-	text-shadow: black 2px 2px 0, black -2px -2px 0, black 2px -2px 0, black -2px 2px 0, black 2px 0px 0, black 0px -2px 0, black -2px 0px 0, black 0px 2px 0;
+	text-shadow: black 2px 2px 0, black -2px -2px 0, black 2px -2px 0, black -2px 2px 0, black 2px 0 0, black 0 -2px 0, black -2px 0 0, black 0 2px 0;
 	text-align: center;
 	bottom: 20px;
 	left: 25px;
@@ -184,7 +179,7 @@ body{
 .color-change1 {
 	position: absolute;
 	bottom: 20px;
-	right: 380px;
+	right: 355px;
 	border-radius: 2px;
 	font-size: 15px;
 	padding: 10px 30px;
@@ -211,10 +206,11 @@ button.color-change1 {
 .color-change2 {
 	position: absolute;
 	bottom: 20px;
-	right: 220px;
+	right: 200px;
 	border-radius: 2px;
 	font-size: 15px;
 	padding: 10px 50px;
+	cursor: pointer;
 	cursor: pointer;
 	color: #fff;
 	background-color: #80dd15;
@@ -238,7 +234,9 @@ button.color-change2 {
 .color-change3 {
 	position: absolute;
 	bottom: 20px;
-	right: 55px;
+	right: 30px;
+	width: 160px;
+	text-align: center;
 	border-radius: 2px;
 	font-size: 15px;
 	padding: 10px 50px;
@@ -266,15 +264,10 @@ html{
 	overflow-x: hidden;
 }
 
-
-
-
-
 div#myacount{
 	visibility: hidden;
     background-color: rgba(0, 0, 0, 0.7);
-    margin:auto;
-    display: flex; 
+	display: flex;
     flex-flow: column;
     align-self: center;
     position: absolute;
@@ -282,21 +275,28 @@ div#myacount{
     z-index: 1;
     left:0;
     right:0;
-    margin-left:auto;
-    margin-right:auto;
-    padding: 10px;
+	margin: auto;
+	padding: 10px;
 }
 
 div.stats{
     margin: auto;
 }
 
-img#stats{
+img#stats1{
     width: 100px;
     height: 100px;
     padding: 5px;
     margin: auto;
 }
+
+img#stats2{
+	width: 100px;
+	height: 100px;
+	padding: 5px;
+	margin: auto;
+}
+
 img.profile{
     width: 200px;
     height: 200px;
@@ -318,8 +318,8 @@ img.logo{
 
 form.myacount {
     background: white;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.9);
-    font-family: lato;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
+	font-family: lato, serif;
     color: #333;
     width: 90%;
     padding: 10px;
@@ -351,5 +351,5 @@ button#myacount {
 #myacount .stats h2 {
 	color: white;
 	text-align: center;
-	text-shadow: black 2px 2px 0, black -2px -2px 0, black 2px -2px 0, black -2px 2px 0, black 2px 0px 0, black 0px -2px 0, black -2px 0px 0, black 0px 2px 0;
+	text-shadow: black 2px 2px 0, black -2px -2px 0, black 2px -2px 0, black -2px 2px 0, black 2px 0 0, black 0 -2px 0, black -2px 0 0, black 0 2px 0;
 }

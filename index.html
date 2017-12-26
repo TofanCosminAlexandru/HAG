@@ -1,95 +1,65 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang = "en-US">
 
-  <head>
-  	<meta charset="utf-8">
-  	<title> HTTP Adventure Game </title>
-	    
-  	<meta name="author" content="Mihalachi Bogdan-Marian, Tofan Cosmin-Alexandru, Nemtoc Ciprian">
-  	<meta name="description" content="HAG (HTTP Adventure Game) is a platform for students to learn the HTTP Protocol while playing through a real game.">
-  	<meta name="viewport" content="width=device-width, initial-scale=1">
-  	<link rel="shortcut icon" href="images/logo.png" type="image/x-icon">
-  	<link rel="stylesheet" href="home.css">
-  	<script type="text/javascript">
-  	function login() {
-  		check = document.getElementById("register");
-		if (check.style.visibility == "visible") {
-			el.style.visibility = "hidden";
-		}
-		el = document.getElementById("login");
-		el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
-	}
-	function register() {
-		check = document.getElementById("login");
-		if (check.style.visibility == "visible") {
-			el.style.visibility = "hidden";
-		}
-		el = document.getElementById("register");
-		el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
-	}
-  	</script>
-  </head>
-  
-  <body>
+	<head>
+		<meta charset = "utf-8">
+		<title> HTTP Adventure Game </title>
+		<meta name = "author" content = "Mihalachi Bogdan-Marian, Tofan Cosmin-Alexandru, Nemtoc Ciprian">
+		<meta name = "description" content = "HAG (HTTP Adventure Game) is a platform for students to learn the HTTP Protocol while playing through a real game.">
+		<meta name = "viewport" content = "width = device-width, initial-scale = 1">
+		<link rel = "shortcut icon" href = "images/logoV2.svg" type = "image/x-icon">
+		<link rel = "stylesheet" href = "home.css">
+	</head>
 
-	<label for="show-menu" class="show-menu"> Menu </label>
-	<input type="checkbox" id="show-menu" role="button">
+	<body><label for = "show-menu" class = "show-menu"> Menu </label>
+	<input type = "checkbox" id = "show-menu" role = "button">
 
-	<div class="menu" id="menu">
-		<ul class="menu-list">
-			<li class="nav-items"> <a href="#log_in" onclick='login()'> Log In </a> </li>
-			<li class="nav-items"> <a href="#create_account" onclick='register()'> Create Account </a> </li>
-			<li class="nav-items"> <a href="index.html"> Home </a> </li>
+	<div class = "menu" id = "menu">
+		<ul class = "menu-list">
+			<li class = "nav-items"> <a href = "#" onclick = 'login()'> Log In </a> </li>
+			<li class = "nav-items"> <a href = "#" onclick = 'register()'> Create Account </a> </li>
+			<li class = "nav-items"> <a href = "index.html"> Home </a> </li>
 		</ul>
-	</div> 
+	</div>
 
-	<img class="logo-header" src="images/logo_v1.svg" alt="Hag" width="20%">
+	<img class = "logo-header" src = "images/logo_v1.svg" alt = "Hag" style = "width : 20%">
 
-	<div id="login" >
-		<img src="images/logov2.svg" class="logo">
-		<form class="login" action="levels.html">
-			<input type="text" class="form-control" placeholder="username"><br>
-		
-			<input type="password" class="form-control" placeholder="password">
-			
-			<button type="submit" value="Submit" class="login">LogIn</button>
-			<p id="notreg"> Don't have an acount? <a href="" onclick='register()'>REGISTER</a></p>
+	<div id = "login" >
+		<img src = "images/logoV2.svg" alt="Logo" class = "logo">
+		<form class = "login" action = "levels.html">
+			<input type = "text" class = "form-control" placeholder = "username"><br>
+			<input type = "password" class = "form-control" placeholder = "password">
+			<button type = "submit" value = "Submit" class = "login">LogIn</button>
+			<p id = "notreg"> Don't have an account? <a href = "#" onclick = 'register()'>REGISTER</a></p>
 		</form>
 	</div>
-	<div id="register">
-		<img src="images/logov2.svg" class="logo">
-		<form class="register">
-			<input type="text" id="uname" class="form-control" placeholder="username">
-		
-			<input type="password" id="password" class="form-control" placeholder="password">
 
-			<input type="password" id="password" class="form-control" placeholder="password">
-		
-			<input type="email" id="email" class="form-control" placeholder="Email">
-			
-			<button type="submit" class="register">Register</button>
-			
+	<div id = "register">
+		<img src = "images/logoV2.svg" alt="Logo" class = "logo">
+		<form class = "register">
+			<input type = "text" id = "uname" class = "form-control" placeholder = "Username">
+			<input type = "password" id = "password" class = "form-control" placeholder = "Password">
+			<input type = "password" id = "confirmPass" class = "form-control" placeholder = "Confirm Password">
+			<input type = "email" id = "email" class = "form-control" placeholder = "Email">
+			<button type = "submit" class = "register">Register</button>
 		</form>
 	</div>
 
 
-
-
-	
 	<main>
-		<div class="introduction1">
+		<div class = "introduction1">
 			<div>
 				<p> The most engaging game for learning <br> the HTTP Protocol. </p>
 			</div>
 		</div>
 
-		<div class="introduction2">
-			<div class="introduction21">
-				<div class="main-image">
-					<img class="displayed-img" src="images/ss1.png" alt="Screenshot1" width="80%">
+		<div class = "introduction2">
+			<div class = "introduction21">
+				<div class = "main-image">
+					<img class = "displayed-img" src = "images/ss1.png" alt = "Screenshot1" style = "width : 80%">
 				</div>
 
-				<div class="article">
+				<div class = "article">
 					<article>
 						<h2> An interactive application, both fun and educational. </h2>
 						<p> HTTP Adventure Game is a platform <strong>for students</strong> to learn the <strong>HTTP Protocol</strong> while playing through a real game.</p>
@@ -99,49 +69,83 @@
 				</div>
 			</div>
 
-			<div class="secondary-images">
-				<img src="images/ss1.png" alt="Screenshot1" width="15%">
-				<img src="images/ss2.png" alt="Screenshot2" width="15%">
-				<img src="images/ss3.png" alt="Screenshot3" width="15%">
-				<img src="images/ss4.png" alt="Screenshot4" width="15%">
+			<div class = "secondary-images">
+				<img src = "images/ss1.png" alt = "Screenshot1" style = "width : 20%; height: 25%">
+				<img src = "images/ss2.png" alt = "Screenshot2" style = "width : 20%; height: 25%">
+				<img src = "images/ss3.png" alt = "Screenshot3" style = "width : 20%; height: 25%">
+				<img src = "images/ss4.png" alt = "Screenshot4" style = "width : 20%; height: 25%">
 			</div>
 
-			<div class="text">
+			<div class = "text">
 				<p> Students need to solve their way through the map and bypass the obstacles holding dangerous questions. </p>
 			</div>
 		</div>
 
-		<div class="introduction3">
+		<div class = "introduction3">
 			<h2> Why is learning through games important? </h2>
-			<div class="introduction31">
-				<div class="introduction311">
+			<div class = "introduction31">
+				<div class = "introduction311">
 					<p> Gaming is an environment that encourages interactivity and dynamism. A good question-type game helps the player to master the notion on which the game is built. </p>
 					<p> Games excel at rewarding the <strong>productive struggle</strong>, the kind of struggle that is engaging and motivating, not tedious. </p>
 				</div>
-				<div class="introduction312">
+				<div class = "introduction312">
 					<p> Games reward the <strong>productive struggle</strong>. </p>
-					<img src="images/productive_struggle.png" alt="Productive Struggle" width="35%">
+					<img src = "images/productive_struggle.png" alt = "Productive Struggle" style = "width : 55%">
 				</div>
 			</div>
-			<div class="introduction32">
-				<div class="introduction321">
+			<div class = "introduction32">
+				<div class = "introduction321">
 					<p> Studies suggest gaming is good for <strong>developing intelligence</strong>. </p>
-					<img src="images/developing_intelligence.png" alt="Developing Intelligence" width="35%">
+					<img src = "images/developing_intelligence.png" alt = "Developing Intelligence" style = "width : 45%">
 				</div>
-				<div class="introduction322">
+				<div class = "introduction322">
 					<p> When game-based learning systems are compared against conventional assessment methods, the difference is clear: games are better at helping students <strong>retain knowledge</strong>, concentrate and perform at a higher level of achievement. </p>
 				</div>
 			</div>
 		</div>
 	</main>
-	
+
 	<footer>
-		<img class="logo-footer" src="images/logo_text.svg" alt="Hag" width="25%">
-		<p class="footer-details"> © 2017-2018 HTTP Adventure Game and individual contributions. Design & technology with passion from CBC. </p>
+		<img class = "logo-footer" src = "images/logo_text.svg" alt = "Hag" style = "width : 25%">
+		<p class = "footer-details"> © 2017-2018 HTTP Adventure Game and individual contributions. Design & technology with passion from CBC. </p>
 	</footer>
-	
-	<script src="home.js"></script>
+
+	<script src = "home.js"></script>
+
+	<script>
+        var logo = document.getElementsByClassName("logo-header");
+        logo[0].style.visibility = 'visible';
+
+		function login(){
+			var logo = document.getElementsByClassName("logo-header");
+            var check = document.getElementById("register");
+            var el = document.getElementById("login");
+
+            if (check.style.visibility === "visible") {
+                check.style.visibility = "hidden";
+                logo[0].style.visibility = "visible";
+            }
+
+            el.style.visibility = (el.style.visibility === "visible") ? "hidden" : "visible";
+            logo[0].style.visibility = (logo[0].style.visibility === "hidden") ? "visible" : "hidden";
+
+		}
+
+		function register(){
+            var logo = document.getElementsByClassName("logo-header");
+			var check = document.getElementById("login");
+            var el = document.getElementById("register");
+
+			if (check.style.visibility === "visible") {
+				check.style.visibility = "hidden";
+                logo[0].style.visibility = "visible";
+			}
+			el.style.visibility = (el.style.visibility === "visible") ? "hidden" : "visible";
+            logo[0].style.visibility = (logo[0].style.visibility === "hidden") ? "visible" : "hidden";
+		}
+
+	</script>
 
   </body>
-  
+
 </html>

@@ -11,10 +11,10 @@ body {
     margin-left: auto;
     margin-right: auto;
     display: block;
-    /*transform: translate(0px, -2200px);*/
+    /*transform: translate(0px, -1970px);*/
 }
 
-/*html { 
-	overflow-y: hidden; 
-	overflow-x: hidden;
-}*/
+html {
+     overflow-y: hidden;
+     overflow-x: hidden;
+ }

@@ -31,13 +31,30 @@ function init() {
         ["tree", "rocky", "tree", "flowers", "grass", "stone", "river_clb", "river_tb", "river_crt", "grass", "terrain_clb", "terrain_tb", "terrain_r", "house", "human5", "tree", "tree", "dgrass", "wood", "tree"],
         ["tree", "rocky", "tree", "tree", "grass", "grass", "stone", "stone", "river_clb", "river_crt", "stone", "grass", "terrain_lr", "tree", "terrain_lr", "tree", "spider", "dgrass", "crack", "tree"],
         ["tree", "tree", "dog", "tree", "tree", "tree", "grass", "stone", "stone", "river_lr", "stone", "house", "terrain_l", "terrain_tb", "terrain_r", "tree", "crack", "dtree", "dgrass", "tree"],
-        ["tree", "fhouse", "grass", "wood", "wood", "wood", "terrain_clt", "terrain_tb", "terrain_tb", "bridge_blr", "house", "house", "human6", "house", "terrain_clb", "gate", "dgrass", "dgrass", "dgrass", "tree"],
+        ["tree", "fhouse", "grass", "wood", "wood", "wood", "terrain_clt", "terrain_tb", "terrain_tb", "bridge_blr", "house", "house", "human6", "house", "terrain_clb", "dgrass", "dgrass", "dgrass", "dgrass", "tree"],
         ["tree", "terrain_clb", "terrain_tb", "terrain_tb", "forester", "terrain_tb", "terrain_crb", "tree", "tree", "river_clb", "river_tb", "river_t", "bridge_tb", "river_tb", "river_crt", "tree", "grave", "grave", "grave", "tree"],
         ["tree", "wood", "tree", "tree", "terrain_lrbe", "tree", "tree", "tree", "tree", "tree", "tree", "river_lr", "terrain_lr", "tree", "river_lr", "tree", "tree", "tree", "tree", "tree"],
         ["tree", "tree", "tree", "flowers", "grass", "grass", "grass", "tree", "diamond", "grass", "tree", "tree", "terrain_lr", "tree", "river_clb", "river_tb", "river_crt", "tree", "tree", "tree"],
         ["tree", "flowers", "grass", "grass", "grass", "tree", "grass", "tree", "tree", "grass", "tree", "river_lr", "terrain_clb", "terrain_tb", "terrain_tb", "wolf", "bridge_lr", "terrain_tb", "terrain_tbre", "tree"],
         ["tree", "grass", "grass", "flowers", "tree", "tree", "grass", "grass", "grass", "grass", "tree", "river_lr", "tree", "tree", "tree", "tree", "river_clb", "river_crt", "well", "tree"],
         ["tree", "tree", "tree", "tree", "tree", "tree", "tree", "tree", "tree", "tree", "tree", "river_lr", "tree", "tree", "tree", "tree", "tree", "river_lr", "tree", "tree"]];
+
+    var game = [["tree", "tree", "tree", "tree", "river_lr", "tree", "tree", "tree", "tree", "tree", "tree", "tree", "tree", "tree", "mountain", "mountain", "mountain", "mountain", "mountain", "mountain"],
+        ["tree", "tree", "tree", "tree", "river_lr", "house", "tree", "terrain_lrte", "tree", "human4", "flowers", "human2", "tree", "tree", "mountain", "diamond", "rocky", "rocky", "cave", "mountain"],
+        ["tree", "tree", "tree", "tree", "river_clb", "river_crt", "flowers", "terrain_lr", "house", "house", "gate", "fountain", "tree", "tree", "mountain", "mountain", "mountain", "mountain", "mountain", "mountain"],
+        ["tree", "tree", "tree", "willow", "grass", "bridge_lr", "terrain_tb", "terrain_b", "terrain_tb", "terrain_crt", "house", "house", "human3", "tree", "tree", "tree", "tree", "tree", "tree", "mountain"],
+        ["tree", "cave", "tree", "flowers", "grass", "river_clb", "river_crt", "stone", "stone", "terrain_clb", "terrain_crt", "tree", "terrain_l", "human1", "house", "house", "tree", "witch", "whouse", "tree"],
+        ["tree", "rocky", "tree", "flowers", "grass", "stone", "river_clb", "river_tb", "river_crt", "grass", "terrain_clb", "terrain_tb", "terrain_r", "house", "human5", "tree", "tree", "dgrass", "wood", "tree"],
+        ["tree", "rocky", "tree", "tree", "grass", "grass", "stone", "stone", "river_clb", "river_crt", "stone", "grass", "terrain_lr", "tree", "terrain_lr", "tree", "spider", "dgrass", "crack", "tree"],
+        ["tree", "tree", "dog", "tree", "tree", "tree", "grass", "stone", "stone", "river_lr", "stone", "house", "terrain_l", "terrain_tb", "terrain_r", "tree", "crack", "dtree", "dgrass", "tree"],
+        ["tree", "fhouse", "grass", "wood", "wood", "wood", "terrain_clt", "terrain_tb", "terrain_tb", "bridge_blr", "house", "house", "human6", "house", "terrain_clb", "dgrass", "dgrass", "dgrass", "dgrass", "tree"],
+        ["tree", "terrain_clb", "terrain_tb", "terrain_tb", "forester", "terrain_tb", "terrain_crb", "tree", "tree", "river_clb", "river_tb", "river_t", "bridge_tb", "river_tb", "river_crt", "tree", "grave", "grave", "grave", "tree"],
+        ["tree", "wood", "tree", "tree", "terrain_lrbe", "tree", "tree", "tree", "tree", "tree", "tree", "river_lr", "terrain_lr", "tree", "river_lr", "tree", "tree", "tree", "tree", "tree"],
+        ["tree", "tree", "tree", "flowers", "grass", "grass", "grass", "tree", "diamond", "grass", "tree", "tree", "terrain_lr", "tree", "river_clb", "river_tb", "river_crt", "tree", "tree", "tree"],
+        ["tree", "flowers", "grass", "grass", "grass", "tree", "grass", "tree", "tree", "grass", "tree", "river_lr", "terrain_clb", "terrain_tb", "terrain_tb", "wolf", "bridge_lr", "terrain_tb", "terrain_tbre", "tree"],
+        ["tree", "me", "grass", "flowers", "tree", "tree", "grass", "grass", "grass", "grass", "tree", "river_lr", "tree", "tree", "tree", "tree", "river_clb", "river_crt", "well", "tree"],
+        ["tree", "tree", "tree", "tree", "tree", "tree", "tree", "tree", "tree", "tree", "tree", "river_lr", "tree", "tree", "tree", "tree", "tree", "river_lr", "tree", "tree"]];
+
 
     var map_elements = {"tree": "images/tree.png",
         "dtree": "images/dtree.png",
@@ -149,5 +166,157 @@ function init() {
             image.onload = drawCanvasImageElem(ctx, image, i, j);
             image.src = map_elements[ground[i][j]];
         }
+    }
+
+    image = new Image();
+    image.onload = drawCanvasImageElem(ctx, image, 8, 15);
+    image.src = map_elements["gate"];
+
+    var charI = getCharactherCoord()[0];
+    var charJ = getCharactherCoord()[1];
+    image = new Image();
+    image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+    image.src = map_elements["me"];
+
+    window.addEventListener('keydown', function(e) {
+        switch (e.keyCode) {
+            case 37:
+                leftArrowPressed();
+                break;
+            case 39:
+                rightArrowPressed();
+                break;
+            case 38:
+                upArrowPressed();
+                break;
+            case 40:
+                downArrowPressed();
+                break;
+        }
+    });
+
+    function leftArrowPressed() {
+        console.log("Stanga");
+        getCharactherCoord();
+        var charI = getCharactherCoord()[0];
+        var charJ = getCharactherCoord()[1];
+
+        if(game[charI][charJ-1] === "grass" || game[charI][charJ-1] === "flowers" || game[charI][charJ-1] === "terrain_lr" ||
+            game[charI][charJ-1] === "terrain_tb" || game[charI][charJ-1] === "terrain_t" || game[charI][charJ-1] === "terrain_b" || game[charI][charJ-1] === "terrain_l"
+            || game[charI][charJ-1] === "terrain_r" || game[charI][charJ-1] === "terrain_lrte" || game[charI][charJ-1] === "terrain_tble" || game[charI][charJ-1] === "terrain_lrbe"
+            || game[charI][charJ-1] === "terrain_tbre" || game[charI][charJ-1] === "terrain_clb" || game[charI][charJ-1] === "terrain_crb" || game[charI][charJ-1] === "terrain_clt"
+            || game[charI][charJ-1] === "terrain_crt" || game[charI][charJ-1] === "dgrass" || game[charI][charJ-1] === "rocky") {
+
+            image = new Image();
+            image.onload = drawCanvasImageElem(ctx, image, charI, charJ-1);
+            image.src = map_elements["me"];
+
+            game[charI][charJ] = ground[charI][charJ];
+            game[charI][charJ-1] = "me";
+
+            image = new Image();
+            image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+            image.src = map_elements[ground[charI][charJ]];
+        }
+        else {
+            alert("You can't jump over obstacles!");
+        }
+    }
+
+    function rightArrowPressed() {
+        console.log("Dreapta");
+        getCharactherCoord();
+        var charI = getCharactherCoord()[0];
+        var charJ = getCharactherCoord()[1];
+
+        if(game[charI][charJ+1] === "grass" || game[charI][charJ+1] === "flowers" || game[charI][charJ+1] === "terrain_lr" ||
+            game[charI][charJ+1] === "terrain_tb" || game[charI][charJ+1] === "terrain_t" || game[charI][charJ+1] === "terrain_b" || game[charI][charJ+1] === "terrain_l"
+            || game[charI][charJ+1] === "terrain_r" || game[charI][charJ+1] === "terrain_lrte" || game[charI][charJ+1] === "terrain_tble" || game[charI][charJ+1] === "terrain_lrbe"
+            || game[charI][charJ+1] === "terrain_tbre" || game[charI][charJ+1] === "terrain_clb" || game[charI][charJ+1] === "terrain_crb" || game[charI][charJ+1] === "terrain_clt"
+            || game[charI][charJ+1] === "terrain_crt" || game[charI][charJ+1] === "dgrass" || game[charI][charJ+1] === "rocky") {
+
+            image = new Image();
+            image.onload = drawCanvasImageElem(ctx, image, charI, charJ+1);
+            image.src = map_elements["me"];
+
+            game[charI][charJ] = ground[charI][charJ];
+            game[charI][charJ+1] = "me";
+
+            image = new Image();
+            image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+            image.src = map_elements[ground[charI][charJ]];
+        }
+        else {
+            alert("You can't jump over obstacles!");
+        }
+    }
+
+    function upArrowPressed() {
+        console.log("Sus");
+        getCharactherCoord();
+        var charI = getCharactherCoord()[0];
+        var charJ = getCharactherCoord()[1];
+
+        if(game[charI-1][charJ] === "grass" || game[charI-1][charJ] === "flowers" || game[charI-1][charJ] === "terrain_lr" ||
+            game[charI-1][charJ] === "terrain_tb" || game[charI-1][charJ] === "terrain_t" || game[charI-1][charJ] === "terrain_b" || game[charI-1][charJ] === "terrain_l"
+            || game[charI-1][charJ] === "terrain_r" || game[charI-1][charJ] === "terrain_lrte" || game[charI-1][charJ] === "terrain_tble" || game[charI-1][charJ] === "terrain_lrbe"
+            || game[charI-1][charJ] === "terrain_tbre" || game[charI-1][charJ] === "terrain_clb" || game[charI-1][charJ] === "terrain_crb" || game[charI-1][charJ] === "terrain_clt"
+            || game[charI-1][charJ] === "terrain_crt" || game[charI-1][charJ] === "dgrass" || game[charI-1][charJ] === "rocky") {
+
+            image = new Image();
+            image.onload = drawCanvasImageElem(ctx, image, charI-1, charJ);
+            image.src = map_elements["me"];
+
+            game[charI][charJ] = ground[charI][charJ];
+            game[charI-1][charJ] = "me";
+
+            image = new Image();
+            image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+            image.src = map_elements[ground[charI][charJ]];
+        }
+        else {
+            alert("You can't jump over obstacles!");
+        }
+    }
+
+    function downArrowPressed() {
+        console.log("Jos");
+        getCharactherCoord();
+        var charI = getCharactherCoord()[0];
+        var charJ = getCharactherCoord()[1];
+
+        if(game[charI+1][charJ] === "grass" || game[charI+1][charJ] === "flowers" || game[charI+1][charJ] === "terrain_lr" ||
+            game[charI+1][charJ] === "terrain_tb" || game[charI+1][charJ] === "terrain_t" || game[charI+1][charJ] === "terrain_b" || game[charI+1][charJ] === "terrain_l"
+            || game[charI+1][charJ] === "terrain_r" || game[charI+1][charJ] === "terrain_lrte" || game[charI+1][charJ] === "terrain_tble" || game[charI+1][charJ] === "terrain_lrbe"
+            || game[charI+1][charJ] === "terrain_tbre" || game[charI+1][charJ] === "terrain_clb" || game[charI+1][charJ] === "terrain_crb" || game[charI+1][charJ] === "terrain_clt"
+            || game[charI+1][charJ] === "terrain_crt" || game[charI+1][charJ] === "dgrass" || game[charI+1][charJ] === "rocky") {
+
+            image = new Image();
+            image.onload = drawCanvasImageElem(ctx, image, charI+1, charJ);
+            image.src = map_elements["me"];
+
+            game[charI][charJ] = ground[charI][charJ];
+            game[charI+1][charJ] = "me";
+
+            image = new Image();
+            image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+            image.src = map_elements[ground[charI][charJ]];
+        }
+        else {
+            alert("You can't jump over obstacles!");
+        }
+    }
+
+    function getCharactherCoord(){
+        var coord = [];
+        for (var i = 0; i < 15; i++) {
+            for (var j = 0; j < 20; j++) {
+                if(game[i][j] === "me") {
+                    coord.push(i);
+                    coord.push(j);
+                }
+            }
+        }
+        return coord;
     }
 }

@@ -2,63 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5220c3fa-2b27-4ee3-9ea1-10b9c39061b8" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/ground.html" afterPath="$PROJECT_DIR$/ground.html" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Cosmin.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/Cosmin.xml" />
+      <change beforePath="$PROJECT_DIR$/ground.css" afterPath="$PROJECT_DIR$/ground.css" />
       <change beforePath="$PROJECT_DIR$/ground.js" afterPath="$PROJECT_DIR$/ground.js" />
-      <change beforePath="$PROJECT_DIR$/images/bridge_blr.png" afterPath="$PROJECT_DIR$/images/bridge_blr.png" />
-      <change beforePath="$PROJECT_DIR$/images/bridge_lr.png" afterPath="$PROJECT_DIR$/images/bridge_lr.png" />
-      <change beforePath="$PROJECT_DIR$/images/bridge_tb.png" afterPath="$PROJECT_DIR$/images/bridge_tb.png" />
-      <change beforePath="$PROJECT_DIR$/images/cave.png" afterPath="$PROJECT_DIR$/images/cave.png" />
-      <change beforePath="$PROJECT_DIR$/images/character.png" afterPath="$PROJECT_DIR$/images/character.png" />
-      <change beforePath="$PROJECT_DIR$/images/crack.png" afterPath="$PROJECT_DIR$/images/crack.png" />
-      <change beforePath="$PROJECT_DIR$/images/dgrass.jpg" afterPath="$PROJECT_DIR$/images/dgrass.jpg" />
-      <change beforePath="$PROJECT_DIR$/images/dog.png" afterPath="$PROJECT_DIR$/images/dog.png" />
-      <change beforePath="$PROJECT_DIR$/images/dtree.png" afterPath="$PROJECT_DIR$/images/dtree.png" />
-      <change beforePath="$PROJECT_DIR$/images/fhouse.png" afterPath="$PROJECT_DIR$/images/fhouse.png" />
       <change beforePath="$PROJECT_DIR$/images/flowers.png" afterPath="$PROJECT_DIR$/images/flowers.png" />
-      <change beforePath="$PROJECT_DIR$/images/forester.png" afterPath="$PROJECT_DIR$/images/forester.png" />
-      <change beforePath="$PROJECT_DIR$/images/fountain.png" afterPath="$PROJECT_DIR$/images/fountain.png" />
-      <change beforePath="$PROJECT_DIR$/images/gate.png" afterPath="$PROJECT_DIR$/images/gate.png" />
-      <change beforePath="$PROJECT_DIR$/images/grass.jpg" afterPath="$PROJECT_DIR$/images/grass.jpg" />
-      <change beforePath="$PROJECT_DIR$/images/grave.png" afterPath="$PROJECT_DIR$/images/grave.png" />
-      <change beforePath="$PROJECT_DIR$/images/house.png" afterPath="$PROJECT_DIR$/images/house.png" />
-      <change beforePath="$PROJECT_DIR$/images/human1.png" afterPath="$PROJECT_DIR$/images/human1.png" />
-      <change beforePath="$PROJECT_DIR$/images/human2.png" afterPath="$PROJECT_DIR$/images/human2.png" />
-      <change beforePath="$PROJECT_DIR$/images/human3.png" afterPath="$PROJECT_DIR$/images/human3.png" />
-      <change beforePath="$PROJECT_DIR$/images/human4.png" afterPath="$PROJECT_DIR$/images/human4.png" />
-      <change beforePath="$PROJECT_DIR$/images/human5.png" afterPath="$PROJECT_DIR$/images/human5.png" />
-      <change beforePath="$PROJECT_DIR$/images/human6.png" afterPath="$PROJECT_DIR$/images/human6.png" />
-      <change beforePath="$PROJECT_DIR$/images/mountain.png" afterPath="$PROJECT_DIR$/images/mountain.png" />
-      <change beforePath="$PROJECT_DIR$/images/river_clb.png" afterPath="$PROJECT_DIR$/images/river_clb.png" />
-      <change beforePath="$PROJECT_DIR$/images/river_clt.png" afterPath="$PROJECT_DIR$/images/river_clt.png" />
-      <change beforePath="$PROJECT_DIR$/images/river_crb.png" afterPath="$PROJECT_DIR$/images/river_crb.png" />
-      <change beforePath="$PROJECT_DIR$/images/river_crt.png" afterPath="$PROJECT_DIR$/images/river_crt.png" />
-      <change beforePath="$PROJECT_DIR$/images/river_lr.png" afterPath="$PROJECT_DIR$/images/river_lr.png" />
-      <change beforePath="$PROJECT_DIR$/images/river_t.png" afterPath="$PROJECT_DIR$/images/river_t.png" />
-      <change beforePath="$PROJECT_DIR$/images/river_tb.png" afterPath="$PROJECT_DIR$/images/river_tb.png" />
-      <change beforePath="$PROJECT_DIR$/images/rocky.jpg" afterPath="$PROJECT_DIR$/images/rocky.jpg" />
-      <change beforePath="$PROJECT_DIR$/images/spider.png" afterPath="$PROJECT_DIR$/images/spider.png" />
-      <change beforePath="$PROJECT_DIR$/images/stone.png" afterPath="$PROJECT_DIR$/images/stone.png" />
-      <change beforePath="$PROJECT_DIR$/images/terrain.png" afterPath="$PROJECT_DIR$/images/terrain.png" />
-      <change beforePath="$PROJECT_DIR$/images/terrain_b.png" afterPath="$PROJECT_DIR$/images/terrain_b.png" />
-      <change beforePath="$PROJECT_DIR$/images/terrain_clb.png" afterPath="$PROJECT_DIR$/images/terrain_clb.png" />
-      <change beforePath="$PROJECT_DIR$/images/terrain_clt.png" afterPath="$PROJECT_DIR$/images/terrain_clt.png" />
-      <change beforePath="$PROJECT_DIR$/images/terrain_crb.png" afterPath="$PROJECT_DIR$/images/terrain_crb.png" />
-      <change beforePath="$PROJECT_DIR$/images/terrain_crt.png" afterPath="$PROJECT_DIR$/images/terrain_crt.png" />
-      <change beforePath="$PROJECT_DIR$/images/terrain_l.png" afterPath="$PROJECT_DIR$/images/terrain_l.png" />
-      <change beforePath="$PROJECT_DIR$/images/terrain_lr.png" afterPath="$PROJECT_DIR$/images/terrain_lr.png" />
-      <change beforePath="$PROJECT_DIR$/images/terrain_lrbe.png" afterPath="$PROJECT_DIR$/images/terrain_lrbe.png" />
-      <change beforePath="$PROJECT_DIR$/images/terrain_lrte.png" afterPath="$PROJECT_DIR$/images/terrain_lrte.png" />
-      <change beforePath="$PROJECT_DIR$/images/terrain_r.png" afterPath="$PROJECT_DIR$/images/terrain_r.png" />
-      <change beforePath="$PROJECT_DIR$/images/terrain_t.png" afterPath="$PROJECT_DIR$/images/terrain_t.png" />
-      <change beforePath="$PROJECT_DIR$/images/terrain_tb.png" afterPath="$PROJECT_DIR$/images/terrain_tb.png" />
-      <change beforePath="$PROJECT_DIR$/images/terrain_tble.png" afterPath="$PROJECT_DIR$/images/terrain_tble.png" />
-      <change beforePath="$PROJECT_DIR$/images/terrain_tbre.png" afterPath="$PROJECT_DIR$/images/terrain_tbre.png" />
-      <change beforePath="$PROJECT_DIR$/images/well.png" afterPath="$PROJECT_DIR$/images/well.png" />
-      <change beforePath="$PROJECT_DIR$/images/whouse.png" afterPath="$PROJECT_DIR$/images/whouse.png" />
-      <change beforePath="$PROJECT_DIR$/images/witch.png" afterPath="$PROJECT_DIR$/images/witch.png" />
-      <change beforePath="$PROJECT_DIR$/images/wolf.png" afterPath="$PROJECT_DIR$/images/wolf.png" />
-      <change beforePath="$PROJECT_DIR$/images/wood.png" afterPath="$PROJECT_DIR$/images/wood.png" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -72,11 +19,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ground.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ground.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ground.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="8" lean-forward="true" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="8" />
+            <state relative-caret-position="340">
+              <caret line="20" column="7" lean-forward="true" selection-start-line="20" selection-start-column="7" selection-end-line="20" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -85,19 +32,22 @@
       <file leaf-file-name="ground.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ground.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="21" lean-forward="true" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+            <state relative-caret-position="272">
+              <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="19" selection-end-column="2" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ground.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ground.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ground.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="33" column="174" lean-forward="false" selection-start-line="33" selection-start-column="170" selection-end-line="33" selection-end-column="174" />
-              <folding />
+            <state relative-caret-position="275">
+              <caret line="295" column="43" lean-forward="true" selection-start-line="295" selection-start-column="43" selection-end-line="295" selection-end-column="43" />
+              <folding>
+                <element signature="e#9366#12069#0" expanded="false" />
+                <element signature="e#12455#12820#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -128,9 +78,16 @@
       <find>dtree</find>
       <find>gate</find>
       <find>dgrass</find>
+      <find>river</find>
+      <find>[charI][charJ-1]</find>
+      <find>[charI][charJ+1]</find>
+      <find>[charI-1][charJ]</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;grass&quot;</replace>
+      <replace>[charI][charJ+1]</replace>
+      <replace>[charI-1][charJ]</replace>
+      <replace>[charI+1][charJ]</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -146,6 +103,7 @@
         <option value="$PROJECT_DIR$/levels.css" />
         <option value="$PROJECT_DIR$/orizontalNav.js" />
         <option value="$PROJECT_DIR$/ground.html" />
+        <option value="$PROJECT_DIR$/ground.css" />
         <option value="$PROJECT_DIR$/ground.js" />
       </list>
     </option>
@@ -233,12 +191,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1514306913369</updated>
-      <workItem from="1514306916779" duration="37773000" />
+      <workItem from="1514306916779" duration="44149000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37773000" />
+    <option name="totallyTimeSpent" value="44149000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -342,27 +300,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ground.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="7" lean-forward="true" selection-start-line="20" selection-start-column="7" selection-end-line="20" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ground.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="21" lean-forward="true" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+        <state relative-caret-position="272">
+          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="19" selection-end-column="2" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ground.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="33" column="174" lean-forward="false" selection-start-line="33" selection-start-column="170" selection-end-line="33" selection-end-column="174" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ground.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="8" lean-forward="true" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="8" />
-          <folding />
+        <state relative-caret-position="275">
+          <caret line="295" column="43" lean-forward="true" selection-start-line="295" selection-start-column="43" selection-end-line="295" selection-end-column="43" />
+          <folding>
+            <element signature="e#9366#12069#0" expanded="false" />
+            <element signature="e#12455#12820#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

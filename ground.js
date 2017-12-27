@@ -114,8 +114,8 @@ function init() {
         "gate": "images/gate.png",
         "flowers": "images/flowers.png"};
 
-    for (var i = 0; i < ground.length; i++) {
-        for (var j = 0; j < ground[i].length; j++) {
+    for (i = 0; i < ground.length; i++) {
+        for (j = 0; j < ground[i].length; j++) {
             if (ground[i][j] === "bridge_tb") {
                 image = new Image();
                 image.onload = drawCanvasImageElem(ctx, image, i, j);
@@ -178,21 +178,43 @@ function init() {
     image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
     image.src = map_elements["me"];
 
-    window.addEventListener('keydown', function(e) {
-        switch (e.keyCode) {
-            case 37:
-                leftArrowPressed();
-                break;
-            case 39:
-                rightArrowPressed();
-                break;
-            case 38:
-                upArrowPressed();
-                break;
-            case 40:
-                downArrowPressed();
-                break;
+    var map = {};
+    document.body.addEventListener("keydown", function(e){
+        map[e.keyCode] = e.type === 'keydown';
+        if(map[105]){
+            rightUpDiagonal();
+            map = {};
         }
+        if(map[103]) {
+            leftUpDiagonal();
+            map = {};
+        }
+        if(map[97]) {
+            leftDownDiagonal();
+            map = {};
+        }
+        if(map[99]) {
+            rightDownDiagonal();
+            map = {};
+        }
+        else if(map[37]){
+            leftArrowPressed();
+            map = {};
+        }
+        else if(map[39]){
+            rightArrowPressed();
+            map = {};
+        }
+        else if(map[38]){
+            upArrowPressed();
+            map = {};
+        }
+        else if(map[40]){
+            downArrowPressed();
+            map = {};
+        }
+        e.preventDefault();
+        return false;
     });
 
     function leftArrowPressed() {
@@ -201,18 +223,17 @@ function init() {
         var charI = getCharactherCoord()[0];
         var charJ = getCharactherCoord()[1];
 
-        if(game[charI][charJ-1] === "grass" || game[charI][charJ-1] === "flowers" || game[charI][charJ-1] === "terrain_lr" ||
-            game[charI][charJ-1] === "terrain_tb" || game[charI][charJ-1] === "terrain_t" || game[charI][charJ-1] === "terrain_b" || game[charI][charJ-1] === "terrain_l"
-            || game[charI][charJ-1] === "terrain_r" || game[charI][charJ-1] === "terrain_lrte" || game[charI][charJ-1] === "terrain_tble" || game[charI][charJ-1] === "terrain_lrbe"
-            || game[charI][charJ-1] === "terrain_tbre" || game[charI][charJ-1] === "terrain_clb" || game[charI][charJ-1] === "terrain_crb" || game[charI][charJ-1] === "terrain_clt"
-            || game[charI][charJ-1] === "terrain_crt" || game[charI][charJ-1] === "dgrass" || game[charI][charJ-1] === "rocky") {
-
+        if(checkMoveLeft(charI, charJ) === true) {
             image = new Image();
             image.onload = drawCanvasImageElem(ctx, image, charI, charJ-1);
             image.src = map_elements["me"];
 
             game[charI][charJ] = ground[charI][charJ];
             game[charI][charJ-1] = "me";
+
+            // image = new Image();
+            // image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+            // image.src = map_elements["grass"];
 
             image = new Image();
             image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
@@ -229,18 +250,17 @@ function init() {
         var charI = getCharactherCoord()[0];
         var charJ = getCharactherCoord()[1];
 
-        if(game[charI][charJ+1] === "grass" || game[charI][charJ+1] === "flowers" || game[charI][charJ+1] === "terrain_lr" ||
-            game[charI][charJ+1] === "terrain_tb" || game[charI][charJ+1] === "terrain_t" || game[charI][charJ+1] === "terrain_b" || game[charI][charJ+1] === "terrain_l"
-            || game[charI][charJ+1] === "terrain_r" || game[charI][charJ+1] === "terrain_lrte" || game[charI][charJ+1] === "terrain_tble" || game[charI][charJ+1] === "terrain_lrbe"
-            || game[charI][charJ+1] === "terrain_tbre" || game[charI][charJ+1] === "terrain_clb" || game[charI][charJ+1] === "terrain_crb" || game[charI][charJ+1] === "terrain_clt"
-            || game[charI][charJ+1] === "terrain_crt" || game[charI][charJ+1] === "dgrass" || game[charI][charJ+1] === "rocky") {
-
+        if(checkMoveRight(charI, charJ) === true) {
             image = new Image();
             image.onload = drawCanvasImageElem(ctx, image, charI, charJ+1);
             image.src = map_elements["me"];
 
             game[charI][charJ] = ground[charI][charJ];
             game[charI][charJ+1] = "me";
+
+            // image = new Image();
+            // image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+            // image.src = map_elements["grass"];
 
             image = new Image();
             image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
@@ -257,18 +277,17 @@ function init() {
         var charI = getCharactherCoord()[0];
         var charJ = getCharactherCoord()[1];
 
-        if(game[charI-1][charJ] === "grass" || game[charI-1][charJ] === "flowers" || game[charI-1][charJ] === "terrain_lr" ||
-            game[charI-1][charJ] === "terrain_tb" || game[charI-1][charJ] === "terrain_t" || game[charI-1][charJ] === "terrain_b" || game[charI-1][charJ] === "terrain_l"
-            || game[charI-1][charJ] === "terrain_r" || game[charI-1][charJ] === "terrain_lrte" || game[charI-1][charJ] === "terrain_tble" || game[charI-1][charJ] === "terrain_lrbe"
-            || game[charI-1][charJ] === "terrain_tbre" || game[charI-1][charJ] === "terrain_clb" || game[charI-1][charJ] === "terrain_crb" || game[charI-1][charJ] === "terrain_clt"
-            || game[charI-1][charJ] === "terrain_crt" || game[charI-1][charJ] === "dgrass" || game[charI-1][charJ] === "rocky") {
-
+        if(checkMoveUp(charI, charJ) === true) {
             image = new Image();
             image.onload = drawCanvasImageElem(ctx, image, charI-1, charJ);
             image.src = map_elements["me"];
 
             game[charI][charJ] = ground[charI][charJ];
             game[charI-1][charJ] = "me";
+
+            // image = new Image();
+            // image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+            // image.src = map_elements["grass"];
 
             image = new Image();
             image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
@@ -285,18 +304,125 @@ function init() {
         var charI = getCharactherCoord()[0];
         var charJ = getCharactherCoord()[1];
 
-        if(game[charI+1][charJ] === "grass" || game[charI+1][charJ] === "flowers" || game[charI+1][charJ] === "terrain_lr" ||
-            game[charI+1][charJ] === "terrain_tb" || game[charI+1][charJ] === "terrain_t" || game[charI+1][charJ] === "terrain_b" || game[charI+1][charJ] === "terrain_l"
-            || game[charI+1][charJ] === "terrain_r" || game[charI+1][charJ] === "terrain_lrte" || game[charI+1][charJ] === "terrain_tble" || game[charI+1][charJ] === "terrain_lrbe"
-            || game[charI+1][charJ] === "terrain_tbre" || game[charI+1][charJ] === "terrain_clb" || game[charI+1][charJ] === "terrain_crb" || game[charI+1][charJ] === "terrain_clt"
-            || game[charI+1][charJ] === "terrain_crt" || game[charI+1][charJ] === "dgrass" || game[charI+1][charJ] === "rocky") {
-
+        if(checkMoveDown(charI, charJ) === true) {
             image = new Image();
             image.onload = drawCanvasImageElem(ctx, image, charI+1, charJ);
             image.src = map_elements["me"];
 
             game[charI][charJ] = ground[charI][charJ];
             game[charI+1][charJ] = "me";
+
+            // image = new Image();
+            // image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+            // image.src = map_elements["grass"];
+
+            image = new Image();
+            image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+            image.src = map_elements[ground[charI][charJ]];
+        }
+        else {
+            alert("You can't jump over obstacles!");
+        }
+    }
+
+    function rightUpDiagonal(){
+        console.log("Dreapta Sus Diagonala");
+        getCharactherCoord();
+        var charI = getCharactherCoord()[0];
+        var charJ = getCharactherCoord()[1];
+
+        if(checkMoveRightUpDiagonal(charI, charJ) === true) {
+            image = new Image();
+            image.onload = drawCanvasImageElem(ctx, image, charI-1, charJ+1);
+            image.src = map_elements["me"];
+
+            game[charI][charJ] = ground[charI][charJ];
+            game[charI-1][charJ+1] = "me";
+
+            // image = new Image();
+            // image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+            // image.src = map_elements["grass"];
+
+            image = new Image();
+            image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+            image.src = map_elements[ground[charI][charJ]];
+        }
+        else {
+            alert("You can't jump over obstacles!");
+        }
+    }
+
+    function leftUpDiagonal() {
+        console.log("Stanga Sus Diagonala");
+        getCharactherCoord();
+        var charI = getCharactherCoord()[0];
+        var charJ = getCharactherCoord()[1];
+
+        if(checkMoveLeftUpDiagonal(charI, charJ) === true) {
+            image = new Image();
+            image.onload = drawCanvasImageElem(ctx, image, charI-1, charJ-1);
+            image.src = map_elements["me"];
+
+            game[charI][charJ] = ground[charI][charJ];
+            game[charI-1][charJ-1] = "me";
+
+            // image = new Image();
+            // image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+            // image.src = map_elements["grass"];
+
+            image = new Image();
+            image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+            image.src = map_elements[ground[charI][charJ]];
+        }
+        else {
+            alert("You can't jump over obstacles!");
+        }
+    }
+
+    function leftDownDiagonal() {
+        console.log("Stanga Jos Diagonala");
+        getCharactherCoord();
+        var charI = getCharactherCoord()[0];
+        var charJ = getCharactherCoord()[1];
+
+        if(checkMoveLeftDownDiagonal(charI, charJ) === true) {
+            image = new Image();
+            image.onload = drawCanvasImageElem(ctx, image, charI+1, charJ-1);
+            image.src = map_elements["me"];
+
+            game[charI][charJ] = ground[charI][charJ];
+            game[charI+1][charJ-1] = "me";
+
+            // image = new Image();
+            // image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+            // image.src = map_elements["grass"];
+
+            image = new Image();
+            image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+            image.src = map_elements[ground[charI][charJ]];
+        }
+        else {
+            alert("You can't jump over obstacles!");
+        }
+    }
+
+    function rightDownDiagonal(){
+        console.log("Stanga Dreapta Diagonala");
+        getCharactherCoord();
+        var charI = getCharactherCoord()[0];
+        var charJ = getCharactherCoord()[1];
+
+        if(checkMoveRightDownDiagonal(charI, charJ) === true) {
+            image = new Image();
+            image.onload = drawCanvasImageElem(ctx, image, charI+1, charJ+1);
+            image.src = map_elements["me"];
+
+            game[charI][charJ] = ground[charI][charJ];
+            game[charI+1][charJ+1] = "me";
+
+            // image = new Image();
+            // image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+            // image.src = map_elements["grass"];
 
             image = new Image();
             image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
@@ -309,8 +435,8 @@ function init() {
 
     function getCharactherCoord(){
         var coord = [];
-        for (var i = 0; i < 15; i++) {
-            for (var j = 0; j < 20; j++) {
+        for (i = 0; i < 15; i++) {
+            for (j = 0; j < 20; j++) {
                 if(game[i][j] === "me") {
                     coord.push(i);
                     coord.push(j);
@@ -318,5 +444,69 @@ function init() {
             }
         }
         return coord;
+    }
+
+    function checkMoveLeft(charI, charJ) {
+        return game[charI][charJ - 1] === "grass" || game[charI][charJ - 1] === "flowers" || game[charI][charJ - 1] === "terrain_lr" ||
+            game[charI][charJ - 1] === "terrain_tb" || game[charI][charJ - 1] === "terrain_t" || game[charI][charJ - 1] === "terrain_b" || game[charI][charJ - 1] === "terrain_l"
+            || game[charI][charJ - 1] === "terrain_r" || game[charI][charJ - 1] === "terrain_lrte" || game[charI][charJ - 1] === "terrain_tble" || game[charI][charJ - 1] === "terrain_lrbe"
+            || game[charI][charJ - 1] === "terrain_tbre" || game[charI][charJ - 1] === "terrain_clb" || game[charI][charJ - 1] === "terrain_crb" || game[charI][charJ - 1] === "terrain_clt"
+            || game[charI][charJ - 1] === "terrain_crt" || game[charI][charJ - 1] === "dgrass" || game[charI][charJ - 1] === "rocky" || game[charI][charJ - 1] === "forester" || game[charI][charJ - 1] === "dog";
+    }
+
+    function checkMoveRight(charI, charJ) {
+        return game[charI][charJ + 1] === "grass" || game[charI][charJ + 1] === "flowers" || game[charI][charJ + 1] === "terrain_lr" ||
+            game[charI][charJ + 1] === "terrain_tb" || game[charI][charJ + 1] === "terrain_t" || game[charI][charJ + 1] === "terrain_b" || game[charI][charJ + 1] === "terrain_l"
+            || game[charI][charJ + 1] === "terrain_r" || game[charI][charJ + 1] === "terrain_lrte" || game[charI][charJ + 1] === "terrain_tble" || game[charI][charJ + 1] === "terrain_lrbe"
+            || game[charI][charJ + 1] === "terrain_tbre" || game[charI][charJ + 1] === "terrain_clb" || game[charI][charJ + 1] === "terrain_crb" || game[charI][charJ + 1] === "terrain_clt"
+            || game[charI][charJ + 1] === "terrain_crt" || game[charI][charJ + 1] === "dgrass" || game[charI][charJ + 1] === "rocky" || game[charI][charJ + 1] === "forester" || game[charI][charJ + 1] === "dog";
+    }
+
+    function checkMoveUp(charI, charJ) {
+        return game[charI - 1][charJ] === "grass" || game[charI - 1][charJ] === "flowers" || game[charI - 1][charJ] === "terrain_lr" ||
+            game[charI - 1][charJ] === "terrain_tb" || game[charI - 1][charJ] === "terrain_t" || game[charI - 1][charJ] === "terrain_b" || game[charI - 1][charJ] === "terrain_l"
+            || game[charI - 1][charJ] === "terrain_r" || game[charI - 1][charJ] === "terrain_lrte" || game[charI - 1][charJ] === "terrain_tble" || game[charI - 1][charJ] === "terrain_lrbe"
+            || game[charI - 1][charJ] === "terrain_tbre" || game[charI - 1][charJ] === "terrain_clb" || game[charI - 1][charJ] === "terrain_crb" || game[charI - 1][charJ] === "terrain_clt"
+            || game[charI - 1][charJ] === "terrain_crt" || game[charI - 1][charJ] === "dgrass" || game[charI - 1][charJ] === "rocky" || game[charI - 1][charJ] === "forester" || game[charI - 1][charJ] === "dog";
+    }
+
+    function checkMoveDown(charI, charJ) {
+        return game[charI + 1][charJ] === "grass" || game[charI + 1][charJ] === "flowers" || game[charI + 1][charJ] === "terrain_lr" ||
+            game[charI + 1][charJ] === "terrain_tb" || game[charI + 1][charJ] === "terrain_t" || game[charI + 1][charJ] === "terrain_b" || game[charI + 1][charJ] === "terrain_l"
+            || game[charI + 1][charJ] === "terrain_r" || game[charI + 1][charJ] === "terrain_lrte" || game[charI + 1][charJ] === "terrain_tble" || game[charI + 1][charJ] === "terrain_lrbe"
+            || game[charI + 1][charJ] === "terrain_tbre" || game[charI + 1][charJ] === "terrain_clb" || game[charI + 1][charJ] === "terrain_crb" || game[charI + 1][charJ] === "terrain_clt"
+            || game[charI + 1][charJ] === "terrain_crt" || game[charI + 1][charJ] === "dgrass" || game[charI + 1][charJ] === "rocky" || game[charI + 1][charJ] === "forester" || game[charI + 1][charJ] === "dog";
+    }
+
+    function checkMoveRightUpDiagonal(charI, charJ){
+        return game[charI - 1][charJ + 1] === "grass" || game[charI - 1][charJ + 1] === "flowers" || game[charI - 1][charJ + 1] === "terrain_lr" ||
+            game[charI - 1][charJ + 1] === "terrain_tb" || game[charI - 1][charJ + 1] === "terrain_t" || game[charI - 1][charJ + 1] === "terrain_b" || game[charI - 1][charJ + 1] === "terrain_l"
+            || game[charI - 1][charJ + 1] === "terrain_r" || game[charI - 1][charJ + 1] === "terrain_lrte" || game[charI - 1][charJ + 1] === "terrain_tble" || game[charI - 1][charJ + 1] === "terrain_lrbe"
+            || game[charI - 1][charJ + 1] === "terrain_tbre" || game[charI - 1][charJ + 1] === "terrain_clb" || game[charI - 1][charJ + 1] === "terrain_crb" || game[charI - 1][charJ + 1] === "terrain_clt"
+            || game[charI - 1][charJ + 1] === "terrain_crt" || game[charI - 1][charJ + 1] === "dgrass" || game[charI - 1][charJ + 1] === "rocky" || game[charI - 1][charJ + 1] === "forester" || game[charI - 1][charJ + 1] === "dog";
+    }
+
+    function checkMoveLeftUpDiagonal(charI, charJ){
+        return game[charI - 1][charJ - 1] === "grass" || game[charI - 1][charJ - 1] === "flowers" || game[charI - 1][charJ - 1] === "terrain_lr" ||
+            game[charI - 1][charJ - 1] === "terrain_tb" || game[charI - 1][charJ - 1] === "terrain_t" || game[charI - 1][charJ - 1] === "terrain_b" || game[charI - 1][charJ - 1] === "terrain_l"
+            || game[charI - 1][charJ - 1] === "terrain_r" || game[charI - 1][charJ - 1] === "terrain_lrte" || game[charI - 1][charJ - 1] === "terrain_tble" || game[charI - 1][charJ - 1] === "terrain_lrbe"
+            || game[charI - 1][charJ - 1] === "terrain_tbre" || game[charI - 1][charJ - 1] === "terrain_clb" || game[charI - 1][charJ - 1] === "terrain_crb" || game[charI - 1][charJ - 1] === "terrain_clt"
+            || game[charI - 1][charJ - 1] === "terrain_crt" || game[charI - 1][charJ - 1] === "dgrass" || game[charI - 1][charJ - 1] === "rocky" || game[charI - 1][charJ - 1] === "forester" || game[charI - 1][charJ - 1] === "dog";
+    }
+
+    function checkMoveLeftDownDiagonal(charI, charJ){
+        return game[charI + 1][charJ - 1] === "grass" || game[charI + 1][charJ - 1] === "flowers" || game[charI + 1][charJ - 1] === "terrain_lr" ||
+            game[charI + 1][charJ - 1] === "terrain_tb" || game[charI + 1][charJ - 1] === "terrain_t" || game[charI + 1][charJ - 1] === "terrain_b" || game[charI + 1][charJ - 1] === "terrain_l"
+            || game[charI + 1][charJ - 1] === "terrain_r" || game[charI + 1][charJ - 1] === "terrain_lrte" || game[charI + 1][charJ - 1] === "terrain_tble" || game[charI + 1][charJ - 1] === "terrain_lrbe"
+            || game[charI + 1][charJ - 1] === "terrain_tbre" || game[charI + 1][charJ - 1] === "terrain_clb" || game[charI + 1][charJ - 1] === "terrain_crb" || game[charI + 1][charJ - 1] === "terrain_clt"
+            || game[charI + 1][charJ - 1] === "terrain_crt" || game[charI + 1][charJ - 1] === "dgrass" || game[charI + 1][charJ - 1] === "rocky" || game[charI + 1][charJ - 1] === "forester" || game[charI + 1][charJ - 1] === "dog";
+    }
+
+    function checkMoveRightDownDiagonal(charI, charJ){
+        return game[charI + 1][charJ + 1] === "grass" || game[charI + 1][charJ + 1] === "flowers" || game[charI + 1][charJ + 1] === "terrain_lr" ||
+            game[charI + 1][charJ + 1] === "terrain_tb" || game[charI + 1][charJ + 1] === "terrain_t" || game[charI + 1][charJ + 1] === "terrain_b" || game[charI + 1][charJ + 1] === "terrain_l"
+            || game[charI + 1][charJ + 1] === "terrain_r" || game[charI + 1][charJ + 1] === "terrain_lrte" || game[charI + 1][charJ + 1] === "terrain_tble" || game[charI + 1][charJ + 1] === "terrain_lrbe"
+            || game[charI + 1][charJ + 1] === "terrain_tbre" || game[charI + 1][charJ + 1] === "terrain_clb" || game[charI + 1][charJ + 1] === "terrain_crb" || game[charI + 1][charJ + 1] === "terrain_clt"
+            || game[charI + 1][charJ + 1] === "terrain_crt" || game[charI + 1][charJ + 1] === "dgrass" || game[charI + 1][charJ + 1] === "rocky" || game[charI + 1][charJ + 1] === "forester" || game[charI + 1][charJ + 1] === "dog";
     }
 }

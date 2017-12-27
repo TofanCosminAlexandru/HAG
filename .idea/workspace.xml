@@ -4,11 +4,8 @@
     <list default="true" id="5220c3fa-2b27-4ee3-9ea1-10b9c39061b8" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Cosmin.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/Cosmin.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/home.css" afterPath="$PROJECT_DIR$/home.css" />
-      <change beforePath="$PROJECT_DIR$/home.js" afterPath="$PROJECT_DIR$/home.js" />
-      <change beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change beforePath="$PROJECT_DIR$/levels.css" afterPath="$PROJECT_DIR$/levels.css" />
-      <change beforePath="$PROJECT_DIR$/levels.html" afterPath="$PROJECT_DIR$/levels.html" />
+      <change beforePath="$PROJECT_DIR$/ground.html" afterPath="$PROJECT_DIR$/ground.html" />
+      <change beforePath="$PROJECT_DIR$/ground.js" afterPath="$PROJECT_DIR$/ground.js" />
       <change beforePath="$PROJECT_DIR$/orizontalNav.js" afterPath="$PROJECT_DIR$/orizontalNav.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -23,33 +20,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="levels.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/levels.html">
+      <file leaf-file-name="ground.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ground.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="114" column="0" lean-forward="true" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
-              <folding>
-                <element signature="n#style#0;n#img#0;n#div#0;n#main#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="levels.css" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/levels.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="96" column="0" lean-forward="true" selection-start-line="94" selection-start-column="19" selection-end-line="96" selection-end-column="0" />
+            <state relative-caret-position="204">
+              <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="orizontalNav.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/orizontalNav.js">
+      <file leaf-file-name="ground.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ground.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+            <state relative-caret-position="153">
+              <caret line="9" column="21" lean-forward="true" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ground.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ground.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="457">
+              <caret line="93" column="31" lean-forward="false" selection-start-line="93" selection-start-column="31" selection-end-line="93" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -70,8 +65,8 @@
       <find>color-change3</find>
       <find>box</find>
       <find>boxz</find>
-      <find>ground</find>
       <find>port</find>
+      <find>ground</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -83,9 +78,11 @@
         <option value="$PROJECT_DIR$/home.css" />
         <option value="$PROJECT_DIR$/home.js" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/orizontalNav.js" />
         <option value="$PROJECT_DIR$/levels.html" />
         <option value="$PROJECT_DIR$/levels.css" />
+        <option value="$PROJECT_DIR$/orizontalNav.js" />
+        <option value="$PROJECT_DIR$/ground.html" />
+        <option value="$PROJECT_DIR$/ground.js" />
       </list>
     </option>
   </component>
@@ -172,12 +169,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1514306913369</updated>
-      <workItem from="1514306916779" duration="16906000" />
+      <workItem from="1514306916779" duration="26423000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16906000" />
+    <option name="totallyTimeSpent" value="26423000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -229,14 +226,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ground.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="3" lean-forward="false" selection-start-line="19" selection-start-column="3" selection-end-line="19" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2516">
@@ -255,28 +244,60 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/orizontalNav.js">
+    <entry file="file://$PROJECT_DIR$/LICENSE">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        <state relative-caret-position="-10977">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/levels.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="114" column="0" lean-forward="true" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
+        <state relative-caret-position="663">
+          <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
           <folding>
-            <element signature="n#style#0;n#img#0;n#div#0;n#main#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#0;n#main#0;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/levels.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="96" column="0" lean-forward="true" selection-start-line="94" selection-start-column="19" selection-end-line="96" selection-end-column="0" />
+        <state relative-caret-position="189">
+          <caret line="68" column="32" lean-forward="true" selection-start-line="68" selection-start-column="32" selection-end-line="68" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/orizontalNav.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ground.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="21" lean-forward="true" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ground.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="457">
+          <caret line="93" column="31" lean-forward="false" selection-start-line="93" selection-start-column="31" selection-end-line="93" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ground.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding />
         </state>
       </provider>

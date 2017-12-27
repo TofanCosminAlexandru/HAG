@@ -4,6 +4,12 @@ var drawCanvasImage = function(ctx, image, row, col) {
     }
 };
 
+var drawCanvasImageElem = function(ctx, image, row, col) {
+    return function() {
+        ctx.drawImage(image, col * 200, row * 200, 200, 200);
+    }
+};
+
 function draw() {
     var canvas = document.getElementById('canvas');
     if (canvas.getContext) {
@@ -20,17 +26,17 @@ function draw() {
     var ground = [["tree", "tree", "tree", "tree", "river_lr", "tree", "tree", "tree", "tree", "tree", "tree", "tree", "tree", "tree", "mountain", "mountain", "mountain", "mountain", "mountain", "mountain"],
         ["tree", "tree", "tree", "tree", "river_lr", "house", "tree", "terrain_lrte", "tree", "human4", "flowers", "human2", "tree", "tree", "mountain", "diamond", "rocky", "rocky", "cave", "mountain"],
         ["tree", "tree", "tree", "tree", "river_clb", "river_crt", "flowers", "terrain_lr", "house", "house", "gate", "fountain", "tree", "tree", "mountain", "mountain", "mountain", "mountain", "mountain", "mountain"],
-        ["tree", "tree", "tree", "willow", "grass", "bridge_lr", "terrain_tb", "terrain_b", "terrain_tb", "terrain_crt", "house", "house", "human3", "tree", "tree", "tree", "tree", "tree", "tree", "mountain"],
-        ["tree", "cave", "tree", "flowers", "grass", "river_clb", "river_crt", "stone", "stone", "terrain_clb", "terrain_crt", "tree", "terrain_l", "human1", "house", "house", "tree", "witch", "whouse", "tree"],
-        ["tree", "rocky", "tree", "flowers", "grass", "stone", "river_clb", "river_tb", "river_crt", "grass", "terrain_clb", "terrain_tb", "terrain_r", "house", "human5", "tree", "tree", "dgrass", "wood", "tree"],
-        ["tree", "rocky", "tree", "tree", "grass", "grass", "stone", "stone", "river_clb", "river_crt", "stone", "grass", "terrain_lr", "tree", "terrain_lr", "tree", "spider", "dgrass", "crack", "tree"],
-        ["tree", "tree", "dog", "tree", "tree", "tree", "grass", "stone", "stone", "river_lr", "stone", "house", "terrain_l", "terrain_tb", "terrain_r", "tree", "crack", "dtree", "dgrass", "tree"],
-        ["tree", "fhouse", "grass", "wood", "wood", "wood", "terrain_clt", "terrain_tb", "terrain_tb", "bridge_blr", "house", "house", "human6", "house", "terrain_clb", "gate", "dgrass", "dgrass", "dgrass", "tree"],
+        ["tree", "tree", "tree", "willow", "", "bridge_lr", "terrain_tb", "terrain_b", "terrain_tb", "terrain_crt", "house", "house", "human3", "tree", "tree", "tree", "tree", "tree", "tree", "mountain"],
+        ["tree", "cave", "tree", "flowers", "", "river_clb", "river_crt", "stone", "stone", "terrain_clb", "terrain_crt", "tree", "terrain_l", "human1", "house", "house", "tree", "witch", "whouse", "tree"],
+        ["tree", "rocky", "tree", "flowers", "", "stone", "river_clb", "river_tb", "river_crt", "", "terrain_clb", "terrain_tb", "terrain_r", "house", "human5", "tree", "tree", "dgrass", "wood", "tree"],
+        ["tree", "rocky", "tree", "tree", "", "", "stone", "stone", "river_clb", "river_crt", "stone", "", "terrain_lr", "tree", "terrain_lr", "tree", "spider", "dgrass", "crack", "tree"],
+        ["tree", "tree", "dog", "tree", "tree", "tree", "", "stone", "stone", "river_lr", "stone", "house", "terrain_l", "terrain_tb", "terrain_r", "tree", "crack", "dtree", "dgrass", "tree"],
+        ["tree", "fhouse", "", "wood", "wood", "wood", "terrain_clt", "terrain_tb", "terrain_tb", "bridge_blr", "house", "house", "human6", "house", "terrain_clb", "gate", "dgrass", "dgrass", "dgrass", "tree"],
         ["tree", "terrain_clb", "terrain_tb", "terrain_tb", "forester", "terrain_tb", "terrain_crb", "tree", "tree", "river_clb", "river_tb", "river_t", "bridge_tb", "river_tb", "river_crt", "tree", "grave", "grave", "grave", "tree"],
         ["tree", "wood", "tree", "tree", "terrain_lrbe", "tree", "tree", "tree", "tree", "tree", "tree", "river_lr", "terrain_lr", "tree", "river_lr", "tree", "tree", "tree", "tree", "tree"],
-        ["tree", "tree", "tree", "flowers", "grass", "grass", "grass", "tree", "diamond", "grass", "tree", "tree", "terrain_lr", "tree", "river_clb", "river_tb", "river_crt", "tree", "tree", "tree"],
-        ["tree", "flowers", "grass", "grass", "grass", "tree", "grass", "tree", "tree", "grass", "tree", "river_lr", "terrain_clb", "terrain_tb", "terrain_tb", "wolf", "bridge_lr", "terrain_tb", "terrain_tbre", "tree"],
-        ["tree", "me", "grass", "flowers", "tree", "tree", "grass", "grass", "grass", "grass", "tree", "river_lr", "tree", "tree", "tree", "tree", "river_clb", "river_crt", "well", "tree"],
+        ["tree", "tree", "tree", "flowers", "", "", "", "tree", "diamond", "", "tree", "tree", "terrain_lr", "tree", "river_clb", "river_tb", "river_crt", "tree", "tree", "tree"],
+        ["tree", "flowers", "", "", "", "tree", "", "tree", "tree", "", "tree", "river_lr", "terrain_clb", "terrain_tb", "terrain_tb", "wolf", "bridge_lr", "terrain_tb", "terrain_tbre", "tree"],
+        ["tree", "", "", "flowers", "tree", "tree", "", "", "", "", "tree", "river_lr", "tree", "tree", "tree", "tree", "river_clb", "river_crt", "well", "tree"],
         ["tree", "tree", "tree", "tree", "tree", "tree", "tree", "tree", "tree", "tree", "tree", "river_lr", "tree", "tree", "tree", "tree", "tree", "river_lr", "tree", "tree"]];
 
     var map_elements = {"tree": "images/tree.png",
@@ -91,5 +97,57 @@ function draw() {
         "gate": "images/gate.png",
         "flowers": "images/flowers.png"};
 
-    console.log(ground.length);
+    for (var i = 0; i < ground.length; i++) {
+        for (var j = 0; j < ground[i].length; j++) {
+            if (ground[i][j] === "bridge_tb") {
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, i, j);
+                image.src = map_elements["river_tb"];
+            }
+            else if(ground[i][j] === "bridge_lr" || ground[i][j] === "bridge_blr") {
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, i, j);
+                image.src = map_elements["river_lr"];
+            }
+            else if((i === 7 && j === 17) || (i === 8 && j === 15) || ground[i][j] === "grave" || ground[i][j] === "crack" || ground[i][j] === "witch" || ground[i][j] === "whouse" || (ground[i][j] === "wood" && j === 18) || ground[i][j] === "spider") {
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, i, j);
+                image.src = map_elements["dgrass"];
+            }
+            else if(ground[i][j] === "cave" || ground[i][j] === "mountain" || (ground[i][j] === "diamond" && i === 1) || (ground[i][j] === "tree" && (i === 3 || i === 4 || i === 5) && (j === 0 || j === 1))) {
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, i, j);
+                image.src = map_elements["rocky"];
+            }
+            else if(ground[i][j] === "forester") {
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, i, j);
+                image.src = map_elements["terrain_t"];
+            }
+            else if(ground[i][j] === "human1") {
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, i, j);
+                image.src = map_elements["terrain_tbre"];
+            }
+            else if(ground[i][j] === "fhouse" || ground[i][j] === "human3" || ground[i][j] === "human5") {
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, i, j);
+                image.src = map_elements["terrain_lrte"];
+            }
+            else if(ground[i][j] === "human6") {
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, i, j);
+                image.src = map_elements["terrain_lr"];
+            }
+            else if(ground[i][j] === "wolf") {
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, i, j);;
+                image.src = map_elements["terrain_tb"];
+            }
+
+            image = new Image();
+            image.onload = drawCanvasImageElem(ctx, image, i, j);
+            image.src = map_elements[ground[i][j]];
+        }
+    }
 }

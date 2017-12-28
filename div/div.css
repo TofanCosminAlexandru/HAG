@@ -101,3 +101,14 @@ body {
 .indication_div .indication {
     margin-top: -30%;
 }
+
+.indication_div .exit_button p {
+    background-color: tan;
+    border: 1px solid darkred;
+    padding: 5px;
+    margin: 1px;
+}
+
+.indication_div .exit_button p:hover {
+    background-color: lightgreen;
+}

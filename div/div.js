@@ -452,7 +452,13 @@ submit_button.onclick = function() {
     if (chosen_option_nr === categories[category].questions[rand].correct_answer) {
         alert("Ai raspuns corect!");
     }
+    else if(chosen_option_nr === "") {
+        alert("You must first select an answer!");
+    }
     else {
-        alert("Ai raspuns gresit!");
+        alert("Wrong answer!");
     }
 }
+
+var message = "Whatever message I want! Whatever message I want! Whatever message I want! Whatever message I want! Whatever message I want!";
+document.getElementById("indication_text").innerHTML = message;

@@ -1,0 +1,64 @@
+body {
+    cursor: url(images/my_cursor.png), auto;
+}
+
+.question_div_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    visibility: visible;
+}
+
+.question_div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+
+    width: 50%;
+    height: 75%;
+    z-index: 3;
+
+    padding: 60px;
+    background: url(images/scroll.png) no-repeat left top;
+    background-size: contain;
+
+    text-align: center;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-size: 1rem;
+    color: rgb(51, 0, 0);
+}
+
+.question_div .answers ul {
+    text-align: center;
+    list-style: none;
+    padding: 0;
+}
+
+.question_div .answers li {
+    background-color: tan;
+    border: 1px solid darkred;
+    padding: 10px;
+    margin: 2px;
+}
+
+.question_div .submit_button p {
+    background-color: tan;
+    border: 1px solid darkred;
+    padding: 5px;
+    margin: 1px;
+}
+
+.question_div .answers li:hover, .question_div .submit_button p:hover {
+    background-color: lightgreen;
+}

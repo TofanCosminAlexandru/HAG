@@ -1,5 +1,3 @@
-
-
 var drawCanvasImage = function(ctx, image, row, col) {
     return function() {
         ctx.drawImage(image, row * 200, col * 200, 200, 200);

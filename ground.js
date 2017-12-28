@@ -11,6 +11,7 @@ var drawCanvasImageElem = function(ctx, image, row, col) {
 };
 
 var diamonds = 0;
+var points = 0;
 
 function init() {
     var canvas = document.getElementById('canvas');

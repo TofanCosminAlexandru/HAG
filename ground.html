@@ -11,11 +11,43 @@
     <link rel="stylesheet" href="ground.css">
   </head>
 
-  <body onload="init()">
+  <body onload="init()" style="zoom: 90%">
     <main>
-      <div id="canvas_div">
-      <canvas id="canvas" width="4000px" height="3000px"> Your browser does not support the HTML5 canvas tag. </canvas>
+      <canvas id="canvas" width="4000px" height="3000px" style="zoom: 25%"> Your browser does not support the HTML5 canvas tag. </canvas>
+
+      <div class = "indication_div_container" style="zoom: normal">
+          <div class = "indication_div">
+              <div class = "indication">
+                  <p id = "indication_text"> h </p>
+              </div>
+              <div class = "exit_button" onclick="hideFunction()">
+                  <p id = "exit_button_text"> Next </p>
+              </div>
+          </div>
       </div>
+
+      <div class = "question_div_container">
+            <div class = "question_div">
+                <div class = "question">
+                    <p id = "question_text"> H </p>
+                </div>
+                <div class = "answers">
+                    <ul id = "options">
+                        <li id = "option1"> h </li>
+                        <li id = "option2"> h </li>
+                        <li id = "option3"> h </li>
+                        <li id = "option4"> h </li>
+                    </ul>
+                </div>
+                <div class = "clue">
+                    <p id = "clue"> H </p>
+                </div>
+                <div class = "submit_button">
+                    <p id = "submit_button_text"> Submit </p>
+                </div>
+            </div>
+      </div>
+
     </main>
     <script type="application/javascript" src="ground.js"> </script>
   </body>

@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5220c3fa-2b27-4ee3-9ea1-10b9c39061b8" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/ground.css" afterPath="$PROJECT_DIR$/ground.css" />
+      <change beforePath="$PROJECT_DIR$/ground.html" afterPath="$PROJECT_DIR$/ground.html" />
       <change beforePath="$PROJECT_DIR$/ground.js" afterPath="$PROJECT_DIR$/ground.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -19,8 +22,8 @@
       <file leaf-file-name="ground.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ground.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="19" lean-forward="false" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+            <state relative-caret-position="255">
+              <caret line="15" column="25" lean-forward="false" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -29,8 +32,8 @@
       <file leaf-file-name="ground.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ground.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="22" lean-forward="false" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
+            <state relative-caret-position="323">
+              <caret line="19" column="2" lean-forward="true" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
               <folding />
             </state>
           </provider>
@@ -39,21 +42,15 @@
       <file leaf-file-name="ground.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ground.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="239" column="0" lean-forward="true" selection-start-line="239" selection-start-column="0" selection-end-line="239" selection-end-column="0" />
+            <state relative-caret-position="459">
+              <caret line="328" column="40" lean-forward="true" selection-start-line="328" selection-start-column="40" selection-end-line="328" selection-end-column="40" />
               <folding>
-                <element signature="e#53#148#0" expanded="false" />
-                <element signature="e#208#303#0" expanded="false" />
-                <element signature="e#422#733#0" expanded="false" />
-                <element signature="e#12480#13328#0" expanded="false" />
-                <element signature="n#!!block;n#rightArrowPressed#0;n#!!block;n#init#0" expanded="false" />
-                <element signature="n#!!block;n#upArrowPressed#0;n#!!block;n#init#0" expanded="false" />
-                <element signature="n#!!block;n#downArrowPressed#0;n#!!block;n#init#0" expanded="false" />
+                <element signature="e#9532#12260#0" expanded="false" />
+                <element signature="e#12720#13568#0" expanded="false" />
                 <element signature="n#!!block;n#rightUpDiagonal#0;n#!!block;n#init#0" expanded="false" />
                 <element signature="n#!!block;n#leftUpDiagonal#0;n#!!block;n#init#0" expanded="false" />
                 <element signature="n#!!block;n#leftDownDiagonal#0;n#!!block;n#init#0" expanded="false" />
                 <element signature="n#!!block;n#rightDownDiagonal#0;n#!!block;n#init#0" expanded="false" />
-                <element signature="n#!!block;n#getCharactherCoord#0;n#!!block;n#init#0" expanded="false" />
                 <element signature="n#!!block;n#checkMoveLeft#0;n#!!block;n#init#0" expanded="false" />
                 <element signature="n#!!block;n#checkMoveRight#0;n#!!block;n#init#0" expanded="false" />
                 <element signature="n#!!block;n#checkMoveUp#0;n#!!block;n#init#0" expanded="false" />
@@ -70,8 +67,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="35" column="14" lean-forward="true" selection-start-line="27" selection-start-column="8" selection-end-line="35" selection-end-column="14" />
+            <state relative-caret-position="17">
+              <caret line="35" column="14" lean-forward="false" selection-start-line="27" selection-start-column="8" selection-end-line="35" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -81,7 +78,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>color-change3</find>
       <find>box</find>
       <find>boxz</find>
       <find>port</find>
@@ -111,6 +107,7 @@
       <find>flowers</find>
       <find>getCharactherCoord</find>
       <find>diamond</find>
+      <find>ctx</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;grass&quot;</replace>
@@ -135,8 +132,8 @@
         <option value="$PROJECT_DIR$/levels.html" />
         <option value="$PROJECT_DIR$/levels.css" />
         <option value="$PROJECT_DIR$/orizontalNav.js" />
-        <option value="$PROJECT_DIR$/ground.html" />
         <option value="$PROJECT_DIR$/ground.css" />
+        <option value="$PROJECT_DIR$/ground.html" />
         <option value="$PROJECT_DIR$/ground.js" />
       </list>
     </option>
@@ -154,8 +151,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-171" />
-    <option name="y" value="-20" />
+    <option name="x" value="1239" />
+    <option name="y" value="-22" />
     <option name="width" value="1346" />
     <option name="height" value="698" />
   </component>
@@ -177,7 +174,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -189,7 +186,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -225,18 +222,19 @@
       <option name="presentableId" value="Default" />
       <updated>1514306913369</updated>
       <workItem from="1514306916779" duration="54784000" />
-      <workItem from="1514453914358" duration="12685000" />
+      <workItem from="1514453914358" duration="13283000" />
+      <workItem from="1514474615087" duration="10040000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67469000" />
+    <option name="totallyTimeSpent" value="78107000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <frame x="1358" y="-8" width="1296" height="1010" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11493412" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12265625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -263,11 +261,58 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="10" />
+      <option name="time" value="11" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/ground.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="19" lean-forward="false" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ground.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="22" lean-forward="false" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="35" column="14" lean-forward="true" selection-start-line="27" selection-start-column="8" selection-end-line="35" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ground.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4063">
+          <caret line="239" column="0" lean-forward="true" selection-start-line="239" selection-start-column="0" selection-end-line="239" selection-end-column="0" />
+          <folding>
+            <element signature="e#9532#12260#0" expanded="false" />
+            <element signature="e#12720#13568#0" expanded="false" />
+            <element signature="n#!!block;n#rightUpDiagonal#0;n#!!block;n#init#0" expanded="false" />
+            <element signature="n#!!block;n#leftUpDiagonal#0;n#!!block;n#init#0" expanded="false" />
+            <element signature="n#!!block;n#leftDownDiagonal#0;n#!!block;n#init#0" expanded="false" />
+            <element signature="n#!!block;n#rightDownDiagonal#0;n#!!block;n#init#0" expanded="false" />
+            <element signature="n#!!block;n#checkMoveLeft#0;n#!!block;n#init#0" expanded="false" />
+            <element signature="n#!!block;n#checkMoveRight#0;n#!!block;n#init#0" expanded="false" />
+            <element signature="n#!!block;n#checkMoveUp#0;n#!!block;n#init#0" expanded="false" />
+            <element signature="n#!!block;n#checkMoveDown#0;n#!!block;n#init#0" expanded="false" />
+            <element signature="n#!!block;n#checkMoveRightUpDiagonal#0;n#!!block;n#init#0" expanded="false" />
+            <element signature="n#!!block;n#checkMoveLeftUpDiagonal#0;n#!!block;n#init#0" expanded="false" />
+            <element signature="n#!!block;n#checkMoveLeftDownDiagonal#0;n#!!block;n#init#0" expanded="false" />
+            <element signature="n#!!block;n#checkMoveRightDownDiagonal#0;n#!!block;n#init#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ground.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -289,18 +334,12 @@
         <state relative-caret-position="4828">
           <caret line="284" column="54" lean-forward="true" selection-start-line="284" selection-start-column="54" selection-end-line="284" selection-end-column="54" />
           <folding>
-            <element signature="e#53#148#0" expanded="false" />
-            <element signature="e#208#303#0" expanded="false" />
-            <element signature="e#422#733#0" expanded="false" />
-            <element signature="e#12480#13328#0" expanded="false" />
-            <element signature="n#!!block;n#rightArrowPressed#0;n#!!block;n#init#0" expanded="false" />
-            <element signature="n#!!block;n#upArrowPressed#0;n#!!block;n#init#0" expanded="false" />
-            <element signature="n#!!block;n#downArrowPressed#0;n#!!block;n#init#0" expanded="false" />
+            <element signature="e#9532#12260#0" expanded="false" />
+            <element signature="e#12720#13568#0" expanded="false" />
             <element signature="n#!!block;n#rightUpDiagonal#0;n#!!block;n#init#0" expanded="false" />
             <element signature="n#!!block;n#leftUpDiagonal#0;n#!!block;n#init#0" expanded="false" />
             <element signature="n#!!block;n#leftDownDiagonal#0;n#!!block;n#init#0" expanded="false" />
             <element signature="n#!!block;n#rightDownDiagonal#0;n#!!block;n#init#0" expanded="false" />
-            <element signature="n#!!block;n#getCharactherCoord#0;n#!!block;n#init#0" expanded="false" />
             <element signature="n#!!block;n#checkMoveLeft#0;n#!!block;n#init#0" expanded="false" />
             <element signature="n#!!block;n#checkMoveRight#0;n#!!block;n#init#0" expanded="false" />
             <element signature="n#!!block;n#checkMoveUp#0;n#!!block;n#init#0" expanded="false" />
@@ -356,47 +395,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/http.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="35" column="14" lean-forward="true" selection-start-line="27" selection-start-column="8" selection-end-line="35" selection-end-column="14" />
+        <state relative-caret-position="-6117">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ground.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="19" lean-forward="false" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+        <state relative-caret-position="255">
+          <caret line="15" column="25" lean-forward="false" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="35" column="14" lean-forward="false" selection-start-line="27" selection-start-column="8" selection-end-line="35" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ground.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="22" lean-forward="false" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
+        <state relative-caret-position="323">
+          <caret line="19" column="2" lean-forward="true" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ground.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="239" column="0" lean-forward="true" selection-start-line="239" selection-start-column="0" selection-end-line="239" selection-end-column="0" />
+        <state relative-caret-position="459">
+          <caret line="328" column="40" lean-forward="true" selection-start-line="328" selection-start-column="40" selection-end-line="328" selection-end-column="40" />
           <folding>
-            <element signature="e#53#148#0" expanded="false" />
-            <element signature="e#208#303#0" expanded="false" />
-            <element signature="e#422#733#0" expanded="false" />
-            <element signature="e#12480#13328#0" expanded="false" />
-            <element signature="n#!!block;n#rightArrowPressed#0;n#!!block;n#init#0" expanded="false" />
-            <element signature="n#!!block;n#upArrowPressed#0;n#!!block;n#init#0" expanded="false" />
-            <element signature="n#!!block;n#downArrowPressed#0;n#!!block;n#init#0" expanded="false" />
+            <element signature="e#9532#12260#0" expanded="false" />
+            <element signature="e#12720#13568#0" expanded="false" />
             <element signature="n#!!block;n#rightUpDiagonal#0;n#!!block;n#init#0" expanded="false" />
             <element signature="n#!!block;n#leftUpDiagonal#0;n#!!block;n#init#0" expanded="false" />
             <element signature="n#!!block;n#leftDownDiagonal#0;n#!!block;n#init#0" expanded="false" />
             <element signature="n#!!block;n#rightDownDiagonal#0;n#!!block;n#init#0" expanded="false" />
-            <element signature="n#!!block;n#getCharactherCoord#0;n#!!block;n#init#0" expanded="false" />
             <element signature="n#!!block;n#checkMoveLeft#0;n#!!block;n#init#0" expanded="false" />
             <element signature="n#!!block;n#checkMoveRight#0;n#!!block;n#init#0" expanded="false" />
             <element signature="n#!!block;n#checkMoveUp#0;n#!!block;n#init#0" expanded="false" />

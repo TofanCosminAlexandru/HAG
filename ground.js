@@ -1,6 +1,4 @@
-var r = document.getElementById("canvas_div");
-var left = 0;
-var top = 0;
+
 
 var drawCanvasImage = function(ctx, image, row, col) {
     return function() {
@@ -182,10 +180,6 @@ function init() {
     image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
     image.src = map_elements["me"];
 
-    // canvas.style.transform = "translate(-" + 0 + "px," + -2300 +"px)";
-    // var transX = canvas.width, transY = canvas.height;
-    // ctx.translate(0, -2300);
-
     var map = {};
     document.body.addEventListener("keydown", function(e){
         map[e.keyCode] = e.type === 'keydown';
@@ -259,21 +253,10 @@ function init() {
                 game[charI][charJ] = ground[charI][charJ];
                 game[charI][charJ - 1] = "me";
 
-                // image = new Image();
-                // image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
-                // image.src = map_elements["grass"];
-
                 image = new Image();
                 image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
                 image.src = map_elements[ground[charI][charJ]];
             }
-
-            charI = getCharactherCoord("me")[0];
-            charJ = getCharactherCoord("me")[1];
-            console.log(canvas.width, canvas.height);
-            console.log(charI, charJ);
-            console.log(charI * 200, charJ * 200);
-            console.log(window.screen.availWidth, window.screen.availHeight);
         }
         else {
             alert("You can't jump over obstacles!");
@@ -313,27 +296,10 @@ function init() {
                 game[charI][charJ] = ground[charI][charJ];
                 game[charI][charJ + 1] = "me";
 
-                // image = new Image();
-                // image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
-                // image.src = map_elements["grass"];
-
                 image = new Image();
                 image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
                 image.src = map_elements[ground[charI][charJ]];
             }
-
-
-            // charI = getCharactherCoord("me")[0];
-            // charJ = getCharactherCoord("me")[1];
-            // console.log(canvas.width, canvas.height);
-            // console.log(charI, charJ);
-            // console.log(charI * 200, charJ * 200);
-            // console.log(window.screen.availWidth, window.screen.availHeight);
-
-
-            left += 10;
-            r.style.right = left + "px;";
-            console.log(r.style.right);
         }
         else {
             alert("You can't jump over obstacles!");
@@ -373,10 +339,6 @@ function init() {
                 game[charI][charJ] = ground[charI][charJ];
                 game[charI - 1][charJ] = "me";
 
-                // image = new Image();
-                // image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
-                // image.src = map_elements["grass"];
-
                 image = new Image();
                 image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
                 image.src = map_elements[ground[charI][charJ]];
@@ -413,17 +375,9 @@ function init() {
             game[charI][charJ] = ground[charI][charJ];
             game[charI+1][charJ] = "me";
 
-            // image = new Image();
-            // image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
-            // image.src = map_elements["grass"];
-
             image = new Image();
             image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
             image.src = map_elements[ground[charI][charJ]];
-
-            charI = getCharactherCoord("me")[0];
-            charJ = getCharactherCoord("me")[1];
-            console.log(window.screen.availHeight-(charI * 200));
         }
         else {
             alert("You can't jump over obstacles!");
@@ -443,10 +397,6 @@ function init() {
 
             game[charI][charJ] = ground[charI][charJ];
             game[charI-1][charJ+1] = "me";
-
-            // image = new Image();
-            // image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
-            // image.src = map_elements["grass"];
 
             image = new Image();
             image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
@@ -470,10 +420,6 @@ function init() {
             game[charI][charJ] = ground[charI][charJ];
             game[charI-1][charJ-1] = "me";
 
-            // image = new Image();
-            // image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
-            // image.src = map_elements["grass"];
-
             image = new Image();
             image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
             image.src = map_elements[ground[charI][charJ]];
@@ -496,10 +442,6 @@ function init() {
             game[charI][charJ] = ground[charI][charJ];
             game[charI+1][charJ-1] = "me";
 
-            // image = new Image();
-            // image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
-            // image.src = map_elements["grass"];
-
             image = new Image();
             image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
             image.src = map_elements[ground[charI][charJ]];
@@ -521,10 +463,6 @@ function init() {
 
             game[charI][charJ] = ground[charI][charJ];
             game[charI+1][charJ+1] = "me";
-
-            // image = new Image();
-            // image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
-            // image.src = map_elements["grass"];
 
             image = new Image();
             image.onload = drawCanvasImageElem(ctx, image, charI, charJ);

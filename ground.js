@@ -10,6 +10,8 @@ var drawCanvasImageElem = function(ctx, image, row, col) {
     }
 };
 
+var diamonds = 0;
+
 function init() {
     var canvas = document.getElementById('canvas');
     if (canvas.getContext) {
@@ -40,7 +42,7 @@ function init() {
         ["tree", "tree", "tree", "tree", "tree", "tree", "tree", "tree", "tree", "tree", "tree", "river_lr", "tree", "tree", "tree", "tree", "tree", "river_lr", "tree", "tree"]];
 
     var game = [["tree", "tree", "tree", "tree", "river_lr", "tree", "tree", "tree", "tree", "tree", "tree", "tree", "tree", "tree", "mountain", "mountain", "mountain", "mountain", "mountain", "mountain"],
-        ["tree", "tree", "tree", "tree", "river_lr", "house", "tree", "terrain_lrte", "tree", "human4", "flowers", "human2", "tree", "tree", "mountain", "diamond", "rocky", "rocky", "cave2", "mountain"],
+        ["tree", "tree", "tree", "tree", "river_lr", "house", "tree", "terrain_lrte", "tree", "human4", "flowers", "human2", "tree", "tree", "mountain", "rocky", "rocky", "rocky", "cave2", "mountain"],
         ["tree", "tree", "tree", "tree", "river_clb", "river_crt", "flowers", "terrain_lr", "house", "house", "gate1", "fountain", "tree", "tree", "mountain", "mountain", "mountain", "mountain", "mountain", "mountain"],
         ["tree", "tree", "tree", "willow", "grass", "bridge_lr", "terrain_tb", "terrain_b", "terrain_tb", "terrain_crt", "house", "house", "human3", "tree", "tree", "tree", "tree", "tree", "tree", "mountain"],
         ["tree", "cave1", "tree", "flowers", "grass", "river_clb", "river_crt", "stone", "stone", "terrain_clb", "terrain_crt", "tree", "terrain_l", "human1", "house", "house", "tree", "witch", "whouse", "tree"],
@@ -50,7 +52,7 @@ function init() {
         ["tree", "fhouse", "grass", "wood", "wood", "wood", "terrain_clt", "terrain_tb", "terrain_tb", "bridge_blr", "house", "house", "human6", "house", "terrain_clb", "gate2", "dgrass", "dgrass", "dgrass", "tree"],
         ["tree", "terrain_clb", "terrain_tb", "terrain_tb", "forester", "terrain_tb", "terrain_crb", "tree", "tree", "river_clb", "river_tb", "river_t", "bridge_tb", "river_tb", "river_crt", "tree", "grave", "grave", "grave", "tree"],
         ["tree", "wood", "tree", "tree", "terrain_lrbe", "tree", "tree", "tree", "tree", "tree", "tree", "river_lr", "terrain_lr", "tree", "river_lr", "tree", "tree", "tree", "tree", "tree"],
-        ["tree", "tree", "tree", "flowers", "grass", "grass", "grass", "tree", "diamond", "grass", "tree", "tree", "terrain_lr", "tree", "river_clb", "river_tb", "river_crt", "tree", "tree", "tree"],
+        ["tree", "tree", "tree", "flowers", "grass", "grass", "grass", "tree", "grass", "grass", "tree", "tree", "terrain_lr", "tree", "river_clb", "river_tb", "river_crt", "tree", "tree", "tree"],
         ["tree", "flowers", "grass", "grass", "grass", "tree", "grass", "tree", "tree", "grass", "tree", "river_lr", "terrain_clb", "terrain_tb", "terrain_tb", "wolf", "bridge_lr", "terrain_tb", "terrain_tbre", "tree"],
         ["tree", "me", "grass", "flowers", "tree", "tree", "grass", "grass", "grass", "grass", "tree", "river_lr", "tree", "tree", "tree", "tree", "river_clb", "river_crt", "well", "tree"],
         ["tree", "tree", "tree", "tree", "tree", "tree", "tree", "tree", "tree", "tree", "tree", "river_lr", "tree", "tree", "tree", "tree", "tree", "river_lr", "tree", "tree"]];
@@ -221,20 +223,42 @@ function init() {
         var charJ = getCharactherCoord("me")[1];
 
         if(checkMoveLeft(charI, charJ) === true) {
-            image = new Image();
-            image.onload = drawCanvasImageElem(ctx, image, charI, charJ-1);
-            image.src = map_elements["me"];
+            if(ground[charI][charJ - 1] === "diamond"){
+                diamonds++;
 
-            game[charI][charJ] = ground[charI][charJ];
-            game[charI][charJ-1] = "me";
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, charI, charJ - 1);
+                image.src = map_elements[game[charI][charJ - 1]];
 
-            // image = new Image();
-            // image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
-            // image.src = map_elements["grass"];
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, charI, charJ - 1);
+                image.src = map_elements["me"];
 
-            image = new Image();
-            image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
-            image.src = map_elements[ground[charI][charJ]];
+                ground[charI][charJ - 1] = game[charI][charJ -1];
+                game[charI][charJ] = ground[charI][charJ];
+                game[charI][charJ - 1] = "me";
+
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+                image.src = map_elements[ground[charI][charJ]];
+                console.log("Numarul de diamante: ", diamonds);
+            }
+            else {
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, charI, charJ - 1);
+                image.src = map_elements["me"];
+
+                game[charI][charJ] = ground[charI][charJ];
+                game[charI][charJ - 1] = "me";
+
+                // image = new Image();
+                // image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+                // image.src = map_elements["grass"];
+
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+                image.src = map_elements[ground[charI][charJ]];
+            }
         }
         else {
             alert("You can't jump over obstacles!");
@@ -489,7 +513,7 @@ function init() {
             || game[charI][charJ - 1] === "gate1" || game[charI][charJ - 1] === "gate2" || game[charI][charJ - 1] === "willow"
             || game[charI][charJ - 1] === "human1" || game[charI][charJ - 1] === "human2" || game[charI][charJ - 1] === "human3"
             || game[charI][charJ - 1] === "human4" || game[charI][charJ - 1] === "human5" || game[charI][charJ - 1] === "human6"
-            || game[charI][charJ - 1] === "witch" || game[charI][charJ - 1] === "wolf";
+            || game[charI][charJ - 1] === "witch" || game[charI][charJ - 1] === "wolf" || game[charI][charJ - 1] === "diamond";
     }
 
     function checkMoveRight(charI, charJ) {
@@ -502,7 +526,7 @@ function init() {
             || game[charI][charJ + 1] === "gate1" || game[charI][charJ + 1] === "gate2" || game[charI][charJ + 1] === "willow"
             || game[charI][charJ + 1] === "human1" || game[charI][charJ + 1] === "human2" || game[charI][charJ + 1] === "human3"
             || game[charI][charJ + 1] === "human4" || game[charI][charJ + 1] === "human5" || game[charI][charJ + 1] === "human6"
-            || game[charI][charJ + 1] === "witch" || game[charI][charJ + 1] === "wolf";
+            || game[charI][charJ + 1] === "witch" || game[charI][charJ + 1] === "wolf" || game[charI][charJ + 1] === "diamond";
     }
 
     function checkMoveUp(charI, charJ) {
@@ -515,7 +539,7 @@ function init() {
             || game[charI - 1][charJ] === "gate1" || game[charI - 1][charJ] === "gate2" || game[charI - 1][charJ] === "willow"
             || game[charI - 1][charJ] === "human1" || game[charI - 1][charJ] === "human2" || game[charI - 1][charJ] === "human3"
             || game[charI - 1][charJ] === "human4" || game[charI - 1][charJ] === "human5" || game[charI - 1][charJ] === "human6"
-            || game[charI - 1][charJ] === "witch" || game[charI - 1][charJ] === "wolf";
+            || game[charI - 1][charJ] === "witch" || game[charI - 1][charJ] === "wolf" || game[charI - 1][charJ] === "diamond";
     }
 
     function checkMoveDown(charI, charJ) {
@@ -528,7 +552,7 @@ function init() {
             || game[charI + 1][charJ] === "gate1" || game[charI + 1][charJ] === "gate2" || game[charI + 1][charJ] === "willow"
             || game[charI + 1][charJ] === "human1" || game[charI + 1][charJ] === "human2" || game[charI + 1][charJ] === "human3"
             || game[charI + 1][charJ] === "human4" || game[charI + 1][charJ] === "human5" || game[charI + 1][charJ] === "human6"
-            || game[charI + 1][charJ] === "witch" || game[charI + 1][charJ] === "wolf";
+            || game[charI + 1][charJ] === "witch" || game[charI + 1][charJ] === "wolf" || game[charI + 1][charJ] === "diamond";
     }
 
     function checkMoveRightUpDiagonal(charI, charJ){
@@ -541,7 +565,7 @@ function init() {
             || game[charI - 1][charJ + 1] === "gate1" || game[charI - 1][charJ + 1] === "gate2" || game[charI - 1][charJ + 1] === "willow"
             || game[charI - 1][charJ + 1] === "human1" || game[charI - 1][charJ + 1] === "human2" || game[charI - 1][charJ + 1] === "human3"
             || game[charI - 1][charJ + 1] === "human4" || game[charI - 1][charJ + 1] === "human5" || game[charI - 1][charJ + 1] === "human6"
-            || game[charI - 1][charJ + 1] === "witch" || game[charI - 1][charJ + 1] === "wolf";
+            || game[charI - 1][charJ + 1] === "witch" || game[charI - 1][charJ + 1] === "wolf" || game[charI - 1][charJ + 1] === "diamond";
     }
 
     function checkMoveLeftUpDiagonal(charI, charJ){
@@ -554,7 +578,7 @@ function init() {
             || game[charI - 1][charJ - 1] === "gate1" || game[charI - 1][charJ - 1] === "gate2" || game[charI - 1][charJ - 1] === "willow"
             || game[charI - 1][charJ - 1] === "human1" || game[charI - 1][charJ - 1] === "human2" || game[charI - 1][charJ - 1] === "human3"
             || game[charI - 1][charJ - 1] === "human4" || game[charI - 1][charJ - 1] === "human5" || game[charI - 1][charJ - 1] === "human6"
-            || game[charI - 1][charJ - 1] === "witch" || game[charI - 1][charJ - 1] === "wolf";
+            || game[charI - 1][charJ - 1] === "witch" || game[charI - 1][charJ - 1] === "wolf" || game[charI - 1][charJ - 1] === "diamond";
     }
 
     function checkMoveLeftDownDiagonal(charI, charJ){
@@ -567,7 +591,7 @@ function init() {
             || game[charI + 1][charJ - 1] === "gate1" || game[charI + 1][charJ - 1] === "gate2" || game[charI + 1][charJ - 1] === "willow"
             || game[charI + 1][charJ - 1] === "human1" || game[charI + 1][charJ - 1] === "human2" || game[charI + 1][charJ - 1] === "human3"
             || game[charI + 1][charJ - 1] === "human4" || game[charI + 1][charJ - 1] === "human5" || game[charI + 1][charJ - 1] === "human5"
-            || game[charI + 1][charJ - 1] === "witch" || game[charI + 1][charJ - 1] === "wolf";
+            || game[charI + 1][charJ - 1] === "witch" || game[charI + 1][charJ - 1] === "wolf" || game[charI + 1][charJ - 1] === "diamond";
     }
 
     function checkMoveRightDownDiagonal(charI, charJ){
@@ -580,6 +604,6 @@ function init() {
             || game[charI + 1][charJ + 1] === "gate1" || game[charI + 1][charJ + 1] === "gate2" || game[charI + 1][charJ + 1] === "willow"
             || game[charI + 1][charJ + 1] === "human1" || game[charI + 1][charJ + 1] === "human2" || game[charI + 1][charJ + 1] === "human3"
             || game[charI + 1][charJ + 1] === "human4" || game[charI + 1][charJ + 1] === "human5" || game[charI + 1][charJ + 1] === "human6"
-            || game[charI + 1][charJ + 1] === "witch" || game[charI + 1][charJ + 1] === "wolf";
+            || game[charI + 1][charJ + 1] === "witch" || game[charI + 1][charJ + 1] === "wolf" || game[charI + 1][charJ + 1] === "diamond";
     }
 }

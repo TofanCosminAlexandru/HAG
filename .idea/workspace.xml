@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3afd2f10-5610-4e7c-a45b-889b0c9a4d1f" name="Default" comment="" />
+    <list default="true" id="3afd2f10-5610-4e7c-a45b-889b0c9a4d1f" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/div/div.css" afterPath="$PROJECT_DIR$/div/div.css" />
+      <change beforePath="$PROJECT_DIR$/ground.css" afterPath="$PROJECT_DIR$/ground.css" />
+      <change beforePath="$PROJECT_DIR$/ground.html" afterPath="$PROJECT_DIR$/ground.html" />
+      <change beforePath="$PROJECT_DIR$/ground.js" afterPath="$PROJECT_DIR$/ground.js" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -14,11 +20,81 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ground.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ground.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ground.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="255">
+              <caret line="21" column="20" lean-forward="true" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
+              <folding>
+                <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#canvas#0;n#main#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#main#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ground.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ground.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-5164">
+              <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+              <folding>
+                <element signature="n#!!block;n#downArrowPressed#0;n#!!block;n#init#0" expanded="false" />
+                <element signature="n#!!block;n#rightUpDiagonal#0;n#!!block;n#init#0" expanded="false" />
+                <element signature="n#!!block;n#leftUpDiagonal#0;n#!!block;n#init#0" expanded="false" />
+                <element signature="n#!!block;n#leftDownDiagonal#0;n#!!block;n#init#0" expanded="false" />
+                <element signature="n#!!block;n#rightDownDiagonal#0;n#!!block;n#init#0" expanded="false" />
+                <element signature="n#!!block;n#getCharactherCoord#0;n#!!block;n#init#0" expanded="false" />
+                <element signature="n#!!block;n#checkMoveLeft#0;n#!!block;n#init#0" expanded="false" />
+                <element signature="n#!!block;n#checkMoveRight#0;n#!!block;n#init#0" expanded="false" />
+                <element signature="n#!!block;n#checkMoveUp#0;n#!!block;n#init#0" expanded="false" />
+                <element signature="n#!!block;n#checkMoveDown#0;n#!!block;n#init#0" expanded="false" />
+                <element signature="n#!!block;n#checkMoveRightUpDiagonal#0;n#!!block;n#init#0" expanded="false" />
+                <element signature="n#!!block;n#checkMoveLeftUpDiagonal#0;n#!!block;n#init#0" expanded="false" />
+                <element signature="n#!!block;n#checkMoveLeftDownDiagonal#0;n#!!block;n#init#0" expanded="false" />
+                <element signature="n#!!block;n#checkMoveRightDownDiagonal#0;n#!!block;n#init#0" expanded="false" />
+                <element signature="e#36980#59819#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ground.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ground.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-102">
+              <caret line="89" column="27" lean-forward="true" selection-start-line="89" selection-start-column="27" selection-end-line="89" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="div.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/div/div.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="20" column="42" lean-forward="false" selection-start-line="20" selection-start-column="42" selection-end-line="20" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1496">
+              <caret line="19" column="64" lean-forward="false" selection-start-line="19" selection-start-column="55" selection-end-line="19" selection-end-column="64" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="home.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/home.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="260" column="41" lean-forward="true" selection-start-line="260" selection-start-column="4" selection-end-line="260" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -28,6 +104,17 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/div.js" />
+        <option value="$PROJECT_DIR$/div/div.css" />
+        <option value="$PROJECT_DIR$/ground.html" />
+        <option value="$PROJECT_DIR$/ground.css" />
+        <option value="$PROJECT_DIR$/ground.js" />
+      </list>
+    </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
@@ -83,6 +170,11 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
   </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Cosmin\Documents\GitHub\HAG" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -108,12 +200,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1514492622392</updated>
-      <workItem from="1514492626024" duration="246000" />
+      <workItem from="1514492626024" duration="6408000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="246000" />
+    <option name="totallyTimeSpent" value="6408000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1296" height="1010" extended-state="6" />
@@ -145,14 +237,121 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ground.html">
+    <entry file="file://$PROJECT_DIR$/div/images/bubble.svg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/div/http.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/home.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/div/div.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="115" column="1" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="115" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/div/div.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/div.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="468" column="1" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="468" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ground.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="21" column="20" lean-forward="true" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
+          <folding>
+            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#canvas#0;n#main#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#main#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ground.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5164">
+          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!block;n#downArrowPressed#0;n#!!block;n#init#0" expanded="false" />
+            <element signature="n#!!block;n#rightUpDiagonal#0;n#!!block;n#init#0" expanded="false" />
+            <element signature="n#!!block;n#leftUpDiagonal#0;n#!!block;n#init#0" expanded="false" />
+            <element signature="n#!!block;n#leftDownDiagonal#0;n#!!block;n#init#0" expanded="false" />
+            <element signature="n#!!block;n#rightDownDiagonal#0;n#!!block;n#init#0" expanded="false" />
+            <element signature="n#!!block;n#getCharactherCoord#0;n#!!block;n#init#0" expanded="false" />
+            <element signature="n#!!block;n#checkMoveLeft#0;n#!!block;n#init#0" expanded="false" />
+            <element signature="n#!!block;n#checkMoveRight#0;n#!!block;n#init#0" expanded="false" />
+            <element signature="n#!!block;n#checkMoveUp#0;n#!!block;n#init#0" expanded="false" />
+            <element signature="n#!!block;n#checkMoveDown#0;n#!!block;n#init#0" expanded="false" />
+            <element signature="n#!!block;n#checkMoveRightUpDiagonal#0;n#!!block;n#init#0" expanded="false" />
+            <element signature="n#!!block;n#checkMoveLeftUpDiagonal#0;n#!!block;n#init#0" expanded="false" />
+            <element signature="n#!!block;n#checkMoveLeftDownDiagonal#0;n#!!block;n#init#0" expanded="false" />
+            <element signature="n#!!block;n#checkMoveRightDownDiagonal#0;n#!!block;n#init#0" expanded="false" />
+            <element signature="e#36980#59819#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ground.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-102">
+          <caret line="89" column="27" lean-forward="true" selection-start-line="89" selection-start-column="27" selection-end-line="89" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/div/div.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="20" column="42" lean-forward="false" selection-start-line="20" selection-start-column="42" selection-end-line="20" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1496">
+          <caret line="19" column="64" lean-forward="false" selection-start-line="19" selection-start-column="55" selection-end-line="19" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/home.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="260" column="41" lean-forward="true" selection-start-line="260" selection-start-column="4" selection-end-line="260" selection-end-column="41" />
           <folding />
         </state>
       </provider>

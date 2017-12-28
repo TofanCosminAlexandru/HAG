@@ -3,6 +3,7 @@ body {
 }
 
 .question_div_container {
+    cursor: url(images/my_cursor.png), auto;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -64,6 +65,7 @@ body {
 
 
 .indication_div_container {
+
     position: fixed;
     z-index: 3;
     top: 1%;

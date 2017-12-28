@@ -1,3 +1,5 @@
+
+
 var drawCanvasImage = function(ctx, image, row, col) {
     return function() {
         ctx.drawImage(image, row * 200, col * 200, 200, 200);
@@ -252,10 +254,6 @@ function init() {
                 game[charI][charJ] = ground[charI][charJ];
                 game[charI][charJ - 1] = "me";
 
-                // image = new Image();
-                // image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
-                // image.src = map_elements["grass"];
-
                 image = new Image();
                 image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
                 image.src = map_elements[ground[charI][charJ]];
@@ -298,10 +296,6 @@ function init() {
 
                 game[charI][charJ] = ground[charI][charJ];
                 game[charI][charJ + 1] = "me";
-
-                // image = new Image();
-                // image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
-                // image.src = map_elements["grass"];
 
                 image = new Image();
                 image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
@@ -346,14 +340,23 @@ function init() {
                 game[charI][charJ] = ground[charI][charJ];
                 game[charI - 1][charJ] = "me";
 
-                // image = new Image();
-                // image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
-                // image.src = map_elements["grass"];
-
                 image = new Image();
                 image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
                 image.src = map_elements[ground[charI][charJ]];
             }
+
+            //charI = getCharactherCoord("me")[0];
+            //charJ = getCharactherCoord("me")[1];
+            // if(window.screen.availHeight-(charI * 200) < window.screen.availHeight-(charI * 200)+400){
+            //     ctx.translate(0, -2000);
+            // }
+            // console.log(window.screen.availHeight-(charI * 200));
+            // charI = getCharactherCoord("me")[0];
+            // charJ = getCharactherCoord("me")[1];
+            // console.log(canvas.width, canvas.height);
+            // console.log(charI, charJ);
+            // console.log(charI * 200, charJ * 200);
+            // console.log(window.screen.availWidth, window.screen.availHeight);
         }
         else {
             alert("You can't jump over obstacles!");
@@ -372,10 +375,6 @@ function init() {
 
             game[charI][charJ] = ground[charI][charJ];
             game[charI+1][charJ] = "me";
-
-            // image = new Image();
-            // image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
-            // image.src = map_elements["grass"];
 
             image = new Image();
             image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
@@ -400,10 +399,6 @@ function init() {
             game[charI][charJ] = ground[charI][charJ];
             game[charI-1][charJ+1] = "me";
 
-            // image = new Image();
-            // image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
-            // image.src = map_elements["grass"];
-
             image = new Image();
             image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
             image.src = map_elements[ground[charI][charJ]];
@@ -425,10 +420,6 @@ function init() {
 
             game[charI][charJ] = ground[charI][charJ];
             game[charI-1][charJ-1] = "me";
-
-            // image = new Image();
-            // image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
-            // image.src = map_elements["grass"];
 
             image = new Image();
             image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
@@ -452,10 +443,6 @@ function init() {
             game[charI][charJ] = ground[charI][charJ];
             game[charI+1][charJ-1] = "me";
 
-            // image = new Image();
-            // image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
-            // image.src = map_elements["grass"];
-
             image = new Image();
             image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
             image.src = map_elements[ground[charI][charJ]];
@@ -477,10 +464,6 @@ function init() {
 
             game[charI][charJ] = ground[charI][charJ];
             game[charI+1][charJ+1] = "me";
-
-            // image = new Image();
-            // image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
-            // image.src = map_elements["grass"];
 
             image = new Image();
             image.onload = drawCanvasImageElem(ctx, image, charI, charJ);

@@ -1,8 +1,23 @@
+html {
+    overflow-y: hidden;
+    overflow-x: hidden;
+    background-image: url(images/grass.jpg);
+    zoom: 25%;
+
+}
+
 body {
-    background: url(images/clouds.png) fixed;
+
 	font-family: Lato, sans-serif;
 	margin: 0 !important;
     padding: 0 !important;
+    zoom: 90%;
+}
+
+#canvas_div {
+    margin: auto;
+    width: 4000px;
+    height: 3000px;
 }
 
 #canvas {
@@ -13,8 +28,3 @@ body {
     display: block;
     /*transform: translate(0px, -1970px);*/
 }
-
-html {
-     overflow-y: hidden;
-     overflow-x: hidden;
- }

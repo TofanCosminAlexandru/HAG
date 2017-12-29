@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-=======
 var count_damage_bridge = 1;
 var count_forester_tips = 1, count_forester_questions = 1;
 
->>>>>>> 380914dfdd3a605c1e8f21653f20aa644493e42e
 var drawCanvasImage = function(ctx, image, row, col) {
     return function() {
         ctx.drawImage(image, row * 200, col * 200, 200, 200);
@@ -21,6 +18,15 @@ var points = 0;
 
 function init() {
     var canvas = document.getElementById('canvas');
+    console.log(canvas.height);
+    console.log(canvas.width);
+
+    var height = window.innerHeight;
+    var width = window.innerWidth;
+
+    canvas.style.width = width  + "px";
+    canvas.style.height = height + "px";
+
     if (canvas.getContext) {
         var ctx = canvas.getContext('2d');
         for (var i = 0; i < 20; i++) {
@@ -184,6 +190,9 @@ function init() {
     image = new Image();
     image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
     image.src = map_elements["me"];
+
+    console.log(canvas.height);
+    console.log(canvas.width);
 
     var map = {};
     document.body.addEventListener("keydown", function(e){
@@ -1006,13 +1015,13 @@ var categories = {
             }
         ]
     }
-}
+};
 
 var asked_questions = [];
-category = "category1"
+category = "category1";
 var nr_of_questions = categories[category].questions.length;
-rand = getRandomInt(0, nr_of_questions)
-asked_questions.push(rand)
+rand = getRandomInt(0, nr_of_questions);
+asked_questions.push(rand);
 
 //console.log(rand)
 //console.log(used_questions)
@@ -1032,12 +1041,12 @@ for (var i = 0; i < options.length; i++) {
         if(chosen_option_nr !== this.getAttribute("id")[this.getAttribute("id").length - 1]) {
             this.setAttribute("style", "background-color: lightgreen;");
         }
-    }
+    };
     options[i].onmouseout = function() {
         if(chosen_option_nr !== this.getAttribute("id")[this.getAttribute("id").length - 1]) {
             this.setAttribute("style", "background-color: tan;");
         }
-    }
+    };
 
     options[i].onclick = function() {
         for (var j = 0; j < options.length; j++) {
@@ -1059,7 +1068,7 @@ submit_button.onclick = function() {
     else {
         alert("Wrong answer!");
     }
-}
+};
 
 var message = "Whatever message I want! Whatever message I want! Whatever message I want! Whatever message I want! Whatever message I want!";
 document.getElementById("indication_text").innerHTML = message;

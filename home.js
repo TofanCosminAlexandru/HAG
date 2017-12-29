@@ -5,4 +5,4 @@ secondaryImages.onclick = function(e) {
 	if(e.target && e.target.nodeName === 'IMG') { // daca element din div este apasat si acel element este img
 		displayedImage.setAttribute('src', e.target.getAttribute('src'));
 	}
-}
+};

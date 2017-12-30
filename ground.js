@@ -1,7 +1,7 @@
 var diamonds = 0;
 var points = 0;
 var count_damage_bridge = 1;
-var count_forester_tips = 1, count_forester_questions = 1;
+var count_forester_tips = 2, count_forester_questions = 1;
 var count_willow_tips = 1, count_willow_questions = 1;
 var keyGate1 = 0, keyGate2 = 0;
 var count_flower_tips = 1, count_flower_questions = 1;
@@ -13,6 +13,7 @@ var count_wolf_tips = 1, count_wolf_questions = 1;
 var count_human5_tips = 1;
 var count_witch_tips = 1, count_witch_questions = 1;
 var count_well_tips = 1;
+var count_creatures_tips = 1;
 
 var drawCanvasImage = function(ctx, image, row, col) {
     return function() {
@@ -51,7 +52,7 @@ function init() {
         ["tree", "tree", "tree", "willow", "grass", "bridge_lr", "terrain_tb", "terrain_b", "terrain_tb", "terrain_crt", "house", "house", "human3", "tree", "tree", "tree", "tree", "tree", "tree", "mountain"],
         ["tree", "cave1", "tree", "flowers", "grass", "river_clb", "river_crt", "stone", "stone", "terrain_clb", "terrain_crt", "tree", "terrain_l", "human1", "house", "house", "tree", "witch", "whouse", "tree"],
         ["tree", "rocky", "tree", "flowers", "grass", "stone", "river_clb", "river_tb", "river_crt", "grass", "terrain_clb", "terrain_tb", "terrain_r", "house", "human5", "tree", "tree", "dgrass", "wood", "tree"],
-        ["tree", "rocky", "tree", "tree", "grass", "grass", "stone", "stone", "river_clb", "river_crt", "stone", "grass", "terrain_lr", "tree", "terrain_lr", "tree", "spider", "dgrass", "crack", "tree"],
+        ["tree", "rocky", "tree", "tree", "grass", "grass", "stone", "stone", "river_clb", "river_crt", "stone", "grass", "terrain_lr", "tree", "terrain_lr", "tree", "dgrass", "dgrass", "crack", "tree"],
         ["tree", "tree", "dog", "tree", "tree", "tree", "grass", "stone", "stone", "river_lr", "stone", "house", "terrain_l", "terrain_tb", "terrain_r", "tree", "crack", "dtree", "dgrass", "tree"],
         ["tree", "fhouse", "grass", "wood", "wood", "wood", "terrain_clt", "terrain_tb", "terrain_tb", "bridge_blr", "house", "house", "human6", "house", "terrain_clb", "gate2", "dgrass", "dgrass", "dgrass", "tree"],
         ["tree", "terrain_clb", "terrain_tb", "terrain_tb", "forester", "terrain_tb", "terrain_crb", "tree", "tree", "river_clb", "river_tb", "river_t", "bridge_tb", "river_tb", "river_crt", "tree", "grave", "grave", "grave", "tree"],
@@ -67,7 +68,7 @@ function init() {
         ["tree", "tree", "tree", "willow", "grass", "bridge_lr", "terrain_tb", "terrain_b", "terrain_tb", "terrain_crt", "house", "house", "human3", "tree", "tree", "tree", "tree", "tree", "tree", "mountain"],
         ["tree", "cave1", "tree", "flowers", "grass", "river_clb", "river_crt", "stone", "stone", "terrain_clb", "terrain_crt", "tree", "terrain_l", "human1", "house", "house", "tree", "witch", "whouse", "tree"],
         ["tree", "rocky", "tree", "flowers", "grass", "stone", "river_clb", "river_tb", "river_crt", "grass", "terrain_clb", "terrain_tb", "terrain_r", "house", "human5", "tree", "tree", "dgrass", "wood", "tree"],
-        ["tree", "rocky", "tree", "tree", "grass", "grass", "stone", "stone", "river_clb", "river_crt", "stone", "grass", "terrain_lr", "tree", "terrain_lr", "tree", "spider", "dgrass", "crack", "tree"],
+        ["tree", "rocky", "tree", "tree", "grass", "grass", "stone", "stone", "river_clb", "river_crt", "stone", "grass", "terrain_lr", "tree", "terrain_lr", "tree", "dgrass", "dgrass", "crack", "tree"],
         ["tree", "tree", "dog", "tree", "tree", "tree", "grass", "stone", "stone", "river_lr", "stone", "house", "terrain_l", "terrain_tb", "terrain_r", "tree", "crack", "dtree", "dgrass", "tree"],
         ["tree", "fhouse", "grass", "wood", "wood", "wood", "terrain_clt", "terrain_tb", "terrain_tb", "bridge_blr", "house", "house", "human6", "house", "terrain_clb", "gate2", "dgrass", "dgrass", "dgrass", "tree"],
         ["tree", "terrain_clb", "terrain_tb", "terrain_tb", "terrain_t", "terrain_tb", "terrain_crb", "tree", "tree", "river_clb", "river_tb", "river_t", "bridge_tb", "river_tb", "river_crt", "tree", "grave", "grave", "grave", "tree"],
@@ -137,7 +138,7 @@ function init() {
         "gate1": "images/gate1.png",
         "gate2": "images/gate2.png",
         "flowers": "images/flowers.png"};
-    console.log( ground.length);
+
     for (i = 0; i < ground.length; i++) {
         for (j = 0; j < ground[i].length; j++) {
             if (ground[i][j] === "bridge_tb") {
@@ -150,7 +151,7 @@ function init() {
                 image.onload = drawCanvasImageElem(ctx, image, i, j);
                 image.src = map_elements["river_lr"];
             }
-            else if((i === 7 && j === 17) || (i === 8 && j === 15) || ground[i][j] === "grave" || ground[i][j] === "crack" || ground[i][j] === "witch" || ground[i][j] === "whouse" || (ground[i][j] === "wood" && j === 18) || ground[i][j] === "spider") {
+            else if((i === 7 && j === 17) || (i === 8 && j === 15) || ground[i][j] === "grave" || ground[i][j] === "crack" || ground[i][j] === "witch" || ground[i][j] === "whouse" || (ground[i][j] === "wood" && j === 18)) {
                 image = new Image();
                 image.onload = drawCanvasImageElem(ctx, image, i, j);
                 image.src = map_elements["dgrass"];
@@ -163,6 +164,7 @@ function init() {
             else if(ground[i][j] === "forester") {
                 image = new Image();
                 image.onload = drawCanvasImageElem(ctx, image, i, j);
+                image.src = map_elements["terrain_t"];
                 image.src = map_elements["terrain_t"];
             }
             else if(ground[i][j] === "human1") {
@@ -197,6 +199,48 @@ function init() {
     image = new Image();
     image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
     image.src = map_elements["me"];
+
+    var pos=0;
+    function moveSpider(){
+        var positionI = [6, 6, 7, 6];
+        var positionJ = [16, 17, 18, 17];
+
+        image = new Image();
+        image.onload = drawCanvasImageElem(ctx, image, positionI[(pos%4)], positionJ[(pos%4)]);
+        image.src = map_elements["dgrass"];
+
+        image = new Image();
+        image.onload = drawCanvasImageElem(ctx, image, positionI[(pos+1)%4], positionJ[(pos+1)%4]);
+        image.src = map_elements["spider"];
+
+        ground[positionI[(pos%4)]][positionJ[(pos%4)]] = "dgrass";
+        ground[positionI[(pos+1)%4]][positionJ[(pos+1)%4]] = "spider";
+
+        if(positionI[(pos+1)%4] === getCharactherCoord("me")[0] && positionJ[(pos+1)%4] === getCharactherCoord("me")[1]){
+            image = new Image();
+            image.onload = drawCanvasImageElem(ctx, image, 8, 14);
+            image.src = map_elements["me"];
+
+            game[positionI[(pos+1)%4]][positionJ[(pos+1)%4]] = ground[positionI[(pos+1)%4]][positionJ[(pos+1)%4]];
+            game[8][14] = "me";
+
+            image = new Image();
+            image.onload = drawCanvasImageElem(ctx, image, positionI[(pos+1)%4], positionJ[(pos+1)%4]);
+            image.src = map_elements["dgrass"];
+
+            image = new Image();
+            image.onload = drawCanvasImageElem(ctx, image, positionI[(pos+1)%4], positionJ[(pos+1)%4]);
+            image.src = map_elements["spider"];
+        }
+
+        pos++;
+    }
+
+    function animate() {
+        var myVar = setInterval(moveSpider, 3000);
+    }
+
+    animate();
 
     var map = {};
     document.body.addEventListener("keydown", function(e){
@@ -265,6 +309,8 @@ function init() {
 
                 if(getCharactherCoord("me")[0] === 11 && getCharactherCoord("me")[1] === 8){
                     el = document.getElementsByClassName("indication_div_container")[0];
+                    document.getElementById("indication_text").innerHTML = "You can find diamonds in your journey. <br> Collect as many as you can and compete with others.";
+                    document.getElementsByClassName("indication")[0].style = "margin-top: 0";
                     el.style.visibility = "visible";
                 }
             }
@@ -282,10 +328,24 @@ function init() {
 
                 if(count_forester_tips > 0) {
                     el = document.getElementsByClassName("indication_div_container")[0];
+                    document.getElementById("indication_text").innerHTML = "The forester of this region salutes you." + "<br>" + "To pass, you must answer a question.";
+                    document.getElementsByClassName("indication")[0].style = "margin-top: 0";
                     el.style.visibility = "visible";
                 }
             }
-            else if(ground[charI][charJ -1] === "willow"){
+            else if(ground[charI][charJ - 1] === "spider"){
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, 8, 14);
+                image.src = map_elements["me"];
+
+                game[charI][charJ] = ground[charI][charJ];
+                game[8][14] = "me";
+
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+                image.src = map_elements[ground[charI][charJ]];
+            }
+            else if(ground[charI][charJ - 1] === "willow"){
                 console.log("Copac frumos");
                 image = new Image();
                 image.onload = drawCanvasImageElem(ctx, image, charI, charJ - 1);
@@ -301,6 +361,8 @@ function init() {
 
                 if(count_willow_tips > 0) {
                     var el = document.getElementsByClassName("indication_div_container")[0];
+                    document.getElementById("indication_text").innerHTML = "Hello wanderer! From my magical branches, I summon you a question!";
+                    document.getElementsByClassName("indication")[0].style = "margin-top: 0";
                     el.style.visibility = "visible";
                 }
             }
@@ -361,12 +423,46 @@ function init() {
 
                 if(count_wolf_tips > 0) {
                     el = document.getElementsByClassName("indication_div_container")[0];
+                    document.getElementById("indication_text").innerHTML = "Auuuuuu.. the howl was so strong that it scaried all the dogs away! Auuuuuuu auuuuu questiooooooon!";
+                    document.getElementsByClassName("indication")[0].style = "margin-top: 0";
+                    el.style.visibility = "visible";
+                }
+            }
+            else if(ground[charI][charJ + 1] === "spider"){
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, 8, 14);
+                image.src = map_elements["me"];
+
+                game[charI][charJ] = ground[charI][charJ];
+                game[8][14] = "me";
+
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+                image.src = map_elements[ground[charI][charJ]];
+            }
+            else if(charI === 8 && charJ + 1 === 18){
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, charI, charJ + 1);
+                image.src = map_elements["me"];
+
+                game[charI][charJ] = ground[charI][charJ];
+                game[charI][charJ + 1] = "me";
+
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+                image.src = map_elements[ground[charI][charJ]];
+
+                if(count_creatures_tips > 0) {
+                    el = document.getElementsByClassName("indication_div_container")[0];
+                    document.getElementById("indication_text").innerHTML = "Sometimes you'll find creatures that mark their territory. Try not to stay in their way.";
+                    document.getElementsByClassName("indication")[0].style = "margin-top: 0";
                     el.style.visibility = "visible";
                 }
             }
             else if(keyGate2 === 0 && (charI === 8 && charJ === 14)){
                 el = document.getElementsByClassName("indication_div_container")[0];
-                document.getElementById("indication_text").innerHTML = "Nu detii cheia!";
+                document.getElementById("indication_text").innerHTML = "You'll need a key to enter";
+                document.getElementsByClassName("indication")[0].style = "margin-top: 0";
                 el.style.visibility = "visible";
             }
             else if(ground[charI][charJ + 1] === "forester"){
@@ -383,6 +479,8 @@ function init() {
 
                 if(count_forester_tips > 0) {
                     el = document.getElementsByClassName("indication_div_container")[0];
+                    document.getElementById("indication_text").innerHTML = "The forester of this region salutes you." + "<br>" + "To pass, you must answer a question.";
+                    document.getElementsByClassName("indication")[0].style = "margin-top: 0";
                     el.style.visibility = "visible";
                 }
             }
@@ -400,6 +498,8 @@ function init() {
 
                 if(count_human1_tips > 0) {
                     el = document.getElementsByClassName("indication_div_container")[0];
+                    document.getElementById("indication_text").innerHTML = "I don't a key to the Royal House, but I can give you something better: free beer from the house";
+                    document.getElementsByClassName("indication")[0].style = "margin-top: -5px";
                     el.style.visibility = "visible";
                 }
             }
@@ -419,6 +519,8 @@ function init() {
         else if(getCharactherCoord("me")[0] === 8 && getCharactherCoord("me")[1]+1 === 9){
             if(count_damage_bridge > 0) {
                 var el = document.getElementsByClassName("indication_div_container")[0];
+                document.getElementById("indication_text").innerHTML = "Unfortunately this bridge is broken. You'll need to find another way to the village.";
+                document.getElementsByClassName("indication")[0].style = "margin-top: 0";
                 el.style.visibility = "visible";
                 count_damage_bridge-=1;
             }
@@ -471,8 +573,22 @@ function init() {
 
                 if(count_forester_tips > 0) {
                     el = document.getElementsByClassName("indication_div_container")[0];
+                    document.getElementById("indication_text").innerHTML = "The forester of this region salutes you." + "<br>" + "To pass, you must answer a question.";
+                    document.getElementsByClassName("indication")[0].style = "margin-top: 0";
                     el.style.visibility = "visible";
                 }
+            }
+            else if(ground[charI - 1][charJ] === "spider"){
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, 8, 14);
+                image.src = map_elements["me"];
+
+                game[charI][charJ] = ground[charI][charJ];
+                game[8][14] = "me";
+
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+                image.src = map_elements[ground[charI][charJ]];
             }
             else if(ground[charI - 1][charJ] === "witch"){
                 console.log("vrajitoare");
@@ -489,12 +605,13 @@ function init() {
 
                 if(count_witch_tips > 0) {
                     el = document.getElementsByClassName("indication_div_container")[0];
+                    document.getElementById("indication_text").innerHTML = "So you've come for a question. Very well but be quick or you'll be the next ingredient for my soop!";
+                    document.getElementsByClassName("indication")[0].style = "margin-top: 0";
                     el.style.visibility = "visible";
                 }
 
             }
             else if(ground[charI - 1][charJ] === "willow"){
-                console.log("Copac frumos");
                 image = new Image();
                 image.onload = drawCanvasImageElem(ctx, image, charI - 1, charJ);
                 image.src = map_elements["me"];
@@ -509,6 +626,8 @@ function init() {
 
                 if(count_willow_tips > 0) {
                     el = document.getElementsByClassName("indication_div_container")[0];
+                    document.getElementById("indication_text").innerHTML = "Hello wanderer! From my magical branches, I summon you a question!";
+                    document.getElementsByClassName("indication")[0].style = "margin-top: 0";
                     el.style.visibility = "visible";
                 }
             }
@@ -527,6 +646,8 @@ function init() {
 
                 if(count_flower_tips > 0) {
                     el = document.getElementsByClassName("indication_div_container")[0];
+                    document.getElementById("indication_text").innerHTML = "The king and queen wish you all the best in your adventures. <br> We have a token of respect for you: a questiooon!";
+                    document.getElementsByClassName("indication")[0].style = "margin-top: -5px";
                     el.style.visibility = "visible";
                 }
             }
@@ -545,6 +666,8 @@ function init() {
 
                 if(count_priest_tips > 0) {
                     el = document.getElementsByClassName("indication_div_container")[0];
+                    document.getElementById("indication_text").innerHTML = "Do you want to visit their Royal Highnesses? Wa-wait here! I think I have a key down in the cellars.";
+                    document.getElementsByClassName("indication")[0].style = "margin-top: -5px";
                     el.style.visibility = "visible";
                 }
             }
@@ -563,11 +686,15 @@ function init() {
 
                 if(count_human5_tips > 0) {
                     el = document.getElementsByClassName("indication_div_container")[0];
+                    document.getElementById("indication_text").innerHTML = "Sorry, I don't have any keys. Do you wanna to dance?";
+                    document.getElementsByClassName("indication")[0].style = "margin-top: -5px";
                     el.style.visibility = "visible";
                 }
             }
             else if(ground[charI - 1][charJ] === "dog"){
                 var el = document.getElementsByClassName("indication_div_container")[0];
+                document.getElementById("indication_text").innerHTML = "Wouuufff.. wouuufff";
+                document.getElementsByClassName("indication")[0].style = "margin-top: 0";
                 el.style.visibility = "visible";
             }
             else {
@@ -596,7 +723,8 @@ function init() {
         if(checkMoveDown(charI, charJ) === true) {
             if(gate1_visited === 0 && (charI === 7 && charJ === 12)){
                 var el = document.getElementsByClassName("indication_div_container")[0];
-                document.getElementById("indication_text").innerHTML = "Dute la poarta 1";
+                document.getElementById("indication_text").innerHTML = "You must first prove worthy of venturing into these dangerous lands. <br> Answer the witches and the kings question and then coma back. <br> Here's the key to the cemetery.";
+                document.getElementsByClassName("indication")[0].style = "margin-top: 0";
                 el.style.visibility = "visible";
             }
             else if(ground[charI + 1][charJ] === "human6"){
@@ -613,8 +741,23 @@ function init() {
 
                 if(count_human6_tips > 0) {
                     el = document.getElementsByClassName("indication_div_container")[0];
+                    document.getElementById("indication_text").innerHTML = "Good, good!. You're free to go! Beware of cunning creatures.";
+                    document.getElementsByClassName("indication")[0].style = "margin-top: 0";
                     el.style.visibility = "visible";
                 }
+            }
+            else if(ground[charI + 1][charJ] === "spider"){
+
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, 8, 14);
+                image.src = map_elements["me"];
+
+                game[charI][charJ] = ground[charI][charJ];
+                game[8][14] = "me";
+
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+                image.src = map_elements[ground[charI][charJ]];
             }
             else if(ground[charI + 1][charJ] === "well"){
                 image = new Image();
@@ -630,6 +773,8 @@ function init() {
 
                 if(count_well_tips > 0) {
                     el = document.getElementsByClassName("indication_div_container")[0];
+                    document.getElementById("indication_text").innerHTML = "You have done Chapter 1. Well done!";
+                    document.getElementsByClassName("indication")[0].style = "margin-top: 0";
                     el.style.visibility = "visible";
                 }
             }
@@ -660,7 +805,8 @@ function init() {
         if(checkMoveRightUpDiagonal(charI, charJ) === true) {
             if(keyGate1 === 0 && (charI === 3 && charJ === 9)){
                 el = document.getElementsByClassName("indication_div_container")[0];
-                document.getElementById("indication_text").innerHTML = "Nu detii cheia!";
+                document.getElementById("indication_text").innerHTML = "You'll need a key to enter";
+                document.getElementsByClassName("indication")[0].style = "margin-top: 0";
                 el.style.visibility = "visible";
             }
             else if(charI - 1 === 1 && charJ + 1 === 11){
@@ -677,6 +823,8 @@ function init() {
 
                 if(count_flower_tips > 0) {
                     var el = document.getElementsByClassName("indication_div_container")[0];
+                    document.getElementById("indication_text").innerHTML = "The king and queen wish you all the best in your adventures. <br> We have a token of respect for you: a questiooon!";
+                    document.getElementsByClassName("indication")[0].style = "margin-top: -5px";
                     el.style.visibility = "visible";
                 }
             }
@@ -694,6 +842,8 @@ function init() {
 
                 if(count_human1_tips > 0) {
                     el = document.getElementsByClassName("indication_div_container")[0];
+                    document.getElementById("indication_text").innerHTML = "I don't a key to the Royal House, but I can give you something better: free beer from the house";
+                    document.getElementsByClassName("indication")[0].style = "margin-top: -5px";
                     el.style.visibility = "visible";
                 }
             }
@@ -737,6 +887,48 @@ function init() {
 
                 if(count_willow_tips > 0) {
                     el = document.getElementsByClassName("indication_div_container")[0];
+                    document.getElementById("indication_text").innerHTML = "Hello wanderer! From my magical branches, I summon you a question!";
+                    document.getElementsByClassName("indication")[0].style = "margin-top: 0";
+                    el.style.visibility = "visible";
+                }
+
+            }
+            else if(ground[charI - 1][charJ -1] === "spider"){
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, 8, 14);
+                image.src = map_elements["me"];
+
+                game[charI][charJ] = ground[charI][charJ];
+                game[8][14] = "me";
+
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+                image.src = map_elements[ground[charI][charJ]];
+            }
+            else if(ground[charI - 1][charJ -1] === "diamond"){
+                diamonds++;
+
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, charI - 1, charJ - 1);
+                image.src = map_elements[game[charI - 1][charJ - 1]];
+
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, charI - 1, charJ - 1);
+                image.src = map_elements["me"];
+
+                ground[charI - 1][charJ - 1] = game[charI - 1][charJ -1];
+                game[charI][charJ] = ground[charI][charJ];
+                game[charI - 1][charJ - 1] = "me";
+
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+                image.src = map_elements[ground[charI][charJ]];
+                console.log("Numarul de diamante: ", diamonds);
+
+                if(getCharactherCoord("me")[0] === 11 && getCharactherCoord("me")[1] === 8){
+                    el = document.getElementsByClassName("indication_div_container")[0];
+                    document.getElementById("indication_text").innerHTML = 'You can find diamonds in your journey. <br> Collect as many as you can and compete with others.';
+                    document.getElementsByClassName("indication")[0].style = "margin-top: 0";
                     el.style.visibility = "visible";
                 }
 
@@ -755,6 +947,8 @@ function init() {
 
                 if(count_flower_tips > 0) {
                     var el = document.getElementsByClassName("indication_div_container")[0];
+                    document.getElementById("indication_text").innerHTML = "The king and queen wish you all the best in your adventures. <br> We have a token of respect for you: a questiooon!";
+                    document.getElementsByClassName("indication")[0].style = "margin-top: -5px";
                     el.style.visibility = "visible";
                 }
             }
@@ -785,7 +979,8 @@ function init() {
         if(checkMoveLeftDownDiagonal(charI, charJ) === true) {
             if(gate1_visited === 0 && (charI === 7 && charJ === 13)){
                 var el = document.getElementsByClassName("indication_div_container")[0];
-                document.getElementById("indication_text").innerHTML = "Dute la poarta 1";
+                document.getElementById("indication_text").innerHTML = "You must first prove worthy of venturing into these dangerous lands. <br> Answer the witches and the kings question and then coma back. <br> Here's the key to the cemetery.";
+                document.getElementsByClassName("indication")[0].style = "margin-top: 0";
                 el.style.visibility = "visible";
             }
             else if(ground[charI + 1][charJ - 1] === "human6") {
@@ -802,6 +997,8 @@ function init() {
 
                 if(count_human6_tips > 0) {
                     el = document.getElementsByClassName("indication_div_container")[0];
+                    document.getElementById("indication_text").innerHTML = "Good, good!. You're free to go! Beware of cunning creatures.";
+                    document.getElementsByClassName("indication")[0].style = "margin-top: 0";
                     el.style.visibility = "visible";
                 }
             }
@@ -831,8 +1028,20 @@ function init() {
         if(checkMoveRightDownDiagonal(charI, charJ) === true) {
             if(keyGate2 === 0 && (charI === 7 && charJ === 14)){
                 var el = document.getElementsByClassName("indication_div_container")[0];
-                document.getElementById("indication_text").innerHTML = "Nu detii cheia!";
+                document.getElementById("indication_text").innerHTML = "You'll need a key to enter";
                 el.style.visibility = "visible";
+            }
+            else if(game[charI + 1][charJ + 1] === "spider"){
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, 8, 14);
+                image.src = map_elements["me"];
+
+                game[charI][charJ] = ground[charI][charJ];
+                game[8][14] = "me";
+
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+                image.src = map_elements[ground[charI][charJ]];
             }
             else {
                 image = new Image();
@@ -887,7 +1096,7 @@ function init() {
             || game[charI][charJ - 1] === "bridge_lr" || game[charI][charJ - 1] === "bridge_tb" || game[charI][charJ - 1] === "cave1" || game[charI][charJ - 1] === "cave2"
             || game[charI][charJ - 1] === "gate1" || game[charI][charJ - 1] === "gate2" || game[charI][charJ - 1] === "willow"
             || game[charI][charJ - 1] === "human1" || game[charI][charJ - 1] === "human2" || game[charI][charJ - 1] === "human3"
-            || game[charI][charJ - 1] === "human4" || game[charI][charJ - 1] === "human5" || game[charI][charJ - 1] === "human6"
+            || game[charI][charJ - 1] === "human4" || game[charI][charJ - 1] === "human5" || game[charI][charJ - 1] === "human6" || game[charI][charJ - 1] === "spider"
             || game[charI][charJ - 1] === "witch" || game[charI][charJ - 1] === "wolf" || game[charI][charJ - 1] === "diamond" || game[charI][charJ - 1] === "well";
     }
 
@@ -900,7 +1109,7 @@ function init() {
             || game[charI][charJ + 1] === "bridge_lr" || game[charI][charJ + 1] === "bridge_tb" || game[charI][charJ + 1] === "cave1" || game[charI][charJ + 1] === "cave2"
             || game[charI][charJ + 1] === "gate1" || game[charI][charJ + 1] === "gate2" || game[charI][charJ + 1] === "willow"
             || game[charI][charJ + 1] === "human1" || game[charI][charJ + 1] === "human2" || game[charI][charJ + 1] === "human3"
-            || game[charI][charJ + 1] === "human4" || game[charI][charJ + 1] === "human5" || game[charI][charJ + 1] === "human6"
+            || game[charI][charJ + 1] === "human4" || game[charI][charJ + 1] === "human5" || game[charI][charJ + 1] === "human6" || game[charI][charJ + 1] === "spider"
             || game[charI][charJ + 1] === "witch" || game[charI][charJ + 1] === "wolf" || game[charI][charJ + 1] === "diamond" || game[charI][charJ + 1] === "well";
     }
 
@@ -913,7 +1122,7 @@ function init() {
             || game[charI - 1][charJ] === "bridge_lr" || game[charI - 1][charJ] === "bridge_tb" || game[charI - 1][charJ] === "cave1" || game[charI - 1][charJ] === "cave2"
             || game[charI - 1][charJ] === "gate1" || game[charI - 1][charJ] === "gate2" || game[charI - 1][charJ] === "willow"
             || game[charI - 1][charJ] === "human1" || game[charI - 1][charJ] === "human2" || game[charI - 1][charJ] === "human3"
-            || game[charI - 1][charJ] === "human4" || game[charI - 1][charJ] === "human5" || game[charI - 1][charJ] === "human6"
+            || game[charI - 1][charJ] === "human4" || game[charI - 1][charJ] === "human5" || game[charI - 1][charJ] === "human6" || game[charI - 1][charJ] === "spider"
             || game[charI - 1][charJ] === "witch" || game[charI - 1][charJ] === "wolf" || game[charI - 1][charJ] === "diamond" || game[charI - 1][charJ] === "well";
     }
 
@@ -926,7 +1135,7 @@ function init() {
             || game[charI + 1][charJ] === "bridge_lr" || game[charI + 1][charJ] === "bridge_tb" || game[charI + 1][charJ] === "cave1" || game[charI + 1][charJ] === "cave2"
             || game[charI + 1][charJ] === "gate1" || game[charI + 1][charJ] === "gate2" || game[charI + 1][charJ] === "willow"
             || game[charI + 1][charJ] === "human1" || game[charI + 1][charJ] === "human2" || game[charI + 1][charJ] === "human3"
-            || game[charI + 1][charJ] === "human4" || game[charI + 1][charJ] === "human5" || game[charI + 1][charJ] === "human6"
+            || game[charI + 1][charJ] === "human4" || game[charI + 1][charJ] === "human5" || game[charI + 1][charJ] === "human6" || game[charI + 1][charJ] === "spider"
             || game[charI + 1][charJ] === "witch" || game[charI + 1][charJ] === "wolf" || game[charI + 1][charJ] === "diamond" || game[charI + 1][charJ] === "well";
     }
 
@@ -939,7 +1148,7 @@ function init() {
             || game[charI - 1][charJ + 1] === "bridge_lr" || game[charI - 1][charJ + 1] === "bridge_tb" || game[charI - 1][charJ + 1] === "cave1" || game[charI - 1][charJ + 1] === "cave2"
             || game[charI - 1][charJ + 1] === "gate1" || game[charI - 1][charJ + 1] === "gate2" || game[charI - 1][charJ + 1] === "willow"
             || game[charI - 1][charJ + 1] === "human1" || game[charI - 1][charJ + 1] === "human2" || game[charI - 1][charJ + 1] === "human3"
-            || game[charI - 1][charJ + 1] === "human4" || game[charI - 1][charJ + 1] === "human5" || game[charI - 1][charJ + 1] === "human6"
+            || game[charI - 1][charJ + 1] === "human4" || game[charI - 1][charJ + 1] === "human5" || game[charI - 1][charJ + 1] === "human6" || game[charI - 1][charJ + 1] === "spider"
             || game[charI - 1][charJ + 1] === "witch" || game[charI - 1][charJ + 1] === "wolf" || game[charI - 1][charJ + 1] === "diamond" || game[charI - 1][charJ + 1] === "well";
     }
 
@@ -952,7 +1161,7 @@ function init() {
             || game[charI - 1][charJ - 1] === "bridge_lr" || game[charI - 1][charJ - 1] === "bridge_tb" || game[charI - 1][charJ - 1] === "cave1" || game[charI - 1][charJ - 1] === "cave2"
             || game[charI - 1][charJ - 1] === "gate1" || game[charI - 1][charJ - 1] === "gate2" || game[charI - 1][charJ - 1] === "willow"
             || game[charI - 1][charJ - 1] === "human1" || game[charI - 1][charJ - 1] === "human2" || game[charI - 1][charJ - 1] === "human3"
-            || game[charI - 1][charJ - 1] === "human4" || game[charI - 1][charJ - 1] === "human5" || game[charI - 1][charJ - 1] === "human6"
+            || game[charI - 1][charJ - 1] === "human4" || game[charI - 1][charJ - 1] === "human5" || game[charI - 1][charJ - 1] === "human6" || game[charI - 1][charJ - 1] === "spider"
             || game[charI - 1][charJ - 1] === "witch" || game[charI - 1][charJ - 1] === "wolf" || game[charI - 1][charJ - 1] === "diamond" || game[charI - 1][charJ - 1] === "well";
     }
 
@@ -965,7 +1174,7 @@ function init() {
             || game[charI + 1][charJ - 1] === "bridge_lr" || game[charI + 1][charJ - 1] === "bridge_tb" || game[charI + 1][charJ - 1] === "cave1" || game[charI + 1][charJ - 1] === "cave2"
             || game[charI + 1][charJ - 1] === "gate1" || game[charI + 1][charJ - 1] === "gate2" || game[charI + 1][charJ - 1] === "willow"
             || game[charI + 1][charJ - 1] === "human1" || game[charI + 1][charJ - 1] === "human2" || game[charI + 1][charJ - 1] === "human3"
-            || game[charI + 1][charJ - 1] === "human4" || game[charI + 1][charJ - 1] === "human5" || game[charI + 1][charJ - 1] === "human5"
+            || game[charI + 1][charJ - 1] === "human4" || game[charI + 1][charJ - 1] === "human5" || game[charI + 1][charJ - 1] === "human5" || game[charI + 1][charJ - 1] === "spider"
             || game[charI + 1][charJ - 1] === "witch" || game[charI + 1][charJ - 1] === "wolf" || game[charI + 1][charJ - 1] === "diamond" || game[charI + 1][charJ - 1] === "well";
     }
 
@@ -978,7 +1187,7 @@ function init() {
             || game[charI + 1][charJ + 1] === "bridge_lr" || game[charI + 1][charJ + 1] === "bridge_tb" || game[charI + 1][charJ + 1] === "cave1" || game[charI + 1][charJ + 1] === "cave2"
             || game[charI + 1][charJ + 1] === "gate1" || game[charI + 1][charJ + 1] === "gate2" || game[charI + 1][charJ + 1] === "willow"
             || game[charI + 1][charJ + 1] === "human1" || game[charI + 1][charJ + 1] === "human2" || game[charI + 1][charJ + 1] === "human3"
-            || game[charI + 1][charJ + 1] === "human4" || game[charI + 1][charJ + 1] === "human5" || game[charI + 1][charJ + 1] === "human6"
+            || game[charI + 1][charJ + 1] === "human4" || game[charI + 1][charJ + 1] === "human5" || game[charI + 1][charJ + 1] === "human6" || game[charI + 1][charJ + 1] === "spider"
             || game[charI + 1][charJ + 1] === "witch" || game[charI + 1][charJ + 1] === "wolf" || game[charI + 1][charJ + 1] === "diamond" || game[charI + 1][charJ + 1] === "well";
     }
 
@@ -1393,69 +1602,79 @@ function init() {
 
     var asked_questions = [];
     var category = "category1";
-    var nr_of_questions = categories[category].questions.length;
-    var rand = getRandomInt(0, nr_of_questions);
-    asked_questions.push(rand);
+
+    function showQuestion() {
+        var nr_of_questions = categories[category].questions.length;
+        var rand = getRandomInt(0, nr_of_questions);
+        asked_questions.push(rand);
 
 
-    document.getElementById("question_text").innerHTML = categories[category].questions[rand].text;
-    document.getElementById("option1").innerHTML = categories[category].questions[rand].option1;
-    document.getElementById("option2").innerHTML = categories[category].questions[rand].option2;
-    document.getElementById("option3").innerHTML = categories[category].questions[rand].option3;
-    document.getElementById("option4").innerHTML = categories[category].questions[rand].option4;
-    document.getElementById("clue").innerHTML = categories[category].questions[rand].clue;
+        document.getElementById("question_text").innerHTML = categories[category].questions[rand].text;
+        document.getElementById("option1").innerHTML = categories[category].questions[rand].option1;
+        document.getElementById("option2").innerHTML = categories[category].questions[rand].option2;
+        document.getElementById("option3").innerHTML = categories[category].questions[rand].option3;
+        document.getElementById("option4").innerHTML = categories[category].questions[rand].option4;
+        document.getElementById("clue").innerHTML = categories[category].questions[rand].clue;
 
-    var chosen_option_nr = "";
-    var options = document.getElementById("options").getElementsByTagName("li");
-    for (i = 0; i < options.length; i++) {
+        var el = document.getElementsByClassName("question_div_container")[0];
+        el.style.visibility = "visible";
 
-        options[i].onmouseover = function() {
-            if(chosen_option_nr !== this.getAttribute("id")[this.getAttribute("id").length - 1]) {
-                this.setAttribute("style", "background-color: lightgreen;");
+        var chosen_option_nr = "";
+        var options = document.getElementById("options").getElementsByTagName("li");
+        for (i = 0; i < options.length; i++) {
+
+            options[i].onmouseover = function() {
+                if(chosen_option_nr !== this.getAttribute("id")[this.getAttribute("id").length - 1]) {
+                    this.setAttribute("style", "background-color: lightgreen;");
+                }
+            };
+            options[i].onmouseout = function() {
+                if(chosen_option_nr !== this.getAttribute("id")[this.getAttribute("id").length - 1]) {
+                    this.setAttribute("style", "background-color: tan;");
+                }
+            };
+
+            options[i].onclick = function() {
+                for (var j = 0; j < options.length; j++) {
+                    options[j].setAttribute("style", "background-color: tan;");
+                }
+                this.setAttribute("style", "background-color: forestgreen;");
+                chosen_option_nr = this.getAttribute("id")[this.getAttribute("id").length - 1];
             }
-        };
-        options[i].onmouseout = function() {
-            if(chosen_option_nr !== this.getAttribute("id")[this.getAttribute("id").length - 1]) {
-                this.setAttribute("style", "background-color: tan;");
-            }
-        };
-
-        options[i].onclick = function() {
-            for (var j = 0; j < options.length; j++) {
-                options[j].setAttribute("style", "background-color: tan;");
-            }
-            this.setAttribute("style", "background-color: forestgreen;");
-            chosen_option_nr = this.getAttribute("id")[this.getAttribute("id").length - 1];
         }
+
+        var submit_button = document.getElementById("submit_button_text");
+        submit_button.onclick = function() {
+            if (chosen_option_nr === categories[category].questions[rand].correct_answer) {
+                alert("Ai raspuns corect!");
+                hideQuestion();
+            }
+            else if(chosen_option_nr === "") {
+                alert("You must first select an answer!");
+            }
+            else {
+                alert("Wrong answer!");
+            }
+        };
+
     }
 
-    var submit_button = document.getElementById("submit_button_text");
-    submit_button.onclick = function() {
-        if (chosen_option_nr === categories[category].questions[rand].correct_answer) {
-            alert("Ai raspuns corect!");
-            hideQuestion();
-        }
-        else if(chosen_option_nr === "") {
-            alert("You must first select an answer!");
-        }
-        else {
-            alert("Wrong answer!");
-        }
-    };
+    // document.getElementsByClassName("indication_div_container")[0].innerHTML="fsd";
 
-    message = "Whatever message I want! Whatever message I want! Whatever message I want! Whatever message I want! Whatever message I want!";
-    document.getElementById("indication_text").innerHTML = message;
+    var button = document.getElementsByClassName("exit_button")[0];
+    document.getElementsByClassName("indication_div_container")[0].style.visibility = "visible";
+    document.getElementById("indication_text").innerHTML="Chapter1: " + categories[category].description + "<br><br>" + "Your name is Bidi" + "<br><br>" + 'To move throughout the map, use W, A, S, D to move up, left, down, right and Q, E, Z, C to move diagonally.' + "<br>";
+
+    console.log(document.getElementsByClassName("indication_div_container")[0].style.visibility);
 
     function hideIndication(){
-        el = document.getElementsByClassName("indication_div_container")[0];
-        el.style.visibility = "visible";
-        el.style.visibility = (el.style.visibility === "visible") ? "hidden" : "visible";
+        var el = document.getElementsByClassName("indication_div_container")[0];
+        el.style.visibility = (el.style.visibility === "hidden") ? "visible" : "hidden";
 
         if(getCharactherCoord("me")[0] === getObjectCoord("forester")[0] && getCharactherCoord("me")[1] === getObjectCoord("forester")[1]){
             count_forester_tips -= 1;
-            if(count_forester_tips === 0){
-                el = document.getElementsByClassName("question_div_container")[0];
-                el.style.visibility = "visible";
+            if(count_forester_tips === 1){
+                showQuestion();
                 count_forester_questions -= 1;
             }
         }
@@ -1463,8 +1682,7 @@ function init() {
         if(getCharactherCoord("me")[0] === getObjectCoord("witch")[0] && getCharactherCoord("me")[1] === getObjectCoord("witch")[1]){
             count_witch_tips -= 1;
             if(count_witch_tips === 0){
-                el = document.getElementsByClassName("question_div_container")[0];
-                el.style.visibility = "visible";
+                showQuestion();
                 count_witch_questions -= 1;
             }
         }
@@ -1472,8 +1690,7 @@ function init() {
         if(getCharactherCoord("me")[0] === getObjectCoord("willow")[0] && getCharactherCoord("me")[1] === getObjectCoord("willow")[1]){
             count_willow_tips -= 1;
             if(count_willow_tips === 0){
-                el = document.getElementsByClassName("question_div_container")[0];
-                el.style.visibility = "visible";
+                showQuestion();
                 count_willow_questions -= 1;
             }
         }
@@ -1481,10 +1698,8 @@ function init() {
         if(getCharactherCoord("me")[0] === 1 && getCharactherCoord("me")[1] === 10){
             count_flower_tips -= 1;
             gate1_visited = 1;
-            alert("am vizitat");
             if(count_flower_tips === 0){
-                el = document.getElementsByClassName("question_div_container")[0];
-                el.style.visibility = "visible";
+                showQuestion();
                 count_flower_questions -= 1;
             }
         }
@@ -1492,10 +1707,8 @@ function init() {
         if(getCharactherCoord("me")[0] === 1 && getCharactherCoord("me")[1] === 9){
             count_flower_tips -= 1;
             gate1_visited = 1;
-            alert("am vizitat");
             if(count_flower_tips === 0){
-                el = document.getElementsByClassName("question_div_container")[0];
-                el.style.visibility = "visible";
+                showQuestion();
                 count_flower_questions -= 1;
             }
         }
@@ -1503,10 +1716,8 @@ function init() {
         if(getCharactherCoord("me")[0] === 1 && getCharactherCoord("me")[1] === 11){
             count_flower_tips -= 1;
             gate1_visited = 1;
-            alert("am vizitat");
             if(count_flower_tips === 0){
-                el = document.getElementsByClassName("question_div_container")[0];
-                el.style.visibility = "visible";
+                showQuestion();
                 count_flower_questions -= 1;
             }
         }
@@ -1514,6 +1725,10 @@ function init() {
         if(getCharactherCoord("me")[0] === getObjectCoord("human3")[0] && getCharactherCoord("me")[1] === getObjectCoord("human3")[1]){
             count_priest_tips -= 1;
             keyGate1 = 1;
+        }
+
+        if(getCharactherCoord("me")[0] === 8 && getCharactherCoord("me")[1] === 18){
+            count_creatures_tips -= 1;
         }
 
         if(getCharactherCoord("me")[0] === getObjectCoord("human5")[0] && getCharactherCoord("me")[1] === getObjectCoord("human5")[1]){
@@ -1527,14 +1742,12 @@ function init() {
         if(getCharactherCoord("me")[0] === getObjectCoord("human6")[0] && getCharactherCoord("me")[1] === getObjectCoord("human6")[1]){
             count_human6_tips -= 1;
             keyGate2 = 1;
-            alert("Am cheia 2");
         }
 
         if(getCharactherCoord("me")[0] === getObjectCoord("wolf")[0] && getCharactherCoord("me")[1] === getObjectCoord("wolf")[1]){
             count_wolf_tips -= 1;
             if(count_wolf_tips === 0){
-                var el = document.getElementsByClassName("question_div_container")[0];
-                el.style.visibility = "visible";
+                showQuestion();
                 count_wolf_questions -= 1;
 
                 image = new Image();
@@ -1552,20 +1765,28 @@ function init() {
             image.onload = drawCanvasImageElem(ctx, image, getObjectCoord("well")[0], getObjectCoord("well")[1]);
             image.src = map_elements["well"];
 
-            alert("You finish these level! Well done! Bogdan m-ai enervat la culme cu jocul asta! Ti pup.");
-
             window.location.replace("/HAG/levels.html");
         }
     }
 
     function hideQuestion(){
         var el = document.getElementsByClassName("question_div_container")[0];
-        console.log("dsa0");
         el.style.visibility = "visible";
         el.style.visibility = (el.style.visibility === "visible") ? "hidden" : "visible";
+
+        if(count_forester_tips > 0 && count_forester_questions === 0) {
+            count_forester_tips -= 1;
+            el = document.getElementsByClassName("indication_div_container")[0];
+            document.getElementById("indication_text").innerHTML = "You can check out the village over the river. <br> Might be you find other challenges.";
+            document.getElementsByClassName("indication")[0].style = "margin-top: 0";
+            el.style.visibility = "visible";
+        }
     }
 
+    if(button){
+        button.addEventListener("click", hideIndication, false);
+    }
 
-    document.getElementsByClassName("exit_button")[0].addEventListener("click", hideIndication, false);
+    // document.getElementsByClassName("exit_button")[0].addEventListener("click", hideIndication, false);
 
 }

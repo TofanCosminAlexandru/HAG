@@ -3,27 +3,22 @@ html {
     overflow-x: hidden;
     background-image: url(images/grass.jpg);
     background-size: 3.5%;
+    position: relative;
     width:100%; height:100%;
 }
 
 body {
-    position: absolute;
 	font-family: Lato, sans-serif;
-    width:100%; height:100%;
-    left: 0;
-    top: 0;
+    cursor: url(images/my_cursor.png), auto;
+    width:100%;
+    height:100%;
 }
 
 #canvas {
-    padding-left: 0;
-    padding-right: 0;
-    margin-left: auto;
-    margin-right: auto;
+    position: absolute;
+    left: 0;
+    top: 0;
     display: block;
-}
-
-body {
-    cursor: url(images/my_cursor.png), auto;
 }
 
 .question_div_container {
@@ -87,10 +82,8 @@ body {
     background-color: lightgreen;
 }
 
-
 .indication_div_container {
     background-color: rgba(0, 0, 0, 0.7);
-    visibility: visible;
     position: fixed;
     z-index: 3;
     top: 0;
@@ -102,18 +95,19 @@ body {
 .indication_div {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    /*justify-content: space-between;*/
     align-items: center;
     align-content: center;
 
     width: 25%;
-    height: 20%;
+    height: 30%;
 
-    padding: 70px;
+    text-align: center;
+
+    padding: 90px;
     background: url(images/iscroll.png) no-repeat left top;
     background-size: contain;
 
-    text-align: center;
     font-family: "Comic Sans MS", cursive, sans-serif;
     font-size: 1rem;
     color: rgb(51, 0, 0);
@@ -124,13 +118,15 @@ body {
 }
 
 .indication_div .indication {
-    margin-top: -30%;
+    text-align: center;
+    vertical-align: middle;
+    margin-top: -25%;
+    margin-bottom: -5%;
 }
 
 .indication_div .exit_button p {
     background-color: tan;
     border: 1px solid darkred;
-    padding: 5px;
     margin: 1px;
 }
 

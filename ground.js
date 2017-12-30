@@ -282,7 +282,6 @@ function init() {
     });
 
     function leftArrowPressed() {
-        console.log("Stanga");
         var charI = getCharactherCoord("me")[0];
         var charJ = getCharactherCoord("me")[1];
 
@@ -346,7 +345,6 @@ function init() {
                 image.src = map_elements[ground[charI][charJ]];
             }
             else if(ground[charI][charJ - 1] === "willow"){
-                console.log("Copac frumos");
                 image = new Image();
                 image.onload = drawCanvasImageElem(ctx, image, charI, charJ - 1);
                 image.src = map_elements["me"];
@@ -385,13 +383,11 @@ function init() {
     }
 
     function rightArrowPressed() {
-        console.log("Dreapta");
         var charI = getCharactherCoord("me")[0];
         var charJ = getCharactherCoord("me")[1];
 
         if(checkMoveRight(charI, charJ) === true) {
             if(ground[charI][charJ + 1] === "cave2"){
-                console.log("Sunt in pestera 2");
                 var cave1I = getCharactherCoord("cave1")[0];
                 var cave1J = getCharactherCoord("cave1")[1];
 
@@ -405,9 +401,6 @@ function init() {
                 image = new Image();
                 image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
                 image.src = map_elements[ground[charI][charJ]];
-
-                console.log(cave1I, cave1J);
-                console.log(charI, charJ);
             }
             else if(ground[charI][charJ + 1] === "wolf"){
                 image = new Image();
@@ -534,16 +527,10 @@ function init() {
     }
 
     function upArrowPressed() {
-        console.log("Sus");
         var charI = getCharactherCoord("me")[0];
         var charJ = getCharactherCoord("me")[1];
-
-        console.log(charI, charJ);
-        console.log(charI -1, charJ);
-
         if(checkMoveUp(charI, charJ) === true) {
             if(ground[charI - 1][charJ] === "cave1"){
-                console.log("Sunt in pestera 1");
                 var cave2I = getCharactherCoord("cave2")[0];
                 var cave2J = getCharactherCoord("cave2")[1];
 
@@ -559,7 +546,6 @@ function init() {
                 image.src = map_elements[ground[charI][charJ]];
 
             } else if(ground[charI - 1][charJ] === "forester"){
-                console.log("Padurar");
                 image = new Image();
                 image.onload = drawCanvasImageElem(ctx, image, charI - 1, charJ);
                 image.src = map_elements["me"];
@@ -591,7 +577,6 @@ function init() {
                 image.src = map_elements[ground[charI][charJ]];
             }
             else if(ground[charI - 1][charJ] === "witch"){
-                console.log("vrajitoare");
                 image = new Image();
                 image.onload = drawCanvasImageElem(ctx, image, charI - 1, charJ);
                 image.src = map_elements["me"];
@@ -716,7 +701,6 @@ function init() {
     }
 
     function downArrowPressed() {
-        console.log("Jos");
         var charI = getCharactherCoord("me")[0];
         var charJ = getCharactherCoord("me")[1];
 
@@ -749,15 +733,17 @@ function init() {
             else if(ground[charI + 1][charJ] === "spider"){
 
                 image = new Image();
-                image.onload = drawCanvasImageElem(ctx, image, 8, 14);
+                image.onload = drawCanvasImageElem(ctx, image, 5, 17);
                 image.src = map_elements["me"];
 
-                game[charI][charJ] = ground[charI][charJ];
-                game[8][14] = "me";
+                console.log(getCharactherCoord("me"));
 
-                image = new Image();
-                image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
-                image.src = map_elements[ground[charI][charJ]];
+                game[charI][charJ] = ground[charI][charJ];
+                game[5][17] = "me";
+
+                // image = new Image();
+                // image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+                // image.src = map_elements[ground[charI][charJ]];
             }
             else if(ground[charI + 1][charJ] === "well"){
                 image = new Image();
@@ -797,7 +783,6 @@ function init() {
     }
 
     function rightUpDiagonal(){
-        console.log("Dreapta Sus Diagonala");
         getCharactherCoord();
         var charI = getCharactherCoord("me")[0];
         var charJ = getCharactherCoord("me")[1];
@@ -866,13 +851,11 @@ function init() {
     }
 
     function leftUpDiagonal() {
-        console.log("Stanga Sus Diagonala");
         var charI = getCharactherCoord("me")[0];
         var charJ = getCharactherCoord("me")[1];
 
         if(checkMoveLeftUpDiagonal(charI, charJ) === true) {
             if(ground[charI - 1][charJ -1] === "willow"){
-                console.log("Copac frumos");
                 image = new Image();
                 image.onload = drawCanvasImageElem(ctx, image, charI-1, charJ-1);
                 image.src = map_elements["me"];
@@ -972,7 +955,6 @@ function init() {
     }
 
     function leftDownDiagonal() {
-        console.log("Stanga Jos Diagonala");
         var charI = getCharactherCoord("me")[0];
         var charJ = getCharactherCoord("me")[1];
 
@@ -1021,7 +1003,6 @@ function init() {
     }
 
     function rightDownDiagonal(){
-        console.log("Dreapta Jos Diagonala");
         var charI = getCharactherCoord("me")[0];
         var charJ = getCharactherCoord("me")[1];
 
@@ -1033,15 +1014,15 @@ function init() {
             }
             else if(game[charI + 1][charJ + 1] === "spider"){
                 image = new Image();
-                image.onload = drawCanvasImageElem(ctx, image, 8, 14);
+                image.onload = drawCanvasImageElem(ctx, image, 5, 17);
                 image.src = map_elements["me"];
 
                 game[charI][charJ] = ground[charI][charJ];
-                game[8][14] = "me";
+                game[5][17] = "me";
 
-                image = new Image();
-                image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
-                image.src = map_elements[ground[charI][charJ]];
+                // image = new Image();
+                // image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+                // image.src = map_elements[ground[charI][charJ]];
             }
             else {
                 image = new Image();
@@ -1659,13 +1640,9 @@ function init() {
 
     }
 
-    // document.getElementsByClassName("indication_div_container")[0].innerHTML="fsd";
-
     var button = document.getElementsByClassName("exit_button")[0];
     document.getElementsByClassName("indication_div_container")[0].style.visibility = "visible";
     document.getElementById("indication_text").innerHTML="Chapter1: " + categories[category].description + "<br><br>" + "Your name is Bidi" + "<br><br>" + 'To move throughout the map, use W, A, S, D to move up, left, down, right and Q, E, Z, C to move diagonally.' + "<br>";
-
-    console.log(document.getElementsByClassName("indication_div_container")[0].style.visibility);
 
     function hideIndication(){
         var el = document.getElementsByClassName("indication_div_container")[0];
@@ -1786,7 +1763,4 @@ function init() {
     if(button){
         button.addEventListener("click", hideIndication, false);
     }
-
-    // document.getElementsByClassName("exit_button")[0].addEventListener("click", hideIndication, false);
-
 }

@@ -4,13 +4,13 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min; // the maximum is exclusive and the minimum is inclusive
 }
 
-var drawCanvasImageElem = function(ctx, image, row, col) {
+var drawCanvasImageElem = function(ctx, image, row, col) { // draws an image element on the canvas
     return function() {
         ctx.drawImage(image, col * 200, row * 200, 200, 200);
     }
 };
 
-var category = "category2";
+var category = "category2"; // the category of questions for level 2
 var categories = {
     "category1": {
         "description": "The initial steps of verifying the request up to checking the existence of the resource included.",
@@ -412,20 +412,22 @@ var categories = {
             }
         ]
     }
-};
+}; // the json with all the categories and their questions
 
-var diamonds = 0;
-var points = 0;
-var asked_questions = [];
-var has_key = 0;
-var has_medusa1_asked = 0;
-var has_medusa2_asked = 0;
-var has_dark_voice_asked = 0;
-var has_minotaur_asked = 0;
-var has_serpent_asked = 0;
-var has_food = 0;
-var spikes1_on = 1, spikes2_on = 1, spikes3_on = 1, spikes4_on = 1;
+var diamonds = 0; // the numbers of diamonds collected found at this level
+var has_first_diamond = 0; // 1 - our character has taked the first diamond; 0 - otherwise
+var points = 0; // the number of points accumulated during this level
+var asked_questions = []; // the indexes of the questions already asked
+var has_key = 0; // 1 - the character has the key, 0 - otherwise
+var has_medusa1_asked = 0; // 1 - medusa1 has already asked the question, 0 - otherwise
+var has_medusa2_asked = 0; // 1 - medusa2 has already asked the question, 0 - otherwise
+var has_dark_voice_asked = 0; // 1 - the dark voice has already asked the question, 0 - otherwise
+var has_minotaur_asked = 0; // 1 - the minotaur has already asked the question, 0 - otherwise
+var has_serpent_asked = 0; // 1 - the serpent has already asked the question, 0 - otherwise
+var has_food = 0; // 1 - the character has the food for the snake, 0 - otherwise
+var spikes1_on = 1, spikes2_on = 1, spikes3_on = 1, spikes4_on = 1; // 1 - the spikes are up, 0 - otherwise
 
+// matrix with the ground under the elements (the background)
 var water = [["tree", "tree", "tree", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall"],
     ["tree", "stairs_to_heaven", "tree", "wall", "river", "ground", "ground", "ground", "wall", "ground", "ground", "ground", "ground", "wall", "ground", "ground", "ground", "ground", "well_stairs", "wall"],
     ["tree", "tree", "well", "wall", "river", "ground", "wall", "ground", "wall", "ground", "ground", "ground", "ground", "wall", "ground", "river", "wall", "wall", "wall", "wall"],
@@ -442,6 +444,7 @@ var water = [["tree", "tree", "tree", "wall", "wall", "wall", "wall", "wall", "w
     ["wall", "ground", "ground", "ground", "ground", "ground", "river", "ground", "ground", "ground", "ground", "ground", "ground", "river", "medusa1", "ground", "ground", "ground", "ground", "wall"],
     ["wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall"]];
 
+// matrix with all the game elements
 var game = [["tree", "tree", "tree", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall"],
     ["tree", "stairs_to_heaven", "tree", "wall", "river", "ground", "ground", "ground", "wall", "river", "river", "river", "river", "wall", "ground", "river", "stone", "me", "well_stairs", "wall"],
     ["tree", "tree", "well", "wall", "river", "ground", "wall", "ground", "wall", "ground", "river", "ground", "river", "wall", "ground", "river", "wall", "wall", "wall", "wall"],
@@ -458,6 +461,7 @@ var game = [["tree", "tree", "tree", "wall", "wall", "wall", "wall", "wall", "wa
     ["wall", "ground", "ground", "spikes2", "ground", "ground", "river", "ground", "ground", "spikes1", "ground", "ground", "food", "river", "medusa1", "ground", "ground", "ground", "ground", "wall"],
     ["wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall"]];
 
+// map element --> corresponding picture
 var map_elements = {
     "tree": "water_images/tree.png",
     "wall": "water_images/wall.png",
@@ -467,7 +471,7 @@ var map_elements = {
     "stone": "water_images/stone.png",
     "me": "water_images/character.png",
     "well_stairs": "water_images/well_stairs.png",
-    "diamond": "water_images/diamond_map.png",
+    "diamond": "water_images/diamond.png",
     "minotaur": "water_images/minotaur.png",
     "serpent": "water_images/serpent.png",
     "rat1": "water_images/rat.png",
@@ -485,17 +489,19 @@ var map_elements = {
     "ground": "water_images/ground.png"
 };
 
+// the canvas is loaded based on this function
 function init() {
+    /* --- MAP --- */
     var canvas = document.getElementById('canvas');
-    console.log(canvas.height);
-    console.log(canvas.width);
 
+    // adjust the canvas to match the size of the screen
     var height = window.innerHeight;
     var width = window.innerWidth;
 
     canvas.style.width = width  + "px";
     canvas.style.height = height + "px";
 
+    // draw the background of the canvas
     if (canvas.getContext) {
         var ctx = canvas.getContext('2d');
         for (var i = 0; i < 15; i++) {
@@ -512,9 +518,10 @@ function init() {
         }
     }
 
+    // draw the elements on the map
     for (i = 0; i < game.length; i++) {
         for (j = 0; j < game[i].length; j++) {
-            if (game[i][j] === "diamond" && i === 4) {
+            if (game[i][j] === "diamond" && i === 4) { // this diamond is on water, so we first place water over the ground (background)
                 image = new Image();
                 image.onload = drawCanvasImageElem(ctx, image, i, j);
                 image.src = map_elements["river"];
@@ -526,6 +533,8 @@ function init() {
         }
     }
 
+    // return the coordinates of a specific element on the map (element_name --> [x_element, y_element])
+    // used for unique elements on the map (like characters)
     function getElementCoord(obj) {
         var coord = [];
         for (i = 0; i < 15; i++) {
@@ -539,17 +548,17 @@ function init() {
         return coord;
     }
 
+    // get the coordinates of your character
     var charI = getElementCoord("me")[0];
     var charJ = getElementCoord("me")[1];
+    // draw him on the map
     image = new Image();
     image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
     image.src = map_elements["me"];
 
-    console.log(canvas.height);
-    console.log(canvas.width);
-
     var map = {};
-    document.body.addEventListener("keydown", function(e){
+    // we set the keyboard buttons with which we can move the character
+    document.body.addEventListener("keydown", function(e) {
         map[e.keyCode] = e.type === 'keydown';
         /*if(map[13]) {
             hideIndication();
@@ -592,6 +601,7 @@ function init() {
         return false;
     });
 
+    // we make specific map elements move on a map section through the specified functions
     setInterval(function(){ moveRat("rat1"); }, 400);
     setInterval(function(){ moveRat("rat2"); }, 300);
     setInterval(function(){ moveSpikes("spikes1"); }, 1000);
@@ -599,16 +609,17 @@ function init() {
     setInterval(function(){ moveSpikes("spikes3"); }, 500);
     setInterval(function(){ moveSpikes("spikes4"); }, 300);
 
+    // the function which keeps the game alive depending on the keyboard button pressed which represents a direction
     function arrowPressed(direction) {
-        console.log(direction);
         var image;
-        var charI = getElementCoord("me")[0];
-        var charJ = getElementCoord("me")[1];
+        var charI = getElementCoord("me")[0]; // our character's line index
+        var charJ = getElementCoord("me")[1]; // our character's column index
 
-        var newI = 0;
-        var newJ = 0;
-        var newI2 = 0;
-        var newJ2 = 0;
+        var newI; // the line index of the position on which the character intends to step
+        var newJ; // the column index of the position on which the character intends to step
+        var newI2; // the line index of the position two steps ahead of the character (only for up, down, left, right)
+        var newJ2; // the column index of the position two steps ahead of the character (only for up, down, left, right)
+        // computing newI, newJ, newI2, newJ2 according to the direction
         if (direction === "left") {
             newI = charI;
             newJ = charJ - 1;
@@ -650,27 +661,34 @@ function init() {
             newJ = charJ + 1;
         }
 
-        if(checkMove(newI, newJ) === true) {
-            if(game[newI][newJ] === "diamond") {
-                diamonds++;
+        if(checkMove(newI, newJ) === true) { // the character can step on that element
+            if(game[newI][newJ] === "diamond") { // the element is diamond
+                if (newJ === 13) { // the element is the first diamond
+                    has_first_diamond = 1;
+                }
+                diamonds++; // increase the number of diamonds
 
+                // draw ground on the diamond's position
                 image = new Image();
                 image.onload = drawCanvasImageElem(ctx, image, newI, newJ);
                 image.src = map_elements[water[newI][newJ]];
 
+                // draw my character on the new position
                 image = new Image();
                 image.onload = drawCanvasImageElem(ctx, image, newI, newJ);
                 image.src = map_elements["me"];
 
+                // update the matrices
                 game[newI][newJ] = water[newI][newJ];
                 game[charI][charJ] = water[charI][charJ];
                 game[newI][newJ] = "me";
 
+                // draw ground on my characters last position
                 image = new Image();
                 image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
                 image.src = map_elements[game[charI][charJ]];
 
-                console.log("Numarul de diamante: ", diamonds);
+                //console.log("Nr. of diamonds: ", diamonds);
             }
             else if (game[newI][newJ] === "rat1") {
                 image = new Image();
@@ -678,7 +696,7 @@ function init() {
                 image.src = map_elements[water[charI][charJ]];
 
                 game[charI][charJ] = water[charI][charJ];
-                game[1][14] = "me";
+                game[1][14] = "me"; // it pushes my character at that position
 
                 image = new Image();
                 image.onload = drawCanvasImageElem(ctx, image, 1, 14);
@@ -696,12 +714,16 @@ function init() {
                 image.onload = drawCanvasImageElem(ctx, image, 5, 15);
                 image.src = map_elements["me"];
 
+                // this rat can take his diamond back from me
                 image = new Image();
                 image.onload = drawCanvasImageElem(ctx, image, 6, 13);
                 image.src = map_elements["diamond"];
 
                 game[6][13] = "diamond";
-                diamonds--;
+                if (has_first_diamond === 1) {
+                    diamonds--;
+                    has_first_diamond = 0;
+                }
             }
             else if (game[newI][newJ] === "spikes1" || game[newI][newJ] === "spikes2" || game[newI][newJ] === "spikes3" || game[newI][newJ] === "spikes4") {
                 image = new Image();
@@ -709,6 +731,7 @@ function init() {
                 image.src = map_elements[water[charI][charJ]];
 
                 game[charI][charJ] = water[charI][charJ];
+                // the spikes push my character at certain positions
                 if (game[newI][newJ] === "spikes1" && direction === "right") {
                     game[13][7] = "me";
 
@@ -731,10 +754,10 @@ function init() {
                     image.src = map_elements["me"];
                 }
             }
-            else if (game[newI][newJ] === "gate" && has_key === 0) {
+            else if (game[newI][newJ] === "gate" && has_key === 0) { // you don't have a key.. you'll receive a message that you must first find a key for the gate
                 showIndication("The gate is closed. <br> You need a key to open it.");
             }
-            else if ((game[newI][newJ] === "gate" && has_key === 1) || water[charI][charJ] === "gate") {
+            else if ((game[newI][newJ] === "gate" && has_key === 1) || water[charI][charJ] === "gate") { // now you can pass that gate
                 image = new Image();
                 image.onload = drawCanvasImageElem(ctx, image, newI, newJ);
                 image.src = map_elements["me"];
@@ -742,7 +765,7 @@ function init() {
                 game[charI][charJ] = water[charI][charJ];
                 game[newI][newJ] = "me";
 
-                if (water[charI][charJ] === "gate") {
+                if (water[charI][charJ] === "gate") { // we draw ground first so that the gate won't overlap my character
                     image = new Image();
                     image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
                     image.src = map_elements["ground"];
@@ -788,12 +811,12 @@ function init() {
 
                 game[charI][charJ] = "me";
 
-                showIndication("Chapter Completed! <br><br> Bidi has reached the sky!");
+                showIndication("Chapter Completed! <br><br> Bidi has reached the sky!"); // we reached the end of the level
 
-                setInterval(function(){}, 1000);
+                // redirecting to the levels page
                 window.location.replace("/HAG/levels.html");
             }
-            else {
+            else { // in front of us is ground
                 image = new Image();
                 image.onload = drawCanvasImageElem(ctx, image, newI, newJ);
                 image.src = map_elements["me"];
@@ -805,10 +828,11 @@ function init() {
                 image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
                 image.src = map_elements[water[charI][charJ]];
 
-                if (newI === 13 && newJ === 15 && has_medusa1_asked === 0) {
+                if (newI === 13 && newJ === 15 && has_medusa1_asked === 0) { // if we are in front of medusa1
                     showIndication("Hello stranger! <br> Might be I have a key for you! <br> But you must first answer me a question!");
                 }
                 else if((newI === 6 && newJ === 4 && has_dark_voice_asked === 0) || (newI === 7 && newJ === 4 && has_dark_voice_asked === 0)) {
+                    // if we are in sight of the dark stranger he appears to ask us a question
                     image = new Image();
                     image.onload = drawCanvasImageElem(ctx, image, 6, 3);
                     image.src = map_elements["dark_voice"];
@@ -817,8 +841,9 @@ function init() {
                 }
             }
         }
-        else {
+        else { // the character can't step on that element
             if (game[newI][newJ] === "stone" && (direction === "up" || direction === "down" || direction === "left" || direction === "right") && game[newI2][newJ2] === "river") {
+                // the stone is in front of river so it can pe pushed to create a new path
                 image = new Image();
                 image.onload = drawCanvasImageElem(ctx, image, newI, newJ);
                 image.src = map_elements["ground"];
@@ -843,6 +868,7 @@ function init() {
                 game[newI2][newJ2] = "stone";
             }
             else if(game[newI][newJ] === "stone" && (direction === "up" || direction === "down" || direction === "left" || direction === "right") && game[newI2][newJ2] === "diamond") {
+                // the stone is in front of a free ground so it can be pushed forward
                 image = new Image();
                 image.onload = drawCanvasImageElem(ctx, image, newI, newJ);
                 image.src = map_elements["ground"];
@@ -871,7 +897,8 @@ function init() {
             else if (game[newI][newJ] === "minotaur" && has_minotaur_asked === 0) {
                 showIndication("Halt! <br> You have to pay a toll to get to the surface! <br> So, in coins or questions?");
             }
-            else if (game[newI][newJ] === "well_stairs" && newI === 3) {
+            else if (game[newI][newJ] === "well_stairs" && newI === 3 && getElementCoord("me")[0] !== 2) {
+                // if you reach the steps which lead to the surface, your character will reach the top of the well
                 image = new Image();
                 image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
                 image.src = map_elements["ground"];
@@ -884,15 +911,16 @@ function init() {
 
                 game[2][2] = "me";
             }
-            else {
+            else { // nothing happens because you can't jump over obstacles
                 //alert("You can't jump over obstacles!");
             }
         }
     }
 
-    function checkMove(newI, newJ) {
+    // the function that verifies on which map elements our character can step
+    function checkMove(newI, newJ) { // newI, newJ - the position on which the character intends to step
         return (game[newI][newJ] === "ground")
-            || (game[newI][newJ] === "diamond")
+            || (game[newI][newJ] === "diamond" && water[newI][newJ] !== "river")
             || (game[newI][newJ] === "food")
             || (game[newI][newJ] === "spikes1")
             || (game[newI][newJ] === "spikes2")
@@ -905,8 +933,10 @@ function init() {
             || (game[newI][newJ] === "gate");
     }
 
-    function moveRat(rat) {
-        var xRat, yRat, in_diamond_corner = 0;
+    // this function ensures the rats movement
+    function moveRat(rat) { // rat = rat1 or rat2
+        var xRat, yRat, in_diamond_corner = 0; // the coordinates of the rat and whether my character is in the corner where the diamond was or not
+        // get the coordinates corresponding to the specified rat
         if (rat === "rat1") {
             xRat =  getElementCoord("rat1")[0];
             yRat = getElementCoord("rat1")[1];
@@ -915,11 +945,13 @@ function init() {
             xRat =  getElementCoord("rat2")[0];
             yRat = getElementCoord("rat2")[1];
         }
+
+        // the next position of the rat
         var newYRat = ((rat === "rat2" && ((yRat === 14 && game[xRat][13] === "diamond") || yRat === 13)) || (rat === "rat1" && yRat === 14)) ? 18 : yRat - 1;
         var newXRat = xRat;
 
-        game[xRat][yRat] = water[xRat][yRat];
-        if (game[newXRat][newYRat] === "me") {
+        game[xRat][yRat] = water[xRat][yRat]; // the rat leaves the ground empty where it previously were
+        if (game[newXRat][newYRat] === "me") { // if it steps on me
             if(getElementCoord("me")[0] === 6 && getElementCoord("me")[1] === 13) {
                 in_diamond_corner = 1;
             }
@@ -935,20 +967,26 @@ function init() {
             else if (rat === "rat2") {
                 game[5][15] = "me";
 
-                image = new Image();
-                image.onload = drawCanvasImageElem(ctx, image, 6, 13);
-                image.src = map_elements["diamond"];
+                // he takes back his diamond and puts it in it's place if he finds it on me
+                if (has_first_diamond === 1) {
+                    image = new Image();
+                    image.onload = drawCanvasImageElem(ctx, image, 6, 13);
+                    image.src = map_elements["diamond"];
 
-                game[6][13] = "diamond";
-                diamonds--;
+                    game[6][13] = "diamond";
+                    diamonds--;
+                    has_first_diamond = 0;
+                }
             }
 
+            // the rat pushes me back to a certain location
             image = new Image();
             image.onload = rat === "rat1" ? drawCanvasImageElem(ctx, image, 1, 14) : drawCanvasImageElem(ctx, image, 5, 15);
             image.src = map_elements["me"];
         }
 
         newYRat = in_diamond_corner === 1 ? 18 : newYRat;
+
         game[newXRat][newYRat] = rat === "rat1" ? "rat1" : "rat2";
 
         image = new Image();
@@ -960,7 +998,8 @@ function init() {
         image.src = rat === "rat1" ? map_elements["rat1"] : map_elements["rat2"];
     }
 
-    function moveSpikes(spikes) {
+    // this function ensures the spikes movement
+    function moveSpikes(spikes) { // spikes = spikes1 or spikes2 or spikes3 or spikes4
         var xSpikes;
         var ySpikes;
         var spikes_on;
@@ -1045,11 +1084,14 @@ function init() {
         }
     }
 
+    /* --- MAP --- */
 
 
-    var chosen_option_nr = "";
-    var options = document.getElementById("options").getElementsByTagName("li");
+    /* --- INDICATION AND QUESTION MODALS --- */
+    var chosen_option_nr = ""; // the option of the question chosen by the player
+    var options = document.getElementById("options").getElementsByTagName("li"); // the options of a question
     for (i = 0; i < options.length; i++) {
+        // we change the colour of the options according to whether the user moved the mouse pointer out, over them or he clicked on them
         options[i].onmouseover = function() {
             if(chosen_option_nr !== this.getAttribute("id")[this.getAttribute("id").length - 1]) {
                 this.setAttribute("style", "background-color: cornflowerblue;");
@@ -1065,17 +1107,18 @@ function init() {
                 options[j].setAttribute("style", "background-color: tan;");
             }
             this.setAttribute("style", "background-color: midnightblue;");
-            chosen_option_nr = this.getAttribute("id")[this.getAttribute("id").length - 1];
+            chosen_option_nr = this.getAttribute("id")[this.getAttribute("id").length - 1]; // on click we retain his option
         }
     }
+
     var submit_button = document.getElementById("submit_button_text");
-    submit_button.onclick = function() {
+    submit_button.onclick = function() { // after submitting the answer we announce the user whether he answered correctly or wrong
         if (chosen_option_nr === categories[category].questions[asked_questions[asked_questions.length - 1]].correct_answer) {
             alert("Correct answer! You received a star!");
-            points++;
+            points++; // correct answers means more stars to your collection
             hideQuestion();
         }
-        else if(chosen_option_nr === "") {
+        else if(chosen_option_nr === "") { // you have to select an answer before submitting
             //alert("You must first select an answer!");
         }
         else {
@@ -1091,18 +1134,20 @@ function init() {
     document.getElementById("indication_text").innerHTML = "Chapter 2: " + categories[category].description + "<br><br>"
         + "Stones can be pushed, especially to create a crossing over water. Press W, A, S, D when you are near a stone.";
 
-
-
+    // this function hides the question div
     function hideQuestion() {
         var question_div_container = document.getElementsByClassName("question_div_container")[0];
         question_div_container.style.visibility = "hidden";
     }
 
+    // this function shows the question div with a question that hasn't been asked before
     function showQuestion() {
+        chosen_option_nr = "";
         for (i = 0; i < options.length; i++) {
             options[i].setAttribute("style", "background-color: tan;");
         }
-        var nr_of_questions = categories[category].questions.length;
+        var nr_of_questions = categories[category].questions.length; // the number of questions tha category of the level has
+        // we select a random question that hasn't been asked before and retain its index
         var rand = getRandomInt(0, nr_of_questions);
         while(true) {
             if (asked_questions.indexOf(rand) < 0) {
@@ -1112,6 +1157,7 @@ function init() {
         }
         asked_questions.push(rand);
 
+        // we fill the question's fields
         document.getElementById("question_text").innerHTML = categories[category].questions[rand].text;
         document.getElementById("option1").innerHTML = categories[category].questions[rand].option1;
         document.getElementById("option2").innerHTML = categories[category].questions[rand].option2;
@@ -1123,11 +1169,13 @@ function init() {
         question_div_container.style.visibility = "visible";
     }
 
+    // this function hides the indication div
     function hideIndication() {
         var indication_div_container = document.getElementsByClassName("indication_div_container")[0];
         indication_div_container.style.visibility = "hidden";
     }
 
+    // this function shows the indication div with a specific message
     function showIndication(message) {
         document.getElementById("indication_text").innerHTML = message;
 
@@ -1135,8 +1183,10 @@ function init() {
         indication_div_container.style.visibility = "visible";
     }
 
+    // this function keeps the evidence of the indication divs that trigger the appearance of a question div right after they have been closed
+    // according to the position of our character whether the map's specific characters have asked their questions or not
     function indicationTriggersEvent() {
-        if (getElementCoord("me")[0] === 13 && getElementCoord("me")[1] === 15 && has_medusa1_asked === 0) {
+        if (getElementCoord("me")[0] === 13 && getElementCoord("me")[1] === 15 && has_medusa1_asked === 0) { // medusa1 asks me her question
             showQuestion();
         }
 
@@ -1153,16 +1203,19 @@ function init() {
         }
     }
 
+    // this function keeps the evidence of the question divs that trigger the appearance of an indication div right after they have been closed
+    // according to the position of our character and whether the map's specific characters have asked their questions or not
     function questionTriggersEvent() {
         if (getElementCoord("me")[0] === 13 && getElementCoord("me")[1] === 15 && has_medusa1_asked === 0) {
-            showIndication("Here's the key for you! <br> And might be you want a kiss?");
-            has_medusa1_asked = 1;
-            has_key = 1;
+            showIndication("Here's the key for you! <br> And might be you want a kiss?"); // her last message for us
+            has_medusa1_asked = 1; // she has askes her question
+            has_key = 1; // and she has a key for us
         }
 
         if (getElementCoord("me")[0] === 5 && getElementCoord("me")[1] === 7 && has_serpent_asked === 0) {
             has_serpent_asked = 1;
 
+            // after the serpent asks his question he moves away from the path and lets us go forward
             image = new Image();
             image.onload = drawCanvasImageElem(ctx, image, 4, 7);
             image.src = map_elements[water[4][7]];
@@ -1177,6 +1230,7 @@ function init() {
         if (((getElementCoord("me")[0] === 6 && getElementCoord("me")[1] === 4) || (getElementCoord("me")[0] === 7 && getElementCoord("me")[1] === 4)) && has_dark_voice_asked === 0) {
             has_dark_voice_asked = 1;
 
+            // the dark stranger disappears after he asks his question
             image = new Image();
             image.onload = drawCanvasImageElem(ctx, image, 6, 3);
             image.src = map_elements[water[6][3]];
@@ -1225,6 +1279,8 @@ function init() {
         }
     }
 
+    // after some indication divs are closed, a question div may appear; we attach the function to the "Next" button
     document.getElementsByClassName("exit_button")[0].addEventListener("click", indicationTriggersEvent, false);
+    // after some question divs are closed, an indication div may appear; we attach the function to the "Submit" button
     document.getElementsByClassName("submit_button")[0].addEventListener("click", questionTriggersEvent, false);
 }

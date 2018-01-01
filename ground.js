@@ -810,6 +810,8 @@ function init() {
                     el.style.visibility = "visible";
                 }
             }
+            else if(ground[charI - 1][charJ] === "forester"){
+            }
             else {
                 image = new Image();
                 image.onload = drawCanvasImageElem(ctx, image, charI - 1, charJ + 1);
@@ -862,6 +864,8 @@ function init() {
                 image = new Image();
                 image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
                 image.src = map_elements[ground[charI][charJ]];
+            }
+            else if(ground[charI - 1][charJ] === "forester"){
             }
             else if(ground[charI - 1][charJ -1] === "diamond"){
                 diamonds++;

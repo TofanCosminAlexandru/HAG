@@ -175,3 +175,35 @@ body {
     bottom: 20px;
     left: 28px;
 }
+
+
+.menu{
+    position: absolute;
+    top: 18px;
+    left: 170px;
+}
+
+.color-change1 {
+    position: absolute;
+
+    border-radius: 2px;
+    font-size: 15px;
+    padding: 10px 30px;
+    cursor: pointer;
+    color: #fff;
+    background-color: #80dd15;
+    border: 1px solid #fff;
+    box-shadow: 2px 2px 5px #AFE9FF;
+    transition-duration: 0.5s;
+    -webkit-transition-duration: 0.5s;
+    -moz-transition-duration: 0.5s;
+}
+
+.color-change1:hover {
+    color: #006398;
+}
+
+button.color-change1 {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}

@@ -236,11 +236,7 @@ function init() {
         pos++;
     }
 
-    function animate() {
-        var myVar = setInterval(moveSpider, 3000);
-    }
-
-    animate();
+    setInterval(moveSpider, 3000);
 
     var map = {};
     document.body.addEventListener("keydown", function(e){
@@ -288,7 +284,7 @@ function init() {
         if(checkMoveLeft(charI, charJ) === true) {
             if(ground[charI][charJ - 1] === "diamond"){
                 diamonds++;
-
+                document.getElementsByClassName("gems-score")[0].innerHTML = String(diamonds);
                 image = new Image();
                 image.onload = drawCanvasImageElem(ctx, image, charI, charJ - 1);
                 image.src = map_elements[game[charI][charJ - 1]];
@@ -376,9 +372,6 @@ function init() {
                 image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
                 image.src = map_elements[ground[charI][charJ]];
             }
-        }
-        else {
-            alert("You can't jump over obstacles!");
         }
     }
 
@@ -517,12 +510,6 @@ function init() {
                 el.style.visibility = "visible";
                 count_damage_bridge-=1;
             }
-            else {
-                alert("You cannot jump over obstacles!");
-            }
-        }
-        else {
-            alert("You cannot jump over obstacles!");
         }
     }
 
@@ -695,9 +682,6 @@ function init() {
                 image.src = map_elements[ground[charI][charJ]];
             }
         }
-        else {
-            alert("You can't jump over obstacles!");
-        }
     }
 
     function downArrowPressed() {
@@ -708,7 +692,7 @@ function init() {
             if(gate1_visited === 0 && (charI === 7 && charJ === 12)){
                 var el = document.getElementsByClassName("indication_div_container")[0];
                 document.getElementById("indication_text").innerHTML = "You must first prove worthy of venturing into these dangerous lands. <br> Answer the witches and the kings question and then coma back. <br> Here's the key to the cemetery.";
-                document.getElementsByClassName("indication")[0].style = "margin-top: 0";
+                document.getElementsByClassName("indication")[0].style = "margin-top: -25px";
                 el.style.visibility = "visible";
             }
             else if(ground[charI + 1][charJ] === "human6"){
@@ -731,19 +715,16 @@ function init() {
                 }
             }
             else if(ground[charI + 1][charJ] === "spider"){
-
                 image = new Image();
-                image.onload = drawCanvasImageElem(ctx, image, 5, 17);
+                image.onload = drawCanvasImageElem(ctx, image, 4, 17);
                 image.src = map_elements["me"];
 
-                console.log(getCharactherCoord("me"));
-
                 game[charI][charJ] = ground[charI][charJ];
-                game[5][17] = "me";
+                game[4][17] = "me";
 
-                // image = new Image();
-                // image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
-                // image.src = map_elements[ground[charI][charJ]];
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+                image.src = map_elements[ground[charI][charJ]];
             }
             else if(ground[charI + 1][charJ] === "well"){
                 image = new Image();
@@ -776,9 +757,6 @@ function init() {
                 image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
                 image.src = map_elements[ground[charI][charJ]];
             }
-        }
-        else {
-            alert("You can't jump over obstacles!");
         }
     }
 
@@ -844,9 +822,6 @@ function init() {
                 image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
                 image.src = map_elements[ground[charI][charJ]];
             }
-        }
-        else {
-            alert("You can't jump over obstacles!");
         }
     }
 
@@ -949,9 +924,6 @@ function init() {
                 image.src = map_elements[ground[charI][charJ]];
             }
         }
-        else {
-            alert("You can't jump over obstacles!");
-        }
     }
 
     function leftDownDiagonal() {
@@ -962,7 +934,7 @@ function init() {
             if(gate1_visited === 0 && (charI === 7 && charJ === 13)){
                 var el = document.getElementsByClassName("indication_div_container")[0];
                 document.getElementById("indication_text").innerHTML = "You must first prove worthy of venturing into these dangerous lands. <br> Answer the witches and the kings question and then coma back. <br> Here's the key to the cemetery.";
-                document.getElementsByClassName("indication")[0].style = "margin-top: 0";
+                document.getElementsByClassName("indication")[0].style = "margin-top: -25px";
                 el.style.visibility = "visible";
             }
             else if(ground[charI + 1][charJ - 1] === "human6") {
@@ -997,9 +969,6 @@ function init() {
                 image.src = map_elements[ground[charI][charJ]];
             }
         }
-        else {
-            alert("You can't jump over obstacles!");
-        }
     }
 
     function rightDownDiagonal(){
@@ -1012,17 +981,17 @@ function init() {
                 document.getElementById("indication_text").innerHTML = "You'll need a key to enter";
                 el.style.visibility = "visible";
             }
-            else if(game[charI + 1][charJ + 1] === "spider"){
+            else if(ground[charI + 1][charJ + 1] === "spider"){
                 image = new Image();
-                image.onload = drawCanvasImageElem(ctx, image, 5, 17);
+                image.onload = drawCanvasImageElem(ctx, image, 4, 17);
                 image.src = map_elements["me"];
 
                 game[charI][charJ] = ground[charI][charJ];
-                game[5][17] = "me";
+                game[4][17] = "me";
 
-                // image = new Image();
-                // image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
-                // image.src = map_elements[ground[charI][charJ]];
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+                image.src = map_elements[ground[charI][charJ]];
             }
             else {
                 image = new Image();
@@ -1036,9 +1005,6 @@ function init() {
                 image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
                 image.src = map_elements[ground[charI][charJ]];
             }
-        }
-        else {
-            alert("You can't jump over obstacles!");
         }
     }
 
@@ -1155,7 +1121,7 @@ function init() {
             || game[charI + 1][charJ - 1] === "bridge_lr" || game[charI + 1][charJ - 1] === "bridge_tb" || game[charI + 1][charJ - 1] === "cave1" || game[charI + 1][charJ - 1] === "cave2"
             || game[charI + 1][charJ - 1] === "gate1" || game[charI + 1][charJ - 1] === "gate2" || game[charI + 1][charJ - 1] === "willow"
             || game[charI + 1][charJ - 1] === "human1" || game[charI + 1][charJ - 1] === "human2" || game[charI + 1][charJ - 1] === "human3"
-            || game[charI + 1][charJ - 1] === "human4" || game[charI + 1][charJ - 1] === "human5" || game[charI + 1][charJ - 1] === "human5" || game[charI + 1][charJ - 1] === "spider"
+            || game[charI + 1][charJ - 1] === "human4" || game[charI + 1][charJ - 1] === "human5" || game[charI + 1][charJ - 1] === "human6" || game[charI + 1][charJ - 1] === "spider"
             || game[charI + 1][charJ - 1] === "witch" || game[charI + 1][charJ - 1] === "wolf" || game[charI + 1][charJ - 1] === "diamond" || game[charI + 1][charJ - 1] === "well";
     }
 
@@ -1584,6 +1550,8 @@ function init() {
     var asked_questions = [];
     var category = "category1";
 
+    var correctAnswer = 0;
+
     function showQuestion() {
         var nr_of_questions = categories[category].questions.length;
         var rand = getRandomInt(0, nr_of_questions);
@@ -1627,14 +1595,19 @@ function init() {
         var submit_button = document.getElementById("submit_button_text");
         submit_button.onclick = function() {
             if (chosen_option_nr === categories[category].questions[rand].correct_answer) {
-                alert("Ai raspuns corect!");
+                // alert("Correct answer! You received a star!");
+                correctAnswer = 1;
+                points = points + 1;
+                document.getElementsByClassName("stars-score")[0].innerHTML = String(points);
                 hideQuestion();
             }
             else if(chosen_option_nr === "") {
-                alert("You must first select an answer!");
+                // alert("You must first select an answer!");
             }
             else {
-                alert("Wrong answer!");
+                // alert("Wrong answer!");
+                correctAnswer = 0;
+                hideQuestion();
             }
         };
 
@@ -1755,6 +1728,20 @@ function init() {
             count_forester_tips -= 1;
             el = document.getElementsByClassName("indication_div_container")[0];
             document.getElementById("indication_text").innerHTML = "You can check out the village over the river. <br> Might be you find other challenges.";
+            document.getElementsByClassName("indication")[0].style = "margin-top: 0";
+            el.style.visibility = "visible";
+        }
+
+        if(correctAnswer === 1){
+            el = document.getElementsByClassName("indication_div_container")[0];
+            document.getElementById("indication_text").innerHTML = "Correct answer! You received a star!";
+            document.getElementsByClassName("indication")[0].style = "margin-top: 0";
+            el.style.visibility = "visible";
+        }
+
+        if(correctAnswer === 0){
+            el = document.getElementsByClassName("indication_div_container")[0];
+            document.getElementById("indication_text").innerHTML = "Wrong answer! Maybe next time.";
             document.getElementsByClassName("indication")[0].style = "margin-top: 0";
             el.style.visibility = "visible";
         }

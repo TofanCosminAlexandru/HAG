@@ -71,7 +71,7 @@ body{
 }
 
 .portal .portals .level.water {
-	background: transparent url(images/bubble.svg) no-repeat center center;
+	background: transparent url(images/bubble2.svg) no-repeat center center;
 	filter: grayscale(80%);
 }
 

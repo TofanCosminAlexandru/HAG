@@ -9,6 +9,7 @@
 		<meta name = "viewport" content = "width = device-width, initial-scale = 1">
 		<link rel = "shortcut icon" href = "images/logoV2.svg" type = "image/x-icon">
 		<link rel = "stylesheet" href = "home.css">
+		<script src = "home.js"></script>
 	</head>
 
 	<body>
@@ -27,10 +28,10 @@
 
 		<div id = "login" >
 			<img src = "images/logoV2.svg" alt="Logo" class = "logo">
-			<form class = "login" action = "levels.html">
-				<input type = "text" class = "form-control" placeholder = "username"><br>
-				<input type = "password" class = "form-control" placeholder = "password">
-				<button type = "submit" value = "Submit" class = "login">LogIn</button>
+			<form class = "login" action = "">
+				<input type = "text" id = "login-user" class = "form-control" placeholder = "username"><br>
+				<input type = "password" id = "login-pass" class = "form-control" placeholder = "password">
+				<button type = "submit" value = "Submit" class = "login" onclick='check_login()'>LogIn</button>
 				<p id = "notreg"> Don't have an account? <a href = "#" onclick = 'register()'>REGISTER</a></p>
 			</form>
 		</div>
@@ -47,7 +48,7 @@
 		</div>
 
 
-		<main>
+		<main id = "main">
 			<div class = "introduction1">
 				<div>
 					<p> The most engaging game for learning <br> the HTTP Protocol. </p>
@@ -110,41 +111,6 @@
 			<img class = "logo-footer" src = "images/logo_text.svg" alt = "Hag" style = "width : 25%">
 			<p class = "footer-details"> © 2017-2018 HTTP Adventure Game and individual contributions. Design & technology with passion from CBC. </p>
 		</footer>
-
-		<script src = "home.js"></script>
-
-		<script>
-			var logo = document.getElementsByClassName("logo-header");
-			logo[0].style.visibility = 'visible';
-
-			function login(){
-			    var logo = document.getElementsByClassName("logo-header");
-			    var check = document.getElementById("register");
-			    var el = document.getElementById("login");
-
-			    if (check.style.visibility === "visible") {
-			        check.style.visibility = "hidden";
-			        logo[0].style.visibility = "visible";
-			    }
-
-			    el.style.visibility = (el.style.visibility === "visible") ? "hidden" : "visible";
-			    logo[0].style.visibility = (logo[0].style.visibility === "hidden") ? "visible" : "hidden";
-			}
-
-			function register(){
-            	var logo = document.getElementsByClassName("logo-header");
-				var check = document.getElementById("login");
-				var el = document.getElementById("register");
-
-				if (check.style.visibility === "visible") {
-				    check.style.visibility = "hidden";
-				    logo[0].style.visibility = "visible";
-				}
-
-				el.style.visibility = (el.style.visibility === "visible") ? "hidden" : "visible";
-				logo[0].style.visibility = (logo[0].style.visibility === "hidden") ? "visible" : "hidden";
-			}
-		</script>
 
 	</body>
 </html>

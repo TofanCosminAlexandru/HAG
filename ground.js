@@ -151,7 +151,7 @@ function init() {
                 image.onload = drawCanvasImageElem(ctx, image, i, j);
                 image.src = map_elements["river_lr"];
             }
-            else if((i === 7 && j === 17) || (i === 8 && j === 15) || ground[i][j] === "grave" || ground[i][j] === "crack" || ground[i][j] === "witch" || ground[i][j] === "whouse" || (ground[i][j] === "wood" && j === 18)) {
+            else if((i === 7 && j === 17) || (i === 8 && j === 15) || ground[i][j] === "grave" || ground[i][j] === "crack"  || ground[i][j] === "whouse" || (ground[i][j] === "wood" && j === 18)) {
                 image = new Image();
                 image.onload = drawCanvasImageElem(ctx, image, i, j);
                 image.src = map_elements["dgrass"];

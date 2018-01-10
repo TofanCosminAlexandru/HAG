@@ -8,6 +8,7 @@ var count_flower_tips = 1, count_flower_questions = 1;
 var count_priest_tips = 1;
 var count_human1_tips = 1;
 var gate1_visited = 0;
+var gate2_visited = 0;
 var count_human6_tips = 1;
 var count_wolf_tips = 1, count_wolf_questions = 1;
 var count_human5_tips = 1;
@@ -49,9 +50,9 @@ function init() {
     var ground = [["tree", "tree", "tree", "tree", "river_lr", "tree", "tree", "tree", "tree", "tree", "tree", "tree", "tree", "tree", "mountain", "mountain", "mountain", "mountain", "mountain", "mountain"],
         ["tree", "tree", "tree", "tree", "river_lr", "house", "tree", "terrain_lrte", "tree", "human4", "flowers", "human2", "tree", "tree", "mountain", "diamond", "rocky", "rocky", "cave2", "mountain"],
         ["tree", "tree", "tree", "tree", "river_clb", "river_crt", "flowers", "terrain_lr", "house", "house", "gate1", "fountain", "tree", "tree", "mountain", "mountain", "mountain", "mountain", "mountain", "mountain"],
-        ["tree", "tree", "tree", "willow", "grass", "bridge_lr", "terrain_tb", "terrain_b", "terrain_tb", "terrain_crt", "house", "house", "human3", "tree", "tree", "tree", "tree", "tree", "tree", "mountain"],
-        ["tree", "cave1", "tree", "flowers", "grass", "river_clb", "river_crt", "stone", "stone", "terrain_clb", "terrain_crt", "tree", "terrain_l", "human1", "house", "house", "tree", "witch", "whouse", "tree"],
-        ["tree", "rocky", "tree", "flowers", "grass", "stone", "river_clb", "river_tb", "river_crt", "grass", "terrain_clb", "terrain_tb", "terrain_r", "house", "human5", "tree", "tree", "dgrass", "wood", "tree"],
+        ["rocky_tree", "rocky_tree", "tree", "willow", "grass", "bridge_lr", "terrain_tb", "terrain_b", "terrain_tb", "terrain_crt", "house", "house", "human3", "tree", "tree", "tree", "tree", "tree", "tree", "mountain"],
+        ["rocky_tree", "cave1", "tree", "flowers", "grass", "river_clb", "river_crt", "stone", "stone", "terrain_clb", "terrain_crt", "tree", "terrain_l", "human1", "house", "house", "tree", "witch", "whouse", "tree"],
+        ["rocky_tree", "rocky", "tree", "flowers", "grass", "stone", "river_clb", "river_tb", "river_crt", "grass", "terrain_clb", "terrain_tb", "terrain_r", "house", "human5", "tree", "tree", "dgrass", "wood", "tree"],
         ["tree", "rocky", "tree", "tree", "grass", "grass", "stone", "stone", "river_clb", "river_crt", "stone", "grass", "terrain_lr", "tree", "terrain_lr", "tree", "dgrass", "dgrass", "crack", "tree"],
         ["tree", "tree", "dog", "tree", "tree", "tree", "grass", "stone", "stone", "river_lr", "stone", "house", "terrain_l", "terrain_tb", "terrain_r", "tree", "crack", "dtree", "dgrass", "tree"],
         ["tree", "fhouse", "grass", "wood", "wood", "wood", "terrain_clt", "terrain_tb", "terrain_tb", "bridge_blr", "house", "house", "human6", "house", "terrain_clb", "gate2", "dgrass", "dgrass", "dgrass", "tree"],
@@ -79,6 +80,7 @@ function init() {
         ["tree", "tree", "tree", "tree", "tree", "tree", "tree", "tree", "tree", "tree", "tree", "river_lr", "tree", "tree", "tree", "tree", "tree", "river_lr", "tree", "tree"]];
 
     var map_elements = {"tree": "images/tree.png",
+        "rocky_tree": "images/rocky_tree.png",
         "blanc": "images/blanc.png",
         "dtree": "images/dtree.png",
         "rocky": "images/rocky.jpg",
@@ -156,7 +158,7 @@ function init() {
                 image.onload = drawCanvasImageElem(ctx, image, i, j);
                 image.src = map_elements["dgrass"];
             }
-            else if(ground[i][j] === "cave1" || ground[i][j] === "cave2" || ground[i][j] === "mountain" || (ground[i][j] === "diamond" && i === 1) || (ground[i][j] === "tree" && (i === 3 || i === 4 || i === 5) && (j === 0 || j === 1))) {
+            else if(ground[i][j] === "cave1" || ground[i][j] === "cave2" || ground[i][j] === "mountain" || (ground[i][j] === "diamond" && i === 1) || ((i === 3 || i === 4 || i === 5) && (j === 0 || j === 1))) {
                 image = new Image();
                 image.onload = drawCanvasImageElem(ctx, image, i, j);
                 image.src = map_elements["rocky"];
@@ -281,6 +283,12 @@ function init() {
         var charI = getCharactherCoord("me")[0];
         var charJ = getCharactherCoord("me")[1];
 
+        if(document.getElementsByClassName("indication_div_container")[0].style.visibility === 'visible' || document.getElementsByClassName("question_div_container")[0].style.visibility === 'visible'){
+            document.onkeydown = function (e) {
+                return false;
+            }
+        }
+        else
         if(checkMoveLeft(charI, charJ) === true) {
             if(ground[charI][charJ - 1] === "diamond"){
                 diamonds++;
@@ -379,6 +387,12 @@ function init() {
         var charI = getCharactherCoord("me")[0];
         var charJ = getCharactherCoord("me")[1];
 
+        if(document.getElementsByClassName("indication_div_container")[0].style.visibility === 'visible' || document.getElementsByClassName("question_div_container")[0].style.visibility === 'visible'){
+            document.onkeydown = function (e) {
+                return false;
+            }
+        }
+        else
         if(checkMoveRight(charI, charJ) === true) {
             if(ground[charI][charJ + 1] === "cave2"){
                 var cave1I = getCharactherCoord("cave1")[0];
@@ -516,6 +530,12 @@ function init() {
     function upArrowPressed() {
         var charI = getCharactherCoord("me")[0];
         var charJ = getCharactherCoord("me")[1];
+        if(document.getElementsByClassName("indication_div_container")[0].style.visibility === 'visible' || document.getElementsByClassName("question_div_container")[0].style.visibility === 'visible'){
+            document.onkeydown = function (e) {
+                return false;
+            }
+        }
+        else
         if(checkMoveUp(charI, charJ) === true) {
             if(ground[charI - 1][charJ] === "cave1"){
                 var cave2I = getCharactherCoord("cave2")[0];
@@ -688,11 +708,18 @@ function init() {
         var charI = getCharactherCoord("me")[0];
         var charJ = getCharactherCoord("me")[1];
 
+        if(document.getElementsByClassName("indication_div_container")[0].style.visibility === 'visible' || document.getElementsByClassName("question_div_container")[0].style.visibility === 'visible'){
+            document.onkeydown = function (e) {
+                return false;
+            }
+        }
+        else
         if(checkMoveDown(charI, charJ) === true) {
-            if(gate1_visited === 0 && (charI === 7 && charJ === 12)){
+            if((gate1_visited === 0 || gate2_visited === 0) && (charI === 7 && charJ === 12)){
                 var el = document.getElementsByClassName("indication_div_container")[0];
-                document.getElementById("indication_text").innerHTML = "You must first prove worthy of venturing into these dangerous lands. <br> Answer the witches and the kings question and then coma back. <br> Here's the key to the cemetery.";
+                document.getElementById("indication_text").innerHTML = "You must first prove worthy of venturing into these dangerous lands. <br> Answer the witches and the kings question and then come back. <br> Here's the key to the cemetery.";
                 document.getElementsByClassName("indication")[0].style = "margin-top: -25px";
+                keyGate2 = 1;
                 el.style.visibility = "visible";
             }
             else if(ground[charI + 1][charJ] === "human6"){
@@ -707,7 +734,7 @@ function init() {
                 image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
                 image.src = map_elements[ground[charI][charJ]];
 
-                if(count_human6_tips > 0) {
+                if(count_human6_tips > 0 && gate2_visited === 1 && gate1_visited === 1) {
                     el = document.getElementsByClassName("indication_div_container")[0];
                     document.getElementById("indication_text").innerHTML = "Good, good!. You're free to go! Beware of cunning creatures.";
                     document.getElementsByClassName("indication")[0].style = "margin-top: 0";
@@ -765,6 +792,12 @@ function init() {
         var charI = getCharactherCoord("me")[0];
         var charJ = getCharactherCoord("me")[1];
 
+        if(document.getElementsByClassName("indication_div_container")[0].style.visibility === 'visible' || document.getElementsByClassName("question_div_container")[0].style.visibility === 'visible'){
+            document.onkeydown = function (e) {
+                return false;
+            }
+        }
+        else
         if(checkMoveRightUpDiagonal(charI, charJ) === true) {
             if(keyGate1 === 0 && (charI === 3 && charJ === 9)){
                 el = document.getElementsByClassName("indication_div_container")[0];
@@ -831,6 +864,12 @@ function init() {
         var charI = getCharactherCoord("me")[0];
         var charJ = getCharactherCoord("me")[1];
 
+        if(document.getElementsByClassName("indication_div_container")[0].style.visibility === 'visible' || document.getElementsByClassName("question_div_container")[0].style.visibility === 'visible'){
+            document.onkeydown = function (e) {
+                return false;
+            }
+        }
+        else
         if(checkMoveLeftUpDiagonal(charI, charJ) === true) {
             if(ground[charI - 1][charJ -1] === "willow"){
                 image = new Image();
@@ -934,14 +973,20 @@ function init() {
         var charI = getCharactherCoord("me")[0];
         var charJ = getCharactherCoord("me")[1];
 
+        if(document.getElementsByClassName("indication_div_container")[0].style.visibility === 'visible' || document.getElementsByClassName("question_div_container")[0].style.visibility === 'visible'){
+            document.onkeydown = function (e) {
+                return false;
+            }
+        }
+        else
         if(checkMoveLeftDownDiagonal(charI, charJ) === true) {
-            if(gate1_visited === 0 && (charI === 7 && charJ === 13)){
+            if((gate1_visited === 0 || gate2_visited === 0) && (charI === 7 && charJ === 13)){
                 var el = document.getElementsByClassName("indication_div_container")[0];
-                document.getElementById("indication_text").innerHTML = "You must first prove worthy of venturing into these dangerous lands. <br> Answer the witches and the kings question and then coma back. <br> Here's the key to the cemetery.";
+                document.getElementById("indication_text").innerHTML = "You must first prove worthy of venturing into these dangerous lands. <br> Answer the witches and the kings question and then come back. <br> Here's the key to the cemetery.";
                 document.getElementsByClassName("indication")[0].style = "margin-top: -25px";
                 el.style.visibility = "visible";
             }
-            else if(ground[charI + 1][charJ - 1] === "human6") {
+            else if(ground[charI + 1][charJ - 1] === "human6" && gate2_visited === 1 && gate1_visited === 1) {
                 image = new Image();
                 image.onload = drawCanvasImageElem(ctx, image, charI + 1, charJ - 1);
                 image.src = map_elements["me"];
@@ -979,6 +1024,12 @@ function init() {
         var charI = getCharactherCoord("me")[0];
         var charJ = getCharactherCoord("me")[1];
 
+        if(document.getElementsByClassName("indication_div_container")[0].style.visibility === 'visible' || document.getElementsByClassName("question_div_container")[0].style.visibility === 'visible'){
+            document.onkeydown = function (e) {
+                return false;
+            }
+        }
+        else
         if(checkMoveRightDownDiagonal(charI, charJ) === true) {
             if(keyGate2 === 0 && (charI === 7 && charJ === 14)){
                 var el = document.getElementsByClassName("indication_div_container")[0];
@@ -1553,14 +1604,18 @@ function init() {
 
     var asked_questions = [];
     var category = "category1";
-
     var correctAnswer = 0;
 
     function showQuestion() {
         var nr_of_questions = categories[category].questions.length;
         var rand = getRandomInt(0, nr_of_questions);
+        while(true) {
+            if (asked_questions.indexOf(rand) < 0) {
+                break;
+            }
+            rand = getRandomInt(0, nr_of_questions);
+        }
         asked_questions.push(rand);
-
 
         document.getElementById("question_text").innerHTML = categories[category].questions[rand].text;
         document.getElementById("option1").innerHTML = categories[category].questions[rand].option1;
@@ -1638,6 +1693,7 @@ function init() {
             if(count_witch_tips === 0){
                 showQuestion();
                 count_witch_questions -= 1;
+                gate2_visited = 1;
             }
         }
 
@@ -1695,7 +1751,6 @@ function init() {
 
         if(getCharactherCoord("me")[0] === getObjectCoord("human6")[0] && getCharactherCoord("me")[1] === getObjectCoord("human6")[1]){
             count_human6_tips -= 1;
-            keyGate2 = 1;
         }
 
         if(getCharactherCoord("me")[0] === getObjectCoord("wolf")[0] && getCharactherCoord("me")[1] === getObjectCoord("wolf")[1]){

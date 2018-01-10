@@ -573,7 +573,24 @@ function init() {
             }
             else if(charI - 1 === 4 && charJ === 4){
                 image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, charI-1, charJ);
+                image.src = map_elements["me"];
 
+                game[charI][charJ] = ground[charI][charJ];
+                game[charI-1][charJ] = "me";
+
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+                image.src = map_elements[ground[charI][charJ]];
+
+
+                if(count_willow_tips > 0) {
+                    el = document.getElementsByClassName("indication_div_container")[0];
+                    document.getElementById("indication_text").innerHTML = "Hello wanderer! From my magical branches, I summon you a question!";
+                    document.getElementsByClassName("indication")[0].style = "margin-top: 0";
+                    el.style.visibility = "visible";
+                }
+            }
             else if(ground[charI - 1][charJ] === "spider"){
                 image = new Image();
                 image.onload = drawCanvasImageElem(ctx, image, 8, 14);
@@ -834,6 +851,34 @@ function init() {
 
                 game[charI][charJ] = ground[charI][charJ];
                 game[charI-1][charJ+1] = "me";
+
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+                image.src = map_elements[ground[charI][charJ]];
+
+
+                if(count_willow_tips > 0) {
+                    el = document.getElementsByClassName("indication_div_container")[0];
+                    document.getElementById("indication_text").innerHTML = "Hello wanderer! From my magical branches, I summon you a question!";
+                    document.getElementsByClassName("indication")[0].style = "margin-top: 0";
+                    el.style.visibility = "visible";
+                }
+            }
+            else if(charI - 1 === 3 && charJ + 1 === 4){
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, charI-1, charJ+1);
+                image.src = map_elements["me"];
+
+                game[charI][charJ] = ground[charI][charJ];
+                game[charI-1][charJ+1] = "me";
+
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+                image.src = map_elements[ground[charI][charJ]];
+
+
+                if(count_willow_tips > 0) {
+                    el = document.getElementsByClassName("indication_div_container")[0];
                     document.getElementById("indication_text").innerHTML = "Hello wanderer! From my magical branches, I summon you a question!";
                     document.getElementsByClassName("indication")[0].style = "margin-top: 0";
                     el.style.visibility = "visible";

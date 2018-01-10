@@ -414,6 +414,11 @@ var categories = {
     }
 }; // the json with all the categories and their questions
 
+var is_centered = 3; // 0 - the character isn't centered neither in width nor in height
+                     // 1 - the character is centered only in width
+                     // 2 - the character is centered only in height
+                     // 3 - the character is centered both in width and in height
+
 var diamonds = 0; // the numbers of diamonds collected found at this level
 var has_first_diamond = 0; // 1 - our character has taked the first diamond; 0 - otherwise
 var points = 0; // the number of points accumulated during this level
@@ -493,13 +498,116 @@ var map_elements = {
 function init() {
     /* --- MAP --- */
     var canvas = document.getElementById('canvas');
+    canvas.style.transform = "translate(-1881px, 0px)"; // (-11 * 171, 0 * 108)
+
+    // this function translates the canvas as the character moves
+    function translate_canvas(is_centered, direction) {
+        x = parseInt(canvas.style.transform.split("(")[1].split(",")[0].split("px")[0]);
+        y = parseInt(canvas.style.transform.split("(")[1].split(", ")[1].split("px")[0]);
+        if (is_centered === 0) {
+
+        }
+        else if (is_centered === 1) {
+            if (direction === "right") {
+                canvas.style.transform = "translate(" + x + "px, " + y + "px)";
+            }
+            else if (direction === "left") {
+                canvas.style.transform = "translate(" + x + "px, " + y + "px)";
+            }
+            else if (direction === "up") {
+                canvas.style.transform = "translate(" + x + "px, " + (y + 108) + "px)";
+            }
+            else if (direction === "down") {
+                canvas.style.transform = "translate(" + x + "px, " + (y - 108) + "px)";
+            }
+            else if (direction === "rightup") {
+                canvas.style.transform = "translate(" + x + "px, " + (y + 108) + "px)";
+            }
+            else if (direction === "leftup") {
+                canvas.style.transform = "translate(" + x + "px, " + (y + 108) + "px)";
+            }
+            else if (direction === "rightdown") {
+                canvas.style.transform = "translate(" + x + "px, " + (y - 108) + "px)";
+            }
+            else if (direction === "leftdown") {
+                canvas.style.transform = "translate(" + x + "px, " + (y - 108) + "px)";
+            }
+        }
+        else if (is_centered === 2) {
+            if (direction === "right") {
+                canvas.style.transform = "translate(" + (x - 171) + "px, " + y + "px)";
+            }
+            else if (direction === "left") {
+                canvas.style.transform = "translate(" + (x + 171) + "px, " + y + "px)";
+            }
+            else if (direction === "up") {
+                canvas.style.transform = "translate(" + x + "px, " + y + "px)";
+            }
+            else if (direction === "down") {
+                canvas.style.transform = "translate(" + x + "px, " + y + "px)";
+            }
+            else if (direction === "rightup") {
+                canvas.style.transform = "translate(" + (x - 171) + "px, " + y + "px)";
+            }
+            else if (direction === "leftup") {
+                canvas.style.transform = "translate(" + (x + 171) + "px, " + y + "px)";
+            }
+            else if (direction === "rightdown") {
+                canvas.style.transform = "translate(" + (x - 171) + "px, " + y + "px)";
+            }
+            else if (direction === "leftdown") {
+                canvas.style.transform = "translate(" + (x + 171) + "px, " + y + "px)";
+            }
+        }
+        else if (is_centered === 3) {
+            if (direction === "right") {
+                canvas.style.transform = "translate(" + (x - 171) + "px, " + y + "px)";
+            }
+            else if (direction === "left") {
+                canvas.style.transform = "translate(" + (x + 171) + "px, " + y + "px)";
+            }
+            else if (direction === "up") {
+                canvas.style.transform = "translate(" + x + "px, " + (y + 108) + "px)";
+            }
+            else if (direction === "down") {
+                canvas.style.transform = "translate(" + x + "px, " + (y - 108) + "px)";
+            }
+            else if (direction === "rightup") {
+                canvas.style.transform = "translate(" + (x - 171) + "px, " + (y + 108) + "px)";
+            }
+            else if (direction === "leftup") {
+                canvas.style.transform = "translate(" + (x + 171) + "px, " + (y + 108) + "px)";
+            }
+            else if (direction === "rightdown") {
+                canvas.style.transform = "translate(" + (x - 171) + "px, " + (y - 108) + "px)";
+            }
+            else if (direction === "leftdown") {
+                canvas.style.transform = "translate(" + (x + 171) + "px, " + (y - 108) + "px)";
+            }
+        }
+    }
+
+    // this function computes the centrality of the character
+    function compute_is_centered(charI, charJ, newI, newJ) {
+        is_centered = 0;
+        if ((newI > 3 && newI < 11) || ((newI === 3 || newI === 11) && (charI > 3 && charI < 11))) {
+            is_centered = 1;
+        }
+        else if ((newJ > 4 && newJ < 15 ) || ((newJ === 4 || newJ === 15) && (charJ > 4 && charJ < 15))) {
+            is_centered = 2;
+        }
+        if (((newI > 3 && newI < 11) || ((newI === 3 || newI === 11) && (charI > 3 && charI < 11))) && ((newJ > 4 && newJ < 15 ) || ((newJ === 4 || newJ === 15) && (charJ > 4 && charJ < 15)))) {
+            is_centered = 3;
+        }
+        return is_centered;
+    }
 
     // adjust the canvas to match the size of the screen
-    var height = window.innerHeight;
-    var width = window.innerWidth;
+    var height = window.innerHeight; // 1536
+    var width = window.innerWidth; // 759
 
-    canvas.style.width = width  + "px";
-    canvas.style.height = height + "px";
+    canvas.style.width = (20/9)*width + "px";
+    canvas.style.height = (15/7)*height + "px";
 
     // draw the background of the canvas
     if (canvas.getContext) {
@@ -689,6 +797,9 @@ function init() {
                 image.src = map_elements[game[charI][charJ]];
 
                 //console.log("Nr. of diamonds: ", diamonds);
+
+                is_centered = compute_is_centered(charI, charJ, newI, newJ);
+                translate_canvas(is_centered, direction);
             }
             else if (game[newI][newJ] === "rat1") {
                 image = new Image();
@@ -701,6 +812,9 @@ function init() {
                 image = new Image();
                 image.onload = drawCanvasImageElem(ctx, image, 1, 14);
                 image.src = map_elements["me"];
+
+                is_centered = 2;
+                canvas.style.transform = "translate(" + (-1699) + "px, " + 0 + "px)";
             }
             else if (game[newI][newJ] === "rat2") {
                 image = new Image();
@@ -724,6 +838,9 @@ function init() {
                     diamonds--;
                     has_first_diamond = 0;
                 }
+
+                is_centered = 3;
+                canvas.style.transform = "translate(" + (-1870) + "px, " + (-216) + "px)";
             }
             else if (game[newI][newJ] === "spikes1" || game[newI][newJ] === "spikes2" || game[newI][newJ] === "spikes3" || game[newI][newJ] === "spikes4") {
                 image = new Image();
@@ -738,6 +855,9 @@ function init() {
                     image = new Image();
                     image.onload = drawCanvasImageElem(ctx, image, 13, 7);
                     image.src = map_elements["me"];
+
+                    is_centered = 2;
+                    canvas.style.transform = "translate(" + (-502) + "px, " + (-864) + "px)";
                 }
                 else if (game[newI][newJ] === "spikes1" && direction === "left") {
                     game[13][11] = "me";
@@ -745,6 +865,9 @@ function init() {
                     image = new Image();
                     image.onload = drawCanvasImageElem(ctx, image, 13, 11);
                     image.src = map_elements["me"];
+
+                    is_centered = 2;
+                    canvas.style.transform = "translate(" + (-1186) + "px, " + (-864) + "px)";
                 }
                 else {
                     game[13][5] = "me";
@@ -752,6 +875,9 @@ function init() {
                     image = new Image();
                     image.onload = drawCanvasImageElem(ctx, image, 13, 5);
                     image.src = map_elements["me"];
+
+                    is_centered = 2;
+                    canvas.style.transform = "translate(" + (-160) + "px, " + (-864) + "px)";
                 }
             }
             else if (game[newI][newJ] === "gate" && has_key === 0) { // you don't have a key.. you'll receive a message that you must first find a key for the gate
@@ -774,6 +900,9 @@ function init() {
                 image = new Image();
                 image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
                 image.src = map_elements[water[charI][charJ]];
+
+                is_centered = compute_is_centered(charI, charJ, newI, newJ);
+                translate_canvas(is_centered, direction);
             }
             else if (game[newI][newJ] === "food" && has_food === 0) {
                 image = new Image();
@@ -793,6 +922,9 @@ function init() {
 
                 showIndication("You found food!");
                 has_food = 1;
+
+                is_centered = compute_is_centered(charI, charJ, newI, newJ);
+                translate_canvas(is_centered, direction);
             }
             else if (game[newI][newJ] === "stairs_to_heaven") {
                 image = new Image();
@@ -815,6 +947,9 @@ function init() {
 
                 // redirecting to the levels page
                 window.location.replace("Proiect/HAG/levels.html");
+
+                is_centered = compute_is_centered(charI, charJ, newI, newJ);
+                translate_canvas(is_centered, direction);
             }
             else { // in front of us is ground
                 image = new Image();
@@ -839,6 +974,9 @@ function init() {
 
                     showIndication("Boooo! I have a question for you!");
                 }
+
+                is_centered = compute_is_centered(charI, charJ, newI, newJ);
+                translate_canvas(is_centered, direction);
             }
         }
         else { // the character can't step on that element
@@ -910,6 +1048,9 @@ function init() {
                 image.src = map_elements["me"];
 
                 game[2][2] = "me";
+
+                is_centered = 0;
+                canvas.style.transform = "translate(" + 0 + "px, " + 0 + "px)";
             }
             else { // nothing happens because you can't jump over obstacles
                 //alert("You can't jump over obstacles!");
@@ -983,6 +1124,14 @@ function init() {
             image = new Image();
             image.onload = rat === "rat1" ? drawCanvasImageElem(ctx, image, 1, 14) : drawCanvasImageElem(ctx, image, 5, 15);
             image.src = map_elements["me"];
+            if (rat === "rat1") {
+                is_centered = 2;
+                canvas.style.transform = "translate(" + (-1699) + "px, " + 0 + "px)";
+            }
+            else if (rat === "rat2") {
+                is_centered = 3;
+                canvas.style.transform = "translate(" + (-1870) + "px, " + (-216) + "px)";
+            }
         }
 
         newYRat = in_diamond_corner === 1 ? 18 : newYRat;
@@ -1054,6 +1203,9 @@ function init() {
                     image = new Image();
                     image.onload = drawCanvasImageElem(ctx, image, 13, 7);
                     image.src = map_elements["me"];
+
+                    is_centered = 2;
+                    canvas.style.transform = "translate(" + (-502) + "px, " + (-864) + "px)";
                 }
                 else {
                     game[13][5] = "me";
@@ -1061,6 +1213,9 @@ function init() {
                     image = new Image();
                     image.onload = drawCanvasImageElem(ctx, image, 13, 5);
                     image.src = map_elements["me"];
+
+                    is_centered = 2;
+                    canvas.style.transform = "translate(" + (-160) + "px, " + (-864) + "px)";
                 }
             }
 

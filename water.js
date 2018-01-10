@@ -814,7 +814,7 @@ function init() {
                 showIndication("Chapter Completed! <br><br> Bidi has reached the sky!"); // we reached the end of the level
 
                 // redirecting to the levels page
-                window.location.replace("/HAG/levels.html");
+                window.location.replace("Proiect/HAG/levels.html");
             }
             else { // in front of us is ground
                 image = new Image();

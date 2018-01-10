@@ -706,7 +706,7 @@ function init() {
     setInterval(function(){ shineRay("ray12"); }, 2000);
     setInterval(function(){ shineRay("ray13"); }, 1000);
     setInterval(function(){ shineRay("ray14"); }, 2000);
-    setInterval(function(){ shineRay("ray15"); }, 2000);
+    setInterval(function(){ shineRay("ray15"); }, 500);
     setInterval(function(){ shineRay("ray16"); }, 500);
     setInterval(function(){ shineRay("ray17"); }, 5000);
 
@@ -784,7 +784,13 @@ function init() {
                     game[newI][newJ] = "me";
 
                     // draw ground on my characters last position
-                    drawCanvasImageElem(ctx, charI, charJ, sky[charI][charJ]);
+                    if (newI === 0 || newI === 3) {
+                        drawCanvasImageElem(ctx, charI, charJ, "sky");
+                        drawCanvasImageElem(ctx, charI, charJ, "cloud");
+                    }
+                    else {
+                        drawCanvasImageElem(ctx, charI, charJ, sky[charI][charJ]);
+                    }
 
                     //console.log("Nr. of diamonds: ", diamonds);
                 }
@@ -792,16 +798,75 @@ function init() {
                     has_mushroom = 1;
                     drawCanvasImageElem(ctx, newI, newJ, "ground");
                     drawCanvasImageElem(ctx, newI, newJ, "me");
-                    drawCanvasImageElem(ctx, charI, charJ, "ground");
+                    drawCanvasImageElem(ctx, charI, charJ, "sky");
+                    drawCanvasImageElem(ctx, charI, charJ, "cloud");
 
                     game[newI][newJ] = "me";
                     game[charI][charJ] = sky[charI][charJ];
+                }
+                else if (game[newI][newJ].match(/ray[1-9]*[0-7]*/) !== null) {
+                    // the ray push my character at certain positions
+                    if (game[newI][newJ] === "ray1" || game[newI][newJ] === "ray2" || game[newI][newJ] === "ray3") {
+                        drawCanvasImageElem(ctx, charI, charJ, "ground");
+                        drawCanvasImageElem(ctx, charI, charJ, "ground");
+
+                        game[charI][charJ] = "ground";
+
+                        game[17][6] = "me";
+                        image.onload = drawCanvasImageElem(ctx, 17, 6, "me");
+                    }
+                    else if (game[newI][newJ] === "ray4" || game[newI][newJ] === "ray5" || game[newI][newJ] === "ray6" || game[newI][newJ] === "ray7" || game[newI][newJ] === "ray8" || game[newI][newJ] === "ray9" || game[newI][newJ] === "ray10" || game[newI][newJ] === "ray11") {
+                        if (charI === 13 && charJ === 13) {
+                            drawCanvasImageElem(ctx, charI, charJ, "sky");
+                            drawCanvasImageElem(ctx, charI, charJ, "cloud");
+                            game[getElementCoord("me")[0]][getElementCoord("me")[1]] = "cloud8";
+                        }
+                        else {
+                            drawCanvasImageElem(ctx, charI, charJ, "ground");
+                            drawCanvasImageElem(ctx, charI, charJ, "ground");
+
+                            game[charI][charJ] = "ground";
+                        }
+
+                        game[17][12] = "me";
+                        image.onload = drawCanvasImageElem(ctx, 17, 12, "me");
+                    }
+                    else {
+                        if (charI === 14 && charJ === 18) {
+                            drawCanvasImageElem(ctx, charI, charJ, "sky");
+                            drawCanvasImageElem(ctx, charI, charJ, "cloud");
+                            game[getElementCoord("me")[0]][getElementCoord("me")[1]] = "cloud11";
+                        }
+                        else {
+                            drawCanvasImageElem(ctx, charI, charJ, "ground");
+                            drawCanvasImageElem(ctx, charI, charJ, "ground");
+
+                            game[charI][charJ] = "ground";
+                        }
+
+                        game[15][17] = "me";
+                        image.onload = drawCanvasImageElem(ctx, 15, 17, "me");
+
+                        if (has_suns_diamond === 1) {
+                            has_suns_diamond = 0;
+                            diamonds--;
+
+                            drawCanvasImageElem(ctx, 17, 17, "diamond");
+                            game[17][17] = "diamond";
+                        }
+
+                        if (has_dragons_breath_potion === 1) {
+                            has_dragons_breath_potion = 0;
+
+                            drawCanvasImageElem(ctx, 17, 21, "potion");
+                            game[17][21] = "potion";
+                        }
+                    }
                 }
                 else if (sky[charI][charJ].match(/cloud[1-9]*[0-8]*/) !== null && game[charI][charJ] === "me") {
                     //console.log(sky[charI][charJ].match(/cloud[1-9]*[0-8]*/));
                     drawCanvasImageElem(ctx, charI, charJ, "sky");
                     drawCanvasImageElem(ctx, charI, charJ, "cloud");
-                    drawCanvasImageElem(ctx, newI, newJ, "me");
 
                     game[charI][charJ] = "cloud";
                     game[newI][newJ] = "me";
@@ -813,6 +878,63 @@ function init() {
 
                     game[charI][charJ] = "castle";
                     game[newI][newJ] = "me";
+                }
+                else if (game[newI][newJ].match(/ray[1-9]*[0-7]*/) !== null) {
+                    // the ray push my character at certain positions
+                    if (game[newI][newJ] === "ray1" || game[newI][newJ] === "ray2" || game[newI][newJ] === "ray3") {
+                        drawCanvasImageElem(ctx, charI, charJ, "ground");
+                        drawCanvasImageElem(ctx, charI, charJ, "ground");
+
+                        game[charI][charJ] = "ground";
+
+                        game[17][6] = "me";
+                        image.onload = drawCanvasImageElem(ctx, 17, 6, "me");
+                    }
+                    else if (game[newI][newJ] === "ray4" || game[newI][newJ] === "ray5" || game[newI][newJ] === "ray6" || game[newI][newJ] === "ray7" || game[newI][newJ] === "ray8" || game[newI][newJ] === "ray9" || game[newI][newJ] === "ray10" || game[newI][newJ] === "ray11") {
+                        if (charI === 13 && charJ === 13) {
+                            drawCanvasImageElem(ctx, charI, charJ, "sky");
+                            drawCanvasImageElem(ctx, charI, charJ, "cloud");
+                        }
+                        else {
+                            drawCanvasImageElem(ctx, charI, charJ, "ground");
+                            drawCanvasImageElem(ctx, charI, charJ, "ground");
+
+                            game[charI][charJ] = "ground";
+                        }
+
+                        game[17][12] = "me";
+                        image.onload = drawCanvasImageElem(ctx, 17, 12, "me");
+                    }
+                    else {
+                        if (charI === 14 && charJ === 18) {
+                            drawCanvasImageElem(ctx, charI, charJ, "sky");
+                            drawCanvasImageElem(ctx, charI, charJ, "cloud");
+                        }
+                        else {
+                            drawCanvasImageElem(ctx, charI, charJ, "ground");
+                            drawCanvasImageElem(ctx, charI, charJ, "ground");
+
+                            game[charI][charJ] = "ground";
+                        }
+
+                        game[15][17] = "me";
+                        image.onload = drawCanvasImageElem(ctx, 15, 17, "me");
+
+                        if (has_suns_diamond === 1) {
+                            has_suns_diamond = 0;
+                            diamonds--;
+
+                            drawCanvasImageElem(ctx, 17, 17, "diamond");
+                            game[17][17] = "diamond";
+                        }
+
+                        if (has_dragons_breath_potion === 1) {
+                            has_dragons_breath_potion = 0;
+
+                            drawCanvasImageElem(ctx, 17, 21, "potion");
+                            game[17][21] = "potion";
+                        }
+                    }
                 }
                 else if ((sky[charI][charJ] === "gate2" || sky[charI][charJ] === "gate3") && game[charI][charJ] === "me") {
                     drawCanvasImageElem(ctx, charI, charJ, "floor");
@@ -832,7 +954,7 @@ function init() {
                     }
                     game[newI][newJ] = "me";
 
-                    if (sky[charI][charJ] === "gate2") {
+                    if (sky[charI][charJ] === "gate2" && has_king_asked === 0) {
                         showIndication("The king was in an audience. But as soon as the king saw Bidi, he urged him to come forward immediately.")
                     }
                 }
@@ -843,40 +965,6 @@ function init() {
 
                     game[charI][charJ] = "broken_portal";
                     game[newI][newJ] = "me";
-                }
-                else if (game[newI][newJ].match(/ray[1-9]*[0-7]*/) !== null) {
-                    drawCanvasImageElem(ctx, charI, charJ, "ground");
-                    drawCanvasImageElem(ctx, charI, charJ, "ground");
-
-                    game[charI][charJ] = "ground";
-                    // the ray push my character at certain positions
-                    if (game[newI][newJ] === "ray1" || game[newI][newJ] === "ray2" || game[newI][newJ] === "ray3") {
-                        game[17][6] = "me";
-                        image.onload = drawCanvasImageElem(ctx, 17, 6, "me");
-                    }
-                    else if (game[newI][newJ] === "ray4" || game[newI][newJ] === "ray5" || game[newI][newJ] === "ray6" || game[newI][newJ] === "ray7" || game[newI][newJ] === "ray8" || game[newI][newJ] === "ray9" || game[newI][newJ] === "ray10" || game[newI][newJ] === "ray11") {
-                        game[17][12] = "me";
-                        image.onload = drawCanvasImageElem(ctx, 17, 12, "me");
-                    }
-                    else {
-                        game[15][17] = "me";
-                        image.onload = drawCanvasImageElem(ctx, 15, 17, "me");
-
-                        if (has_suns_diamond === 1) {
-                            has_suns_diamond = 0;
-                            diamonds--;
-
-                            drawCanvasImageElem(ctx, 17, 17, "diamond");
-                            game[17][17] = "diamond";
-                        }
-
-                        if (has_dragons_breath_potion === 1) {
-                            has_dragons_breath_potion = 0;
-
-                            drawCanvasImageElem(ctx, 17, 21, "potion");
-                            game[17][21] = "potion";
-                        }
-                    }
                 }
                 else if (game[newI][newJ] === "gate1" && has_key === 0) { // you don't have a key.. you'll receive a message that you must first find a key for the gate
                     showIndication("The gate is closed. <br> You need a key to open it.");
@@ -921,7 +1009,7 @@ function init() {
                     showIndication("Chapter Completed! <br><br> Bidi has reached the vulcano site!"); // we reached the end of the level
 
                     // redirecting to the levels page
-                    window.location.replace("/HAG/levels.html");
+                    window.location.replace("Proiect/HAG/levels.html");
                 }
                 else if (game[newI][newJ] === "angel2" && has_guardian_angel_asked === 0) {
                     showIndication("Hello! My name is Helena and I'm the guardian of the key. <br> You have to prove you're worthy of it by answering this HTTP question!");

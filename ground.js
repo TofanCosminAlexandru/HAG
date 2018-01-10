@@ -571,6 +571,9 @@ function init() {
                     el.style.visibility = "visible";
                 }
             }
+            else if(charI - 1 === 4 && charJ === 4){
+                image = new Image();
+
             else if(ground[charI - 1][charJ] === "spider"){
                 image = new Image();
                 image.onload = drawCanvasImageElem(ctx, image, 8, 14);
@@ -821,6 +824,18 @@ function init() {
                     var el = document.getElementsByClassName("indication_div_container")[0];
                     document.getElementById("indication_text").innerHTML = "The king and queen wish you all the best in your adventures. <br> We have a token of respect for you: a questiooon!";
                     document.getElementsByClassName("indication")[0].style = "margin-top: -5px";
+                    el.style.visibility = "visible";
+                }
+            }
+            else if(charI - 1 === 4 && charJ + 1 === 4){
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, charI-1, charJ+1);
+                image.src = map_elements["me"];
+
+                game[charI][charJ] = ground[charI][charJ];
+                game[charI-1][charJ+1] = "me";
+                    document.getElementById("indication_text").innerHTML = "Hello wanderer! From my magical branches, I summon you a question!";
+                    document.getElementsByClassName("indication")[0].style = "margin-top: 0";
                     el.style.visibility = "visible";
                 }
             }
@@ -1698,6 +1713,22 @@ function init() {
         }
 
         if(getCharactherCoord("me")[0] === getObjectCoord("willow")[0] && getCharactherCoord("me")[1] === getObjectCoord("willow")[1]){
+            count_willow_tips -= 1;
+            if(count_willow_tips === 0){
+                showQuestion();
+                count_willow_questions -= 1;
+            }
+        }
+
+        if(getCharactherCoord("me")[0] === 4 && getCharactherCoord("me")[1] === 4){
+            count_willow_tips -= 1;
+            if(count_willow_tips === 0){
+                showQuestion();
+                count_willow_questions -= 1;
+            }
+        }
+
+        if(getCharactherCoord("me")[0] === 3 && getCharactherCoord("me")[1] === 4){
             count_willow_tips -= 1;
             if(count_willow_tips === 0){
                 showQuestion();

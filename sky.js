@@ -553,7 +553,7 @@ var map_elements = {
 function init() {
     /* --- MAP --- */
     var canvas = document.getElementById('canvas');
-    canvas.style.transform = "translate(0px, -1188px)"; // (0 * 171, -11 * 108)
+    canvas.style.transform = "translate(0px, -1188px)";
     var i, j, image;
 
     // this function translates the canvas as the character moves

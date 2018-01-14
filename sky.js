@@ -414,6 +414,11 @@ var categories = {
     }
 }; // the json with all the categories and their questions
 
+var is_centered = 3; // 0 - the character isn't centered neither in width nor in height
+                     // 1 - the character is centered only in width
+                     // 2 - the character is centered only in height
+                     // 3 - the character is centered both in width and in height
+
 var diamonds = 0; // the numbers of diamonds collected found at this level
 var points = 0; // the number of points accumulated during this level
 var asked_questions = []; // the indexes of the questions already asked
@@ -548,14 +553,117 @@ var map_elements = {
 function init() {
     /* --- MAP --- */
     var canvas = document.getElementById('canvas');
+    canvas.style.transform = "translate(0px, -1188px)"; // (0 * 171, -11 * 108)
     var i, j, image;
+
+    // this function translates the canvas as the character moves
+    function translate_canvas(is_centered, direction) {
+        var x = parseInt(canvas.style.transform.split("(")[1].split(",")[0].split("px")[0]);
+        var y = parseInt(canvas.style.transform.split("(")[1].split(", ")[1].split("px")[0]);
+        if (is_centered === 0) {
+
+        }
+        else if (is_centered === 1) {
+            if (direction === "right") {
+                canvas.style.transform = "translate(" + x + "px, " + y + "px)";
+            }
+            else if (direction === "left") {
+                canvas.style.transform = "translate(" + x + "px, " + y + "px)";
+            }
+            else if (direction === "up") {
+                canvas.style.transform = "translate(" + x + "px, " + (y + 108) + "px)";
+            }
+            else if (direction === "down") {
+                canvas.style.transform = "translate(" + x + "px, " + (y - 108) + "px)";
+            }
+            else if (direction === "rightup") {
+                canvas.style.transform = "translate(" + x + "px, " + (y + 108) + "px)";
+            }
+            else if (direction === "leftup") {
+                canvas.style.transform = "translate(" + x + "px, " + (y + 108) + "px)";
+            }
+            else if (direction === "rightdown") {
+                canvas.style.transform = "translate(" + x + "px, " + (y - 108) + "px)";
+            }
+            else if (direction === "leftdown") {
+                canvas.style.transform = "translate(" + x + "px, " + (y - 108) + "px)";
+            }
+        }
+        else if (is_centered === 2) {
+            if (direction === "right") {
+                canvas.style.transform = "translate(" + (x - 171) + "px, " + y + "px)";
+            }
+            else if (direction === "left") {
+                canvas.style.transform = "translate(" + (x + 171) + "px, " + y + "px)";
+            }
+            else if (direction === "up") {
+                canvas.style.transform = "translate(" + x + "px, " + y + "px)";
+            }
+            else if (direction === "down") {
+                canvas.style.transform = "translate(" + x + "px, " + y + "px)";
+            }
+            else if (direction === "rightup") {
+                canvas.style.transform = "translate(" + (x - 171) + "px, " + y + "px)";
+            }
+            else if (direction === "leftup") {
+                canvas.style.transform = "translate(" + (x + 171) + "px, " + y + "px)";
+            }
+            else if (direction === "rightdown") {
+                canvas.style.transform = "translate(" + (x - 171) + "px, " + y + "px)";
+            }
+            else if (direction === "leftdown") {
+                canvas.style.transform = "translate(" + (x + 171) + "px, " + y + "px)";
+            }
+        }
+        else if (is_centered === 3) {
+            if (direction === "right") {
+                canvas.style.transform = "translate(" + (x - 171) + "px, " + y + "px)";
+            }
+            else if (direction === "left") {
+                canvas.style.transform = "translate(" + (x + 171) + "px, " + y + "px)";
+            }
+            else if (direction === "up") {
+                canvas.style.transform = "translate(" + x + "px, " + (y + 108) + "px)";
+            }
+            else if (direction === "down") {
+                canvas.style.transform = "translate(" + x + "px, " + (y - 108) + "px)";
+            }
+            else if (direction === "rightup") {
+                canvas.style.transform = "translate(" + (x - 171) + "px, " + (y + 108) + "px)";
+            }
+            else if (direction === "leftup") {
+                canvas.style.transform = "translate(" + (x + 171) + "px, " + (y + 108) + "px)";
+            }
+            else if (direction === "rightdown") {
+                canvas.style.transform = "translate(" + (x - 171) + "px, " + (y - 108) + "px)";
+            }
+            else if (direction === "leftdown") {
+                canvas.style.transform = "translate(" + (x + 171) + "px, " + (y - 108) + "px)";
+            }
+        }
+    }
+
+    // this function computes the centrality of the character
+    function compute_is_centered(charI, charJ, newI, newJ) {
+        is_centered = 0;
+        if ((newI > 3 && newI < 14) || ((newI === 3 || newI === 14) && (charI > 3 && charI < 14))) {
+            is_centered = 1;
+        }
+        else if ((newJ > 4 && newJ < 17) || ((newJ === 4 || newJ === 17) && (charJ > 4 && charJ < 17))) {
+            is_centered = 2;
+        }
+        if (((newI > 3 && newI < 14) || ((newI === 3 || newI === 14) && (charI > 3 && charI < 14))) && ((newJ > 4 && newJ < 17) || ((newJ === 4 || newJ === 17) && (charJ > 4 && charJ < 17)))) {
+            is_centered = 3;
+        }
+        return is_centered;
+    }
 
     // adjust the canvas to match the size of the screen
     var height = window.innerHeight;
     var width = window.innerWidth;
 
-    canvas.style.width = width  + "px";
-    canvas.style.height = height + "px";
+    canvas.style.width = (22/9)*width + "px";
+    canvas.style.height = (18/7)*height + "px";
 
     // draw the background of the canvas
     if (canvas.getContext) {
@@ -793,6 +901,11 @@ function init() {
                     }
 
                     //console.log("Nr. of diamonds: ", diamonds);
+
+                    if (sky[charI][charJ].match(/cloud[1-9]*[0-8]*/) !== null && game[charI][charJ] === "me") {
+                        is_centered = compute_is_centered(charI, charJ, newI, newJ);
+                        translate_canvas(is_centered, direction);
+                    }
                 }
                 else if (game[newI][newJ] === "mushroom" && has_mushroom === 0) {
                     has_mushroom = 1;
@@ -803,6 +916,13 @@ function init() {
 
                     game[newI][newJ] = "me";
                     game[charI][charJ] = sky[charI][charJ];
+
+                    if (sky[charI][charJ].match(/cloud[1-9]*[0-8]*/) !== null && game[charI][charJ] === "me") {
+                        is_centered = compute_is_centered(charI, charJ, newI, newJ);
+                        translate_canvas(is_centered, direction);
+                    }
+
+                    showIndication("You found a magical mushroom!");
                 }
                 else if (game[newI][newJ].match(/ray[1-9]*[0-7]*/) !== null) {
                     // the ray push my character at certain positions
@@ -814,6 +934,9 @@ function init() {
 
                         game[17][6] = "me";
                         image.onload = drawCanvasImageElem(ctx, 17, 6, "me");
+
+                        is_centered = 2;
+                        canvas.style.transform = "translate(" + (-342) + "px, " + (-1188) + "px)";
                     }
                     else if (game[newI][newJ] === "ray4" || game[newI][newJ] === "ray5" || game[newI][newJ] === "ray6" || game[newI][newJ] === "ray7" || game[newI][newJ] === "ray8" || game[newI][newJ] === "ray9" || game[newI][newJ] === "ray10" || game[newI][newJ] === "ray11") {
                         if (charI === 13 && charJ === 13) {
@@ -830,6 +953,9 @@ function init() {
 
                         game[17][12] = "me";
                         image.onload = drawCanvasImageElem(ctx, 17, 12, "me");
+
+                        is_centered = 2;
+                        canvas.style.transform = "translate(" + (-1360) + "px, " + (-1188) + "px)";
                     }
                     else {
                         if (charI === 14 && charJ === 18) {
@@ -861,6 +987,9 @@ function init() {
                             drawCanvasImageElem(ctx, 17, 21, "potion");
                             game[17][21] = "potion";
                         }
+
+                        is_centered = 2;
+                        canvas.style.transform = "translate(" + (-2210) + "px, " + (-1188) + "px)";
                     }
                 }
                 else if (sky[charI][charJ].match(/cloud[1-9]*[0-8]*/) !== null && game[charI][charJ] === "me") {
@@ -870,6 +999,9 @@ function init() {
 
                     game[charI][charJ] = "cloud";
                     game[newI][newJ] = "me";
+
+                    //is_centered = compute_is_centered(charI, charJ, newI, newJ)
+                    //translate_canvas(is_centered, direction);
                 }
                 if (sky[charI][charJ] === "castle" && game[charI][charJ] === "me") {
                     drawCanvasImageElem(ctx, charI, charJ, "sky");
@@ -878,6 +1010,9 @@ function init() {
 
                     game[charI][charJ] = "castle";
                     game[newI][newJ] = "me";
+
+                    is_centered = compute_is_centered(charI, charJ, newI, newJ);
+                    translate_canvas(is_centered, direction);
                 }
                 else if (game[newI][newJ].match(/ray[1-9]*[0-7]*/) !== null) {
                     // the ray push my character at certain positions
@@ -889,6 +1024,9 @@ function init() {
 
                         game[17][6] = "me";
                         image.onload = drawCanvasImageElem(ctx, 17, 6, "me");
+
+                        is_centered = 2;
+                        canvas.style.transform = "translate(" + (-342) + "px, " + (-1188) + "px)";
                     }
                     else if (game[newI][newJ] === "ray4" || game[newI][newJ] === "ray5" || game[newI][newJ] === "ray6" || game[newI][newJ] === "ray7" || game[newI][newJ] === "ray8" || game[newI][newJ] === "ray9" || game[newI][newJ] === "ray10" || game[newI][newJ] === "ray11") {
                         if (charI === 13 && charJ === 13) {
@@ -904,6 +1042,9 @@ function init() {
 
                         game[17][12] = "me";
                         image.onload = drawCanvasImageElem(ctx, 17, 12, "me");
+
+                        is_centered = 2;
+                        canvas.style.transform = "translate(" + (-1360) + "px, " + (-1188) + "px)";
                     }
                     else {
                         if (charI === 14 && charJ === 18) {
@@ -934,6 +1075,9 @@ function init() {
                             drawCanvasImageElem(ctx, 17, 21, "potion");
                             game[17][21] = "potion";
                         }
+
+                        is_centered = 2;
+                        canvas.style.transform = "translate(" + (-2210) + "px, " + (-1188) + "px)";
                     }
                 }
                 else if ((sky[charI][charJ] === "gate2" || sky[charI][charJ] === "gate3") && game[charI][charJ] === "me") {
@@ -957,6 +1101,9 @@ function init() {
                     if (sky[charI][charJ] === "gate2" && has_king_asked === 0) {
                         showIndication("The king was in an audience. But as soon as the king saw Bidi, he urged him to come forward immediately.")
                     }
+
+                    is_centered = compute_is_centered(charI, charJ, newI, newJ);
+                    translate_canvas(is_centered, direction);
                 }
                 else if (sky[charI][charJ] === "broken_portal" && game[charI][charJ] === "me") {
                     drawCanvasImageElem(ctx, charI, charJ, "ground");
@@ -965,6 +1112,9 @@ function init() {
 
                     game[charI][charJ] = "broken_portal";
                     game[newI][newJ] = "me";
+
+                    is_centered = compute_is_centered(charI, charJ, newI, newJ);
+                    translate_canvas(is_centered, direction);
                 }
                 else if (game[newI][newJ] === "gate1" && has_key === 0) { // you don't have a key.. you'll receive a message that you must first find a key for the gate
                     showIndication("The gate is closed. <br> You need a key to open it.");
@@ -980,6 +1130,9 @@ function init() {
                     }
 
                     drawCanvasImageElem(ctx, charI, charJ, sky[charI][charJ]);
+
+                    is_centered = compute_is_centered(charI, charJ, newI, newJ);
+                    translate_canvas(is_centered, direction);
                 }
                 else if (game[newI][newJ] === "potion" && has_dragons_breath_potion === 0) {
                     has_dragons_breath_potion = 1;
@@ -989,6 +1142,11 @@ function init() {
 
                     game[newI][newJ] = "me";
                     game[charI][charJ] = sky[charI][charJ];
+
+                    is_centered = compute_is_centered(charI, charJ, newI, newJ);
+                    translate_canvas(is_centered, direction);
+
+                    showIndication("You found dragon's breath potion!");
                 }
                 else if (game[newI][newJ] === "key" && has_key === 0) {
                     has_key = 1;
@@ -998,6 +1156,9 @@ function init() {
 
                     game[newI][newJ] = "me";
                     game[charI][charJ] = sky[charI][charJ];
+
+                    is_centered = compute_is_centered(charI, charJ, newI, newJ);
+                    translate_canvas(is_centered, direction);
                 }
                 else if (game[newI][newJ] === "portal_to_earth" && newI === 1) {
                     drawCanvasImageElem(ctx, image, 1, 0, "me");
@@ -1010,6 +1171,9 @@ function init() {
 
                     // redirecting to the levels page
                     window.location.replace("Proiect/HAG/levels.html");
+
+                    is_centered = compute_is_centered(charI, charJ, newI, newJ);
+                    translate_canvas(is_centered, direction);
                 }
                 else if (game[newI][newJ] === "angel2" && has_guardian_angel_asked === 0) {
                     showIndication("Hello! My name is Helena and I'm the guardian of the key. <br> You have to prove you're worthy of it by answering this HTTP question!");
@@ -1036,6 +1200,12 @@ function init() {
 
                     game[8][12] = "sky";
                     game[6][10] = "sick_sun";
+
+                    drawCanvasImageElem(ctx, newI, newJ, "me");
+                    game[newI][newJ] = "me";
+
+                    is_centered = compute_is_centered(charI, charJ, newI, newJ);
+                    translate_canvas(is_centered, direction);
                 }
                 else if (game[newI][newJ] === "portal" && (direction === "left" || direction === "leftdown" || direction === "leftup")) {
                     drawCanvasImageElem(ctx, charI, charJ, "ground");
@@ -1043,6 +1213,9 @@ function init() {
 
                     game[charI][charJ] = "ground";
                     game[8][5] = "me";
+
+                    is_centered = 3;
+                    canvas.style.transform = "translate(" + (-171) + "px, " + (-540) + "px)";
                 }
                 else if (game[newI][newJ] === "portal" && direction === "right") {
                     drawCanvasImageElem(ctx, charI, charJ, "ground");
@@ -1050,6 +1223,9 @@ function init() {
 
                     game[charI][charJ] = "ground";
                     game[8][11] = "me";
+
+                    is_centered = 3;
+                    canvas.style.transform = "translate(" + (-1190) + "px, " + (-540) + "px)";
                 }
                 else if (game[newI][newJ] === "pegasus" && has_pegasus_asked === 0) {
                     showIndication("So you want one of my precious feathers to heal a sun. <br> Hmm.. let me think. <br> Very well, but you have to answer me a question and scratch my back!");
@@ -1064,7 +1240,10 @@ function init() {
                     game[charI][charJ] = sky[charI][charJ];
                     game[newI][newJ] = "me";
 
-                    showIndication("Good morning! The king awaits you in the throne room. <br> The queen is not here in heaven. She had some urgent business in The Desert of Kahim. <br> But, knowing of your coming, she told me to ask you this question.")
+                    showIndication("Good morning! The king awaits you in the throne room. <br> The queen is not here in heaven. She had some urgent business in The Desert of Kahim. <br> But, knowing of your coming, she told me to ask you this question.");
+
+                    is_centered = compute_is_centered(charI, charJ, newI, newJ);
+                    translate_canvas(is_centered, direction);
                 }
                 else if (newI === 2 && newJ === 4 && has_king_asked === 0) {
                     drawCanvasImageElem(ctx, newI, newJ, "me");
@@ -1073,14 +1252,20 @@ function init() {
                     game[charI][charJ] = sky[charI][charJ];
                     game[newI][newJ] = "me";
 
-                    showIndication("Good day to you, adventurer Bidi. <br> I was informed of all your acts of bravery and of knowledge of the HTTP protocol. So I have a quest for you. <br> You'll be tested with harder notions of the protocol soon. Let's see if you are truly worthy of the praise.")
+                    showIndication("Good day to you, adventurer Bidi. <br> I was informed of all your acts of bravery and of knowledge of the HTTP protocol. So I have a quest for you. <br> You'll be tested with harder notions of the protocol soon. Let's see if you are truly worthy of the praise.");
+
+                    is_centered = compute_is_centered(charI, charJ, newI, newJ);
+                    translate_canvas(is_centered, direction);
                 }
-                else { // in front of us is ground
+                else { // in front of us is ground or cloud or broken portal or ...
                     drawCanvasImageElem(ctx, newI, newJ, "me");
                     drawCanvasImageElem(ctx, charI, charJ, sky[charI][charJ]);
 
                     game[charI][charJ] = sky[charI][charJ];
                     game[newI][newJ] = "me";
+
+                    is_centered = compute_is_centered(charI, charJ, newI, newJ);
+                    translate_canvas(is_centered, direction);
                 }
             }
             else { // the character can't step on that element
@@ -1250,6 +1435,9 @@ function init() {
                                 drawCanvasImageElem(ctx, cloudI, j + 1, "me");
                                 game[cloudI][cloudJ] = "sky";
                                 game[cloudI][j + 1] = "me";
+
+                                is_centered = compute_is_centered(cloudI, cloudJ, cloudI, j + 1);
+                                translate_canvas(is_centered, "right");
                             }
                             else {
                                 game[cloudI][cloudJ] = "sky";
@@ -1320,6 +1508,9 @@ function init() {
                             drawCanvasImageElem(ctx, cloudI, j + 1, "me");
                             game[cloudI][cloudJ] = "sky";
                             game[cloudI][j + 1] = "me";
+
+                            is_centered = compute_is_centered(cloudI, cloudJ, cloudI, j + 1);
+                            translate_canvas(is_centered, "right");
                         }
                         else {
                             game[cloudI][cloudJ] = "sky";
@@ -1344,6 +1535,9 @@ function init() {
                                 drawCanvasImageElem(ctx, cloudI, j - 1, "me");
                                 game[cloudI][cloudJ] = "sky";
                                 game[cloudI][j - 1] = "me";
+
+                                is_centered = compute_is_centered(cloudI, cloudJ, cloudI, j - 1);
+                                translate_canvas(is_centered, "left");
                             }
                             else {
                                 game[cloudI][cloudJ] = "sky";
@@ -1414,6 +1608,9 @@ function init() {
                             drawCanvasImageElem(ctx, cloudI, j - 1, "me");
                             game[cloudI][cloudJ] = "sky";
                             game[cloudI][j - 1] = "me";
+
+                            is_centered = compute_is_centered(cloudI, cloudJ, cloudI, j - 1);
+                            translate_canvas(is_centered, "left");
                         }
                         else {
                             game[cloudI][cloudJ] = "sky";
@@ -1441,6 +1638,9 @@ function init() {
                                 drawCanvasImageElem(ctx, i + 1, cloudJ, "me");
                                 game[cloudI][cloudJ] = "sky";
                                 game[i + 1][cloudJ] = "me";
+
+                                is_centered = compute_is_centered(cloudI, cloudJ, i + 1, cloudJ);
+                                translate_canvas(is_centered, "down");
                             }
                             else {
                                 game[cloudI][cloudJ] = "sky";
@@ -1511,6 +1711,9 @@ function init() {
                             drawCanvasImageElem(ctx, i + 1, cloudJ, "me");
                             game[cloudI][cloudJ] = "sky";
                             game[i + 1][cloudJ] = "me";
+
+                            is_centered = compute_is_centered(cloudI, cloudJ, i + 1, cloudJ);
+                            translate_canvas(is_centered, "down");
                         }
                         else {
                             game[cloudI][cloudJ] = "sky";
@@ -1534,6 +1737,9 @@ function init() {
                                 drawCanvasImageElem(ctx, i - 1, cloudJ, "me");
                                 game[cloudI][cloudJ] = "sky";
                                 game[i - 1][cloudJ] = "me";
+
+                                is_centered = compute_is_centered(cloudI, cloudJ, i - 1, cloudJ);
+                                translate_canvas(is_centered, "up");
                             }
                             else {
                                 game[cloudI][cloudJ] = "sky";
@@ -1604,6 +1810,9 @@ function init() {
                             drawCanvasImageElem(ctx, i - 1, cloudJ, "me");
                             game[cloudI][cloudJ] = "sky";
                             game[i - 1][cloudJ] = "me";
+
+                            is_centered = compute_is_centered(cloudI, cloudJ, i - 1, cloudJ);
+                            translate_canvas(is_centered, "up");
                         }
                         else {
                             game[cloudI][cloudJ] = "sky";
@@ -1642,6 +1851,27 @@ function init() {
                             drawCanvasImageElem(ctx, listOfPos[i + 1][0], listOfPos[i + 1][1], "me");
                             game[cloudI][cloudJ] = "sky";
                             game[listOfPos[i + 1][0]][listOfPos[i + 1][1]] = "me";
+
+                            if (cloud === "cloud9") {
+                                if (i < 2) {
+                                    is_centered = compute_is_centered(cloudI, cloudJ, listOfPos[i + 1][0], listOfPos[i + 1][1]);
+                                    translate_canvas(is_centered, "up");
+                                }
+                                else {
+                                    is_centered = compute_is_centered(cloudI, cloudJ, listOfPos[i + 1][0], listOfPos[i + 1][1]);
+                                    translate_canvas(is_centered, "right");
+                                }
+                            }
+                            else if (cloud === "cloud17") {
+                                if (i < 1) {
+                                    is_centered = compute_is_centered(cloudI, cloudJ, listOfPos[i + 1][0], listOfPos[i + 1][1]);
+                                    translate_canvas(is_centered, "right");
+                                }
+                                else {
+                                    is_centered = compute_is_centered(cloudI, cloudJ, listOfPos[i + 1][0], listOfPos[i + 1][1]);
+                                    translate_canvas(is_centered, "up");
+                                }
+                            }
                         }
                         else {
                             game[cloudI][cloudJ] = "sky";
@@ -1670,6 +1900,27 @@ function init() {
                         drawCanvasImageElem(ctx, listOfPos[i + 1][0], listOfPos[i + 1][1], "me");
                         game[cloudI][cloudJ] = "sky";
                         game[listOfPos[i + 1][0]][listOfPos[i + 1][1]] = "me";
+
+                        if (cloud === "cloud9") {
+                            if (i < 2) {
+                                is_centered = compute_is_centered(cloudI, cloudJ, listOfPos[i + 1][0], listOfPos[i + 1][1]);
+                                translate_canvas(is_centered, "up");
+                            }
+                            else {
+                                is_centered = compute_is_centered(cloudI, cloudJ, listOfPos[i + 1][0], listOfPos[i + 1][1]);
+                                translate_canvas(is_centered, "right");
+                            }
+                        }
+                        else if (cloud === "cloud17") {
+                            if (i < 1) {
+                                is_centered = compute_is_centered(cloudI, cloudJ, listOfPos[i + 1][0], listOfPos[i + 1][1]);
+                                translate_canvas(is_centered, "right");
+                            }
+                            else {
+                                is_centered = compute_is_centered(cloudI, cloudJ, listOfPos[i + 1][0], listOfPos[i + 1][1]);
+                                translate_canvas(is_centered, "up");
+                            }
+                        }
                     }
                     else {
                         game[cloudI][cloudJ] = "sky";
@@ -1691,6 +1942,27 @@ function init() {
                             drawCanvasImageElem(ctx, listOfPos[i - 1][0], listOfPos[i - 1][1], "me");
                             game[cloudI][cloudJ] = "sky";
                             game[listOfPos[i - 1][0]][listOfPos[i - 1][1]] = "me";
+
+                            if (cloud === "cloud9") {
+                                if (i > 2) {
+                                    is_centered = compute_is_centered(cloudI, cloudJ, listOfPos[i - 1][0], listOfPos[i - 1][1]);
+                                    translate_canvas(is_centered, "left");
+                                }
+                                else {
+                                    is_centered = compute_is_centered(cloudI, cloudJ, listOfPos[i - 1][0], listOfPos[i - 1][1]);
+                                    translate_canvas(is_centered, "down");
+                                }
+                            }
+                            else if (cloud === "cloud17") {
+                                if (i > 1) {
+                                    is_centered = compute_is_centered(cloudI, cloudJ, listOfPos[i - 1][0], listOfPos[i - 1][1]);
+                                    translate_canvas(is_centered, "down");
+                                }
+                                else {
+                                    is_centered = compute_is_centered(cloudI, cloudJ, listOfPos[i - 1][0], listOfPos[i - 1][1]);
+                                    translate_canvas(is_centered, "left");
+                                }
+                            }
                         }
                         else {
                             game[cloudI][cloudJ] = "sky";
@@ -1719,6 +1991,27 @@ function init() {
                         drawCanvasImageElem(ctx, listOfPos[i - 1][0], listOfPos[i - 1][1], "me");
                         game[cloudI][cloudJ] = "sky";
                         game[listOfPos[i - 1][0]][listOfPos[i - 1][1]] = "me";
+
+                        if (cloud === "cloud9") {
+                            if (i > 2) {
+                                is_centered = compute_is_centered(cloudI, cloudJ, listOfPos[i - 1][0], listOfPos[i - 1][1]);
+                                translate_canvas(is_centered, "left");
+                            }
+                            else {
+                                is_centered = compute_is_centered(cloudI, cloudJ, listOfPos[i - 1][0], listOfPos[i - 1][1]);
+                                translate_canvas(is_centered, "down");
+                            }
+                        }
+                        else if (cloud === "cloud17") {
+                            if (i > 1) {
+                                is_centered = compute_is_centered(cloudI, cloudJ, listOfPos[i - 1][0], listOfPos[i - 1][1]);
+                                translate_canvas(is_centered, "down");
+                            }
+                            else {
+                                is_centered = compute_is_centered(cloudI, cloudJ, listOfPos[i - 1][0], listOfPos[i - 1][1]);
+                                translate_canvas(is_centered, "left");
+                            }
+                        }
                     }
                     else {
                         game[cloudI][cloudJ] = "sky";
@@ -1891,10 +2184,16 @@ function init() {
                 if (ray === "ray1" || ray === "ray2" || ray === "ray3") {
                     game[17][6] = "me";
                     image.onload = drawCanvasImageElem(ctx, 17, 6, "me");
+
+                    is_centered = 2;
+                    canvas.style.transform = "translate(" + (-342) + "px, " + (-1188) + "px)";
                 }
                 else if (ray === "ray4" || ray === "ray5" || ray === "ray6" || ray === "ray7" || ray === "ray8" || ray === "ray9" || ray === "ray10" || ray === "ray11") {
                     game[17][12] = "me";
                     image.onload = drawCanvasImageElem(ctx, 17, 12, "me");
+
+                    is_centered = 2;
+                    canvas.style.transform = "translate(" + (-1360) + "px, " + (-1188) + "px)";
                 }
                 else {
                     game[15][17] = "me";
@@ -1914,6 +2213,9 @@ function init() {
                         drawCanvasImageElem(ctx, 17, 21, "potion");
                         game[17][21] = "potion";
                     }
+
+                    is_centered = 2;
+                    canvas.style.transform = "translate(" + (-2210) + "px, " + (-1188) + "px)";
                 }
             }
 

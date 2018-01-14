@@ -813,7 +813,7 @@ function init() {
         var charJ = getCharactherCoord("me")[1];
 
         if(document.getElementsByClassName("indication_div_container")[0].style.visibility === 'visible' || document.getElementsByClassName("question_div_container")[0].style.visibility === 'visible'){
-            document.onkeydown = function (e) {
+            document.onkeydown = function () {
                 return false;
             }
         }

@@ -48,7 +48,7 @@ function check_login() {
 	var obj = JSON.parse(data);
 	var username = document.getElementById("login-user").value;
 	var pass = document.getElementById("login-pass").value;
-	var check = false;
+	check = false;
 	var adapt = document.getElementsByClassName("login")[0];
 	for(var i=0; i<obj.users.length; i++){
 		if(username === obj.users[i].username && obj.users[i].password === pass){

@@ -138,3 +138,76 @@ body {
 .indication_div .exit_button p:hover {
     background-color: cornflowerblue;
 }
+
+
+.rewards{
+    height: 40px;
+}
+
+.gems{
+    position: absolute;
+    top: 0;
+    background: transparent url(images/diamond.png) no-repeat;
+    background-size:contain;
+    height: 80px;width:80px;
+}
+
+.gems .gems-score{
+    position: absolute;
+    margin: 0;
+    color: white;
+    text-shadow: black 2px 2px 0, black -2px -2px 0, black 2px -2px 0, black -2px 2px 0, black 2px 0 0, black 0 -2px 0, black -2px 0 0, black 0 2px 0;
+    text-align: center;
+    bottom: 30px;
+    left: 35px;
+}
+
+.stars{
+    position: absolute;
+    top: 0;
+    background: transparent url(images/star.png) no-repeat;
+    background-size:contain;
+    height:70px;width:70px;
+    left: 90px;
+}
+
+.stars .stars-score{
+    position: absolute;
+    margin: 0;
+    color: white;
+    text-shadow: black 2px 2px 0, black -2px -2px 0, black 2px -2px 0, black -2px 2px 0, black 2px 0 0, black 0 -2px 0, black -2px 0 0, black 0 2px 0;
+    text-align: center;
+    bottom: 20px;
+    left: 28px;
+}
+
+.menu{
+    position: absolute;
+    top: 18px;
+    left: 170px;
+}
+
+.color-change1 {
+    position: absolute;
+
+    border-radius: 2px;
+    font-size: 15px;
+    padding: 10px 30px;
+    cursor: pointer;
+    color: #fff;
+    background-color: #80dd15;
+    border: 1px solid #fff;
+    box-shadow: 2px 2px 5px #AFE9FF;
+    transition-duration: 0.5s;
+    -webkit-transition-duration: 0.5s;
+    -moz-transition-duration: 0.5s;
+}
+
+.color-change1:hover {
+    color: #006398;
+}
+
+button.color-change1 {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}

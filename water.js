@@ -769,291 +769,300 @@ function init() {
             newJ = charJ + 1;
         }
 
-        if(checkMove(newI, newJ) === true) { // the character can step on that element
-            if(game[newI][newJ] === "diamond") { // the element is diamond
-                if (newJ === 13) { // the element is the first diamond
-                    has_first_diamond = 1;
+        if(document.getElementsByClassName("indication_div_container")[0].style.visibility === 'visible' || document.getElementsByClassName("question_div_container")[0].style.visibility === 'visible'){
+            document.onkeydown = function () {
+                return false;
+            }
+        }
+        else {
+            if (checkMove(newI, newJ) === true) { // the character can step on that element
+                if (game[newI][newJ] === "diamond") { // the element is diamond
+                    if (newJ === 13) { // the element is the first diamond
+                        has_first_diamond = 1;
+                    }
+                    diamonds++; // increase the number of diamonds
+                    document.getElementsByClassName("gems-score")[0].innerHTML = String(diamonds);
+
+                    // draw ground on the diamond's position
+                    image = new Image();
+                    image.onload = drawCanvasImageElem(ctx, image, newI, newJ);
+                    image.src = map_elements[water[newI][newJ]];
+
+                    // draw my character on the new position
+                    image = new Image();
+                    image.onload = drawCanvasImageElem(ctx, image, newI, newJ);
+                    image.src = map_elements["me"];
+
+                    // update the matrices
+                    game[newI][newJ] = water[newI][newJ];
+                    game[charI][charJ] = water[charI][charJ];
+                    game[newI][newJ] = "me";
+
+                    // draw ground on my characters last position
+                    image = new Image();
+                    image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+                    image.src = map_elements[game[charI][charJ]];
+
+                    //console.log("Nr. of diamonds: ", diamonds);
+
+                    is_centered = compute_is_centered(charI, charJ, newI, newJ);
+                    translate_canvas(is_centered, direction);
                 }
-                diamonds++; // increase the number of diamonds
+                else if (game[newI][newJ] === "rat1") {
+                    image = new Image();
+                    image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+                    image.src = map_elements[water[charI][charJ]];
 
-                // draw ground on the diamond's position
-                image = new Image();
-                image.onload = drawCanvasImageElem(ctx, image, newI, newJ);
-                image.src = map_elements[water[newI][newJ]];
-
-                // draw my character on the new position
-                image = new Image();
-                image.onload = drawCanvasImageElem(ctx, image, newI, newJ);
-                image.src = map_elements["me"];
-
-                // update the matrices
-                game[newI][newJ] = water[newI][newJ];
-                game[charI][charJ] = water[charI][charJ];
-                game[newI][newJ] = "me";
-
-                // draw ground on my characters last position
-                image = new Image();
-                image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
-                image.src = map_elements[game[charI][charJ]];
-
-                //console.log("Nr. of diamonds: ", diamonds);
-
-                is_centered = compute_is_centered(charI, charJ, newI, newJ);
-                translate_canvas(is_centered, direction);
-            }
-            else if (game[newI][newJ] === "rat1") {
-                image = new Image();
-                image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
-                image.src = map_elements[water[charI][charJ]];
-
-                game[charI][charJ] = water[charI][charJ];
-                game[1][14] = "me"; // it pushes my character at that position
-
-                image = new Image();
-                image.onload = drawCanvasImageElem(ctx, image, 1, 14);
-                image.src = map_elements["me"];
-
-                is_centered = 2;
-                canvas.style.transform = "translate(" + (-1699) + "px, " + 0 + "px)";
-            }
-            else if (game[newI][newJ] === "rat2") {
-                image = new Image();
-                image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
-                image.src = map_elements[water[charI][charJ]];
-
-                game[charI][charJ] = water[charI][charJ];
-                game[5][15] = "me";
-
-                image = new Image();
-                image.onload = drawCanvasImageElem(ctx, image, 5, 15);
-                image.src = map_elements["me"];
-
-                // this rat can take his diamond back from me
-                image = new Image();
-                image.onload = drawCanvasImageElem(ctx, image, 6, 13);
-                image.src = map_elements["diamond"];
-
-                game[6][13] = "diamond";
-                if (has_first_diamond === 1) {
-                    diamonds--;
-                    has_first_diamond = 0;
-                }
-
-                is_centered = 3;
-                canvas.style.transform = "translate(" + (-1870) + "px, " + (-216) + "px)";
-            }
-            else if (game[newI][newJ] === "spikes1" || game[newI][newJ] === "spikes2" || game[newI][newJ] === "spikes3" || game[newI][newJ] === "spikes4") {
-                image = new Image();
-                image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
-                image.src = map_elements[water[charI][charJ]];
-
-                game[charI][charJ] = water[charI][charJ];
-                // the spikes push my character at certain positions
-                if (game[newI][newJ] === "spikes1" && direction === "right") {
-                    game[13][7] = "me";
+                    game[charI][charJ] = water[charI][charJ];
+                    game[1][14] = "me"; // it pushes my character at that position
 
                     image = new Image();
-                    image.onload = drawCanvasImageElem(ctx, image, 13, 7);
+                    image.onload = drawCanvasImageElem(ctx, image, 1, 14);
                     image.src = map_elements["me"];
 
                     is_centered = 2;
-                    canvas.style.transform = "translate(" + (-502) + "px, " + (-864) + "px)";
+                    canvas.style.transform = "translate(" + (-1699) + "px, " + 0 + "px)";
                 }
-                else if (game[newI][newJ] === "spikes1" && direction === "left") {
-                    game[13][11] = "me";
+                else if (game[newI][newJ] === "rat2") {
+                    image = new Image();
+                    image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+                    image.src = map_elements[water[charI][charJ]];
+
+                    game[charI][charJ] = water[charI][charJ];
+                    game[5][15] = "me";
 
                     image = new Image();
-                    image.onload = drawCanvasImageElem(ctx, image, 13, 11);
+                    image.onload = drawCanvasImageElem(ctx, image, 5, 15);
                     image.src = map_elements["me"];
 
-                    is_centered = 2;
-                    canvas.style.transform = "translate(" + (-1186) + "px, " + (-864) + "px)";
+                    // this rat can take his diamond back from me
+                    image = new Image();
+                    image.onload = drawCanvasImageElem(ctx, image, 6, 13);
+                    image.src = map_elements["diamond"];
+
+                    game[6][13] = "diamond";
+                    if (has_first_diamond === 1) {
+                        diamonds--;
+                        document.getElementsByClassName("gems-score")[0].innerHTML = String(diamonds);
+                        has_first_diamond = 0;
+                    }
+
+                    is_centered = 3;
+                    canvas.style.transform = "translate(" + (-1870) + "px, " + (-216) + "px)";
                 }
-                else {
-                    game[13][5] = "me";
+                else if (game[newI][newJ] === "spikes1" || game[newI][newJ] === "spikes2" || game[newI][newJ] === "spikes3" || game[newI][newJ] === "spikes4") {
+                    image = new Image();
+                    image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+                    image.src = map_elements[water[charI][charJ]];
+
+                    game[charI][charJ] = water[charI][charJ];
+                    // the spikes push my character at certain positions
+                    if (game[newI][newJ] === "spikes1" && direction === "right") {
+                        game[13][7] = "me";
+
+                        image = new Image();
+                        image.onload = drawCanvasImageElem(ctx, image, 13, 7);
+                        image.src = map_elements["me"];
+
+                        is_centered = 2;
+                        canvas.style.transform = "translate(" + (-502) + "px, " + (-864) + "px)";
+                    }
+                    else if (game[newI][newJ] === "spikes1" && direction === "left") {
+                        game[13][11] = "me";
+
+                        image = new Image();
+                        image.onload = drawCanvasImageElem(ctx, image, 13, 11);
+                        image.src = map_elements["me"];
+
+                        is_centered = 2;
+                        canvas.style.transform = "translate(" + (-1186) + "px, " + (-864) + "px)";
+                    }
+                    else {
+                        game[13][5] = "me";
+
+                        image = new Image();
+                        image.onload = drawCanvasImageElem(ctx, image, 13, 5);
+                        image.src = map_elements["me"];
+
+                        is_centered = 2;
+                        canvas.style.transform = "translate(" + (-160) + "px, " + (-864) + "px)";
+                    }
+                }
+                else if (game[newI][newJ] === "gate" && has_key === 0) { // you don't have a key.. you'll receive a message that you must first find a key for the gate
+                    showIndication("The gate is closed. <br> You need a key to open it.");
+                }
+                else if ((game[newI][newJ] === "gate" && has_key === 1) || water[charI][charJ] === "gate") { // now you can pass that gate
+                    image = new Image();
+                    image.onload = drawCanvasImageElem(ctx, image, newI, newJ);
+                    image.src = map_elements["me"];
+
+                    game[charI][charJ] = water[charI][charJ];
+                    game[newI][newJ] = "me";
+
+                    if (water[charI][charJ] === "gate") { // we draw ground first so that the gate won't overlap my character
+                        image = new Image();
+                        image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+                        image.src = map_elements["ground"];
+                    }
 
                     image = new Image();
-                    image.onload = drawCanvasImageElem(ctx, image, 13, 5);
+                    image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+                    image.src = map_elements[water[charI][charJ]];
+
+                    is_centered = compute_is_centered(charI, charJ, newI, newJ);
+                    translate_canvas(is_centered, direction);
+                }
+                else if (game[newI][newJ] === "food" && has_food === 0) {
+                    image = new Image();
+                    image.onload = drawCanvasImageElem(ctx, image, newI, newJ);
+                    image.src = map_elements[water[newI][newJ]];
+
+                    image = new Image();
+                    image.onload = drawCanvasImageElem(ctx, image, newI, newJ);
                     image.src = map_elements["me"];
 
-                    is_centered = 2;
-                    canvas.style.transform = "translate(" + (-160) + "px, " + (-864) + "px)";
+                    game[newI][newJ] = "me";
+                    game[charI][charJ] = water[charI][charJ];
+
+                    image = new Image();
+                    image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+                    image.src = map_elements[water[charI][charJ]];
+
+                    showIndication("You found food!");
+                    has_food = 1;
+
+                    is_centered = compute_is_centered(charI, charJ, newI, newJ);
+                    translate_canvas(is_centered, direction);
+                }
+                else if (game[newI][newJ] === "stairs_to_heaven") {
+                    image = new Image();
+                    image.onload = drawCanvasImageElem(ctx, image, 1, 1);
+                    image.src = map_elements["me"];
+
+                    game[1][1] = "me";
+
+                    image = new Image();
+                    image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+                    image.src = map_elements["grass"];
+
+                    image = new Image();
+                    image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+                    image.src = map_elements["well"];
+
+                    game[charI][charJ] = "me";
+
+                    showIndication("Chapter Completed! <br><br> Bidi has reached the sky!"); // we reached the end of the level
+
+                    // redirecting to the levels page
+                    window.location.replace("Proiect/HAG/levels.html");
+
+                    is_centered = compute_is_centered(charI, charJ, newI, newJ);
+                    translate_canvas(is_centered, direction);
+                }
+                else { // in front of us is ground
+                    image = new Image();
+                    image.onload = drawCanvasImageElem(ctx, image, newI, newJ);
+                    image.src = map_elements["me"];
+
+                    game[charI][charJ] = water[charI][charJ];
+                    game[newI][newJ] = "me";
+
+                    image = new Image();
+                    image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+                    image.src = map_elements[water[charI][charJ]];
+
+                    if (newI === 13 && newJ === 15 && has_medusa1_asked === 0) { // if we are in front of medusa1
+                        showIndication("Hello stranger! <br> Might be I have a key for you! <br> But you must first answer me a question!");
+                    }
+                    else if ((newI === 6 && newJ === 4 && has_dark_voice_asked === 0) || (newI === 7 && newJ === 4 && has_dark_voice_asked === 0)) {
+                        // if we are in sight of the dark stranger he appears to ask us a question
+                        image = new Image();
+                        image.onload = drawCanvasImageElem(ctx, image, 6, 3);
+                        image.src = map_elements["dark_voice"];
+
+                        showIndication("Boooo! I have a question for you!");
+                    }
+
+                    is_centered = compute_is_centered(charI, charJ, newI, newJ);
+                    translate_canvas(is_centered, direction);
                 }
             }
-            else if (game[newI][newJ] === "gate" && has_key === 0) { // you don't have a key.. you'll receive a message that you must first find a key for the gate
-                showIndication("The gate is closed. <br> You need a key to open it.");
-            }
-            else if ((game[newI][newJ] === "gate" && has_key === 1) || water[charI][charJ] === "gate") { // now you can pass that gate
-                image = new Image();
-                image.onload = drawCanvasImageElem(ctx, image, newI, newJ);
-                image.src = map_elements["me"];
+            else { // the character can't step on that element
+                if (game[newI][newJ] === "stone" && (direction === "up" || direction === "down" || direction === "left" || direction === "right") && game[newI2][newJ2] === "river") {
+                    // the stone is in front of river so it can pe pushed to create a new path
+                    image = new Image();
+                    image.onload = drawCanvasImageElem(ctx, image, newI, newJ);
+                    image.src = map_elements["ground"];
 
-                game[charI][charJ] = water[charI][charJ];
-                game[newI][newJ] = "me";
+                    image = new Image();
+                    image.onload = drawCanvasImageElem(ctx, image, newI2, newJ2);
+                    image.src = map_elements["ground"];
 
-                if (water[charI][charJ] === "gate") { // we draw ground first so that the gate won't overlap my character
+                    game[newI][newJ] = water[newI][newJ];
+                    game[newI2][newJ2] = water[newI2][newJ2];
+                }
+                else if (game[newI][newJ] === "stone" && (direction === "up" || direction === "down" || direction === "left" || direction === "right") && game[newI2][newJ2] === "ground") {
+                    image = new Image();
+                    image.onload = drawCanvasImageElem(ctx, image, newI, newJ);
+                    image.src = map_elements["ground"];
+
+                    image = new Image();
+                    image.onload = drawCanvasImageElem(ctx, image, newI2, newJ2);
+                    image.src = map_elements["stone"];
+
+                    game[newI][newJ] = water[newI][newJ];
+                    game[newI2][newJ2] = "stone";
+                }
+                else if (game[newI][newJ] === "stone" && (direction === "up" || direction === "down" || direction === "left" || direction === "right") && game[newI2][newJ2] === "diamond") {
+                    // the stone is in front of a free ground so it can be pushed forward
+                    image = new Image();
+                    image.onload = drawCanvasImageElem(ctx, image, newI, newJ);
+                    image.src = map_elements["ground"];
+
+                    image = new Image();
+                    image.onload = drawCanvasImageElem(ctx, image, newI2, newJ2);
+                    image.src = map_elements["ground"];
+
+                    image = new Image();
+                    image.onload = drawCanvasImageElem(ctx, image, newI2, newJ2);
+                    image.src = map_elements["diamond"];
+
+                    game[newI][newJ] = water[newI][newJ];
+                    water[newI2][newJ2] = "ground";
+                    game[newI2][newJ2] = "diamond";
+                }
+                else if (game[newI][newJ] === "serpent" && has_food === 0) {
+                    showIndication("I have a ques-s-s-stion for you! <br> But I'm hungry! <br> Bring me s-s-s-some food first.");
+                }
+                else if (game[newI][newJ] === "serpent" && has_food === 1) {
+                    showQuestion();
+                }
+                else if (game[newI][newJ] === "medusa2" && has_medusa2_asked === 0) {
+                    showIndication("Hi sweetling! If you want to pass you have to do me a favor! <br> Answer this delicious question.")
+                }
+                else if (game[newI][newJ] === "minotaur" && has_minotaur_asked === 0) {
+                    showIndication("Halt! <br> You have to pay a toll to get to the surface! <br> So, in coins or questions?");
+                }
+                else if (game[newI][newJ] === "well_stairs" && newI === 3 && getElementCoord("me")[0] !== 2) {
+                    // if you reach the steps which lead to the surface, your character will reach the top of the well
                     image = new Image();
                     image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
                     image.src = map_elements["ground"];
-                }
 
-                image = new Image();
-                image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
-                image.src = map_elements[water[charI][charJ]];
+                    game[charI][charJ] = "ground";
 
-                is_centered = compute_is_centered(charI, charJ, newI, newJ);
-                translate_canvas(is_centered, direction);
-            }
-            else if (game[newI][newJ] === "food" && has_food === 0) {
-                image = new Image();
-                image.onload = drawCanvasImageElem(ctx, image, newI, newJ);
-                image.src = map_elements[water[newI][newJ]];
-
-                image = new Image();
-                image.onload = drawCanvasImageElem(ctx, image, newI, newJ);
-                image.src = map_elements["me"];
-
-                game[newI][newJ] = "me";
-                game[charI][charJ] = water[charI][charJ];
-
-                image = new Image();
-                image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
-                image.src = map_elements[water[charI][charJ]];
-
-                showIndication("You found food!");
-                has_food = 1;
-
-                is_centered = compute_is_centered(charI, charJ, newI, newJ);
-                translate_canvas(is_centered, direction);
-            }
-            else if (game[newI][newJ] === "stairs_to_heaven") {
-                image = new Image();
-                image.onload = drawCanvasImageElem(ctx, image, 1, 1);
-                image.src = map_elements["me"];
-
-                game[1][1] = "me";
-
-                image = new Image();
-                image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
-                image.src = map_elements["grass"];
-
-                image = new Image();
-                image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
-                image.src = map_elements["well"];
-
-                game[charI][charJ] = "me";
-
-                showIndication("Chapter Completed! <br><br> Bidi has reached the sky!"); // we reached the end of the level
-
-                // redirecting to the levels page
-                window.location.replace("Proiect/HAG/levels.html");
-
-                is_centered = compute_is_centered(charI, charJ, newI, newJ);
-                translate_canvas(is_centered, direction);
-            }
-            else { // in front of us is ground
-                image = new Image();
-                image.onload = drawCanvasImageElem(ctx, image, newI, newJ);
-                image.src = map_elements["me"];
-
-                game[charI][charJ] = water[charI][charJ];
-                game[newI][newJ] = "me";
-
-                image = new Image();
-                image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
-                image.src = map_elements[water[charI][charJ]];
-
-                if (newI === 13 && newJ === 15 && has_medusa1_asked === 0) { // if we are in front of medusa1
-                    showIndication("Hello stranger! <br> Might be I have a key for you! <br> But you must first answer me a question!");
-                }
-                else if((newI === 6 && newJ === 4 && has_dark_voice_asked === 0) || (newI === 7 && newJ === 4 && has_dark_voice_asked === 0)) {
-                    // if we are in sight of the dark stranger he appears to ask us a question
                     image = new Image();
-                    image.onload = drawCanvasImageElem(ctx, image, 6, 3);
-                    image.src = map_elements["dark_voice"];
+                    image.onload = drawCanvasImageElem(ctx, image, 2, 2);
+                    image.src = map_elements["me"];
 
-                    showIndication("Boooo! I have a question for you!");
+                    game[2][2] = "me";
+
+                    is_centered = 0;
+                    canvas.style.transform = "translate(" + 0 + "px, " + 0 + "px)";
                 }
-
-                is_centered = compute_is_centered(charI, charJ, newI, newJ);
-                translate_canvas(is_centered, direction);
-            }
-        }
-        else { // the character can't step on that element
-            if (game[newI][newJ] === "stone" && (direction === "up" || direction === "down" || direction === "left" || direction === "right") && game[newI2][newJ2] === "river") {
-                // the stone is in front of river so it can pe pushed to create a new path
-                image = new Image();
-                image.onload = drawCanvasImageElem(ctx, image, newI, newJ);
-                image.src = map_elements["ground"];
-
-                image = new Image();
-                image.onload = drawCanvasImageElem(ctx, image, newI2, newJ2);
-                image.src = map_elements["ground"];
-
-                game[newI][newJ] = water[newI][newJ];
-                game[newI2][newJ2] = water[newI2][newJ2];
-            }
-            else if(game[newI][newJ] === "stone" && (direction === "up" || direction === "down" || direction === "left" || direction === "right") && game[newI2][newJ2] === "ground") {
-                image = new Image();
-                image.onload = drawCanvasImageElem(ctx, image, newI, newJ);
-                image.src = map_elements["ground"];
-
-                image = new Image();
-                image.onload = drawCanvasImageElem(ctx, image, newI2, newJ2);
-                image.src = map_elements["stone"];
-
-                game[newI][newJ] = water[newI][newJ];
-                game[newI2][newJ2] = "stone";
-            }
-            else if(game[newI][newJ] === "stone" && (direction === "up" || direction === "down" || direction === "left" || direction === "right") && game[newI2][newJ2] === "diamond") {
-                // the stone is in front of a free ground so it can be pushed forward
-                image = new Image();
-                image.onload = drawCanvasImageElem(ctx, image, newI, newJ);
-                image.src = map_elements["ground"];
-
-                image = new Image();
-                image.onload = drawCanvasImageElem(ctx, image, newI2, newJ2);
-                image.src = map_elements["ground"];
-
-                image = new Image();
-                image.onload = drawCanvasImageElem(ctx, image, newI2, newJ2);
-                image.src = map_elements["diamond"];
-
-                game[newI][newJ] = water[newI][newJ];
-                water[newI2][newJ2] = "ground";
-                game[newI2][newJ2] = "diamond";
-            }
-            else if (game[newI][newJ] === "serpent" && has_food === 0) {
-                showIndication("I have a ques-s-s-stion for you! <br> But I'm hungry! <br> Bring me s-s-s-some food first.");
-            }
-            else if (game[newI][newJ] === "serpent" && has_food === 1) {
-                showQuestion();
-            }
-            else if (game[newI][newJ] === "medusa2" && has_medusa2_asked === 0) {
-                showIndication("Hi sweetling! If you want to pass you have to do me a favor! <br> Answer this delicious question.")
-            }
-            else if (game[newI][newJ] === "minotaur" && has_minotaur_asked === 0) {
-                showIndication("Halt! <br> You have to pay a toll to get to the surface! <br> So, in coins or questions?");
-            }
-            else if (game[newI][newJ] === "well_stairs" && newI === 3 && getElementCoord("me")[0] !== 2) {
-                // if you reach the steps which lead to the surface, your character will reach the top of the well
-                image = new Image();
-                image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
-                image.src = map_elements["ground"];
-
-                game[charI][charJ] = "ground";
-
-                image = new Image();
-                image.onload = drawCanvasImageElem(ctx, image, 2, 2);
-                image.src = map_elements["me"];
-
-                game[2][2] = "me";
-
-                is_centered = 0;
-                canvas.style.transform = "translate(" + 0 + "px, " + 0 + "px)";
-            }
-            else { // nothing happens because you can't jump over obstacles
-                //alert("You can't jump over obstacles!");
+                else { // nothing happens because you can't jump over obstacles
+                    //alert("You can't jump over obstacles!");
+                }
             }
         }
     }
@@ -1116,6 +1125,7 @@ function init() {
 
                     game[6][13] = "diamond";
                     diamonds--;
+                    document.getElementsByClassName("gems-score")[0].innerHTML = String(diamonds);
                     has_first_diamond = 0;
                 }
             }
@@ -1269,15 +1279,16 @@ function init() {
     var submit_button = document.getElementById("submit_button_text");
     submit_button.onclick = function() { // after submitting the answer we announce the user whether he answered correctly or wrong
         if (chosen_option_nr === categories[category].questions[asked_questions[asked_questions.length - 1]].correct_answer) {
-            alert("Correct answer! You received a star!");
+            // alert("Correct answer! You received a star!");
             points++; // correct answers means more stars to your collection
+            document.getElementsByClassName("stars-score")[0].innerHTML = String(points);
             hideQuestion();
         }
         else if(chosen_option_nr === "") { // you have to select an answer before submitting
             //alert("You must first select an answer!");
         }
         else {
-            alert("Wrong answer!");
+            // alert("Wrong answer!");
             hideQuestion();
         }
     };
@@ -1286,6 +1297,8 @@ function init() {
     exit_button.onclick = function() {
         hideIndication();
     };
+
+    document.getElementsByClassName("indication_div_container")[0].style.visibility = "visible";
     document.getElementById("indication_text").innerHTML = "Chapter 2: " + categories[category].description + "<br><br>"
         + "Stones can be pushed, especially to create a crossing over water. Press W, A, S, D when you are near a stone.";
 

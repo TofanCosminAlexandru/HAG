@@ -553,7 +553,7 @@ var map_elements = {
 function init() {
     /* --- MAP --- */
     var canvas = document.getElementById('canvas');
-    canvas.style.transform = "translate(0px, -1188px)";
+    canvas.style.transform = "translate(0px, " + -((((18/9)*window.innerHeight)/18) * 9) + "px)";
     var i, j, image;
 
     // this function translates the canvas as the character moves
@@ -571,30 +571,30 @@ function init() {
                 canvas.style.transform = "translate(" + x + "px, " + y + "px)";
             }
             else if (direction === "up") {
-                canvas.style.transform = "translate(" + x + "px, " + (y + 108) + "px)";
+                canvas.style.transform = "translate(" + x + "px, " + (y + (((18/9)*window.innerHeight)/18)) + "px)";
             }
             else if (direction === "down") {
-                canvas.style.transform = "translate(" + x + "px, " + (y - 108) + "px)";
+                canvas.style.transform = "translate(" + x + "px, " + (y - (((18/9)*window.innerHeight)/18)) + "px)";
             }
             else if (direction === "rightup") {
-                canvas.style.transform = "translate(" + x + "px, " + (y + 108) + "px)";
+                canvas.style.transform = "translate(" + x + "px, " + (y + (((18/9)*window.innerHeight)/18)) + "px)";
             }
             else if (direction === "leftup") {
-                canvas.style.transform = "translate(" + x + "px, " + (y + 108) + "px)";
+                canvas.style.transform = "translate(" + x + "px, " + (y + (((18/9)*window.innerHeight)/18)) + "px)";
             }
             else if (direction === "rightdown") {
-                canvas.style.transform = "translate(" + x + "px, " + (y - 108) + "px)";
+                canvas.style.transform = "translate(" + x + "px, " + (y - (((18/9)*window.innerHeight)/18)) + "px)";
             }
             else if (direction === "leftdown") {
-                canvas.style.transform = "translate(" + x + "px, " + (y - 108) + "px)";
+                canvas.style.transform = "translate(" + x + "px, " + (y - (((18/9)*window.innerHeight)/18)) + "px)";
             }
         }
         else if (is_centered === 2) {
             if (direction === "right") {
-                canvas.style.transform = "translate(" + (x - 171) + "px, " + y + "px)";
+                canvas.style.transform = "translate(" + (x - (((22/11)*window.innerWidth)/22)) + "px, " + y + "px)";
             }
             else if (direction === "left") {
-                canvas.style.transform = "translate(" + (x + 171) + "px, " + y + "px)";
+                canvas.style.transform = "translate(" + (x + (((22/11)*window.innerWidth)/22)) + "px, " + y + "px)";
             }
             else if (direction === "up") {
                 canvas.style.transform = "translate(" + x + "px, " + y + "px)";
@@ -603,42 +603,42 @@ function init() {
                 canvas.style.transform = "translate(" + x + "px, " + y + "px)";
             }
             else if (direction === "rightup") {
-                canvas.style.transform = "translate(" + (x - 171) + "px, " + y + "px)";
+                canvas.style.transform = "translate(" + (x - (((22/11)*window.innerWidth)/22)) + "px, " + y + "px)";
             }
             else if (direction === "leftup") {
-                canvas.style.transform = "translate(" + (x + 171) + "px, " + y + "px)";
+                canvas.style.transform = "translate(" + (x + (((22/11)*window.innerWidth)/22)) + "px, " + y + "px)";
             }
             else if (direction === "rightdown") {
-                canvas.style.transform = "translate(" + (x - 171) + "px, " + y + "px)";
+                canvas.style.transform = "translate(" + (x - (((22/11)*window.innerWidth)/22)) + "px, " + y + "px)";
             }
             else if (direction === "leftdown") {
-                canvas.style.transform = "translate(" + (x + 171) + "px, " + y + "px)";
+                canvas.style.transform = "translate(" + (x + (((22/11)*window.innerWidth)/22)) + "px, " + y + "px)";
             }
         }
         else if (is_centered === 3) {
             if (direction === "right") {
-                canvas.style.transform = "translate(" + (x - 171) + "px, " + y + "px)";
+                canvas.style.transform = "translate(" + (x - (((22/11)*window.innerWidth)/22)) + "px, " + y + "px)";
             }
             else if (direction === "left") {
-                canvas.style.transform = "translate(" + (x + 171) + "px, " + y + "px)";
+                canvas.style.transform = "translate(" + (x + (((22/11)*window.innerWidth)/22)) + "px, " + y + "px)";
             }
             else if (direction === "up") {
-                canvas.style.transform = "translate(" + x + "px, " + (y + 108) + "px)";
+                canvas.style.transform = "translate(" + x + "px, " + (y + (((18/9)*window.innerHeight)/18)) + "px)";
             }
             else if (direction === "down") {
-                canvas.style.transform = "translate(" + x + "px, " + (y - 108) + "px)";
+                canvas.style.transform = "translate(" + x + "px, " + (y - (((18/9)*window.innerHeight)/18)) + "px)";
             }
             else if (direction === "rightup") {
-                canvas.style.transform = "translate(" + (x - 171) + "px, " + (y + 108) + "px)";
+                canvas.style.transform = "translate(" + (x - (((22/11)*window.innerWidth)/22)) + "px, " + (y + (((18/9)*window.innerHeight)/18)) + "px)";
             }
             else if (direction === "leftup") {
-                canvas.style.transform = "translate(" + (x + 171) + "px, " + (y + 108) + "px)";
+                canvas.style.transform = "translate(" + (x + (((22/11)*window.innerWidth)/22)) + "px, " + (y + (((18/9)*window.innerHeight)/18)) + "px)";
             }
             else if (direction === "rightdown") {
-                canvas.style.transform = "translate(" + (x - 171) + "px, " + (y - 108) + "px)";
+                canvas.style.transform = "translate(" + (x - (((22/11)*window.innerWidth)/22)) + "px, " + (y - (((18/9)*window.innerHeight)/18)) + "px)";
             }
             else if (direction === "leftdown") {
-                canvas.style.transform = "translate(" + (x + 171) + "px, " + (y - 108) + "px)";
+                canvas.style.transform = "translate(" + (x + (((22/11)*window.innerWidth)/22)) + "px, " + (y - (((18/9)*window.innerHeight)/18)) + "px)";
             }
         }
     }
@@ -646,13 +646,13 @@ function init() {
     // this function computes the centrality of the character
     function compute_is_centered(charI, charJ, newI, newJ) {
         is_centered = 0;
-        if ((newI > 3 && newI < 14) || ((newI === 3 || newI === 14) && (charI > 3 && charI < 14))) {
+        if ((newI > 4 && newI < 13) || ((newI === 4 || newI === 13) && (charI > 4 && charI < 13))) {
             is_centered = 1;
         }
-        else if ((newJ > 4 && newJ < 17) || ((newJ === 4 || newJ === 17) && (charJ > 4 && charJ < 17))) {
+        else if ((newJ > 5 && newJ < 16) || ((newJ === 5 || newJ === 16) && (charJ > 5 && charJ < 16))) {
             is_centered = 2;
         }
-        if (((newI > 3 && newI < 14) || ((newI === 3 || newI === 14) && (charI > 3 && charI < 14))) && ((newJ > 4 && newJ < 17) || ((newJ === 4 || newJ === 17) && (charJ > 4 && charJ < 17)))) {
+        if (((newI > 4 && newI < 13) || ((newI === 4 || newI === 13) && (charI > 4 && charI < 13))) && ((newJ > 5 && newJ < 16) || ((newJ === 5 || newJ === 16) && (charJ > 5 && charJ < 16)))) {
             is_centered = 3;
         }
         return is_centered;
@@ -662,8 +662,8 @@ function init() {
     var height = window.innerHeight;
     var width = window.innerWidth;
 
-    canvas.style.width = (22/9)*width + "px";
-    canvas.style.height = (18/7)*height + "px";
+    canvas.style.width = (22/11)*width + "px";
+    canvas.style.height = (18/9)*height + "px";
 
     // draw the background of the canvas
     if (canvas.getContext) {
@@ -936,7 +936,7 @@ function init() {
                         image.onload = drawCanvasImageElem(ctx, 17, 6, "me");
 
                         is_centered = 2;
-                        canvas.style.transform = "translate(" + (-342) + "px, " + (-1188) + "px)";
+                        canvas.style.transform = "translate(" + -(((22/11)*window.innerWidth)/22) + "px, " + -(((18/9)*window.innerHeight)/18 * 9) + "px)";
                     }
                     else if (game[newI][newJ] === "ray4" || game[newI][newJ] === "ray5" || game[newI][newJ] === "ray6" || game[newI][newJ] === "ray7" || game[newI][newJ] === "ray8" || game[newI][newJ] === "ray9" || game[newI][newJ] === "ray10" || game[newI][newJ] === "ray11") {
                         if (charI === 13 && charJ === 13) {
@@ -955,7 +955,7 @@ function init() {
                         image.onload = drawCanvasImageElem(ctx, 17, 12, "me");
 
                         is_centered = 2;
-                        canvas.style.transform = "translate(" + (-1360) + "px, " + (-1188) + "px)";
+                        canvas.style.transform = "translate(" + -(((22/11)*window.innerWidth)/22 * 7) + "px, " + -(((18/9)*window.innerHeight)/18 * 9) + "px)";
                     }
                     else {
                         if (charI === 14 && charJ === 18) {
@@ -989,7 +989,7 @@ function init() {
                         }
 
                         is_centered = 2;
-                        canvas.style.transform = "translate(" + (-2210) + "px, " + (-1188) + "px)";
+                        canvas.style.transform = "translate(" + -(((22/11)*window.innerWidth)/22 * 11) + "px, " + -(((18/9)*window.innerHeight)/18 * 9) + "px)";
                     }
                 }
                 else if (sky[charI][charJ].match(/cloud[1-9]*[0-8]*/) !== null && game[charI][charJ] === "me") {
@@ -1026,7 +1026,7 @@ function init() {
                         image.onload = drawCanvasImageElem(ctx, 17, 6, "me");
 
                         is_centered = 2;
-                        canvas.style.transform = "translate(" + (-342) + "px, " + (-1188) + "px)";
+                        canvas.style.transform = "translate(" + -(((22/11)*window.innerWidth)/22) + "px, " + -(((18/9)*window.innerHeight)/18 * 9) + "px)";
                     }
                     else if (game[newI][newJ] === "ray4" || game[newI][newJ] === "ray5" || game[newI][newJ] === "ray6" || game[newI][newJ] === "ray7" || game[newI][newJ] === "ray8" || game[newI][newJ] === "ray9" || game[newI][newJ] === "ray10" || game[newI][newJ] === "ray11") {
                         if (charI === 13 && charJ === 13) {
@@ -1044,7 +1044,7 @@ function init() {
                         image.onload = drawCanvasImageElem(ctx, 17, 12, "me");
 
                         is_centered = 2;
-                        canvas.style.transform = "translate(" + (-1360) + "px, " + (-1188) + "px)";
+                        canvas.style.transform = "translate(" + -(((22/11)*window.innerWidth)/22 * 7) + "px, " + -(((18/9)*window.innerHeight)/18 * 9) + "px)";
                     }
                     else {
                         if (charI === 14 && charJ === 18) {
@@ -1077,7 +1077,7 @@ function init() {
                         }
 
                         is_centered = 2;
-                        canvas.style.transform = "translate(" + (-2210) + "px, " + (-1188) + "px)";
+                        canvas.style.transform = "translate(" + -(((22/11)*window.innerWidth)/22 * 11) + "px, " + -(((18/9)*window.innerHeight)/18 * 9) + "px)";
                     }
                 }
                 else if ((sky[charI][charJ] === "gate2" || sky[charI][charJ] === "gate3") && game[charI][charJ] === "me") {
@@ -1215,7 +1215,7 @@ function init() {
                     game[8][5] = "me";
 
                     is_centered = 3;
-                    canvas.style.transform = "translate(" + (-171) + "px, " + (-540) + "px)";
+                    canvas.style.transform = "translate(" + 0 + "px, " + -(((18/9)*window.innerHeight)/18 * 4) + "px)";
                 }
                 else if (game[newI][newJ] === "portal" && direction === "right") {
                     drawCanvasImageElem(ctx, charI, charJ, "ground");
@@ -1225,7 +1225,7 @@ function init() {
                     game[8][11] = "me";
 
                     is_centered = 3;
-                    canvas.style.transform = "translate(" + (-1190) + "px, " + (-540) + "px)";
+                    canvas.style.transform = "translate(" + -(((22/11)*window.innerWidth)/22 * 6) + "px, " + -(((18/9)*window.innerHeight)/18 * 4) + "px)";
                 }
                 else if (game[newI][newJ] === "pegasus" && has_pegasus_asked === 0) {
                     showIndication("So you want one of my precious feathers to heal a sun. <br> Hmm.. let me think. <br> Very well, but you have to answer me a question and scratch my back!");
@@ -2186,14 +2186,14 @@ function init() {
                     image.onload = drawCanvasImageElem(ctx, 17, 6, "me");
 
                     is_centered = 2;
-                    canvas.style.transform = "translate(" + (-342) + "px, " + (-1188) + "px)";
+                    canvas.style.transform = "translate(" + -(((22/11)*window.innerWidth)/22) + "px, " + -(((18/9)*window.innerHeight)/18 * 9) + "px)";
                 }
                 else if (ray === "ray4" || ray === "ray5" || ray === "ray6" || ray === "ray7" || ray === "ray8" || ray === "ray9" || ray === "ray10" || ray === "ray11") {
                     game[17][12] = "me";
                     image.onload = drawCanvasImageElem(ctx, 17, 12, "me");
 
                     is_centered = 2;
-                    canvas.style.transform = "translate(" + (-1360) + "px, " + (-1188) + "px)";
+                    canvas.style.transform = "translate(" + -(((22/11)*window.innerWidth)/22 * 7) + "px, " + -(((18/9)*window.innerHeight)/18 * 9) + "px)";
                 }
                 else {
                     game[15][17] = "me";
@@ -2215,7 +2215,7 @@ function init() {
                     }
 
                     is_centered = 2;
-                    canvas.style.transform = "translate(" + (-2210) + "px, " + (-1188) + "px)";
+                    canvas.style.transform = "translate(" + -(((22/11)*window.innerWidth)/22 * 11) + "px, " + -(((18/9)*window.innerHeight)/18 * 9) + "px)";
                 }
             }
 

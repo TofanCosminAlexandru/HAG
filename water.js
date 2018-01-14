@@ -788,10 +788,12 @@ function init() {
                     image.onload = drawCanvasImageElem(ctx, image, newI, newJ);
                     image.src = map_elements[water[newI][newJ]];
 
+<<<<<<< HEAD
                     // draw my character on the new position
                     image = new Image();
                     image.onload = drawCanvasImageElem(ctx, image, newI, newJ);
                     image.src = map_elements["me"];
+=======
                 is_centered = 2;
                 canvas.style.transform = "translate(" + -((((20/9)*window.innerWidth)/20) * 10) + "px, " + 0 + "px)";
             }
@@ -799,6 +801,7 @@ function init() {
                 image = new Image();
                 image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
                 image.src = map_elements[water[charI][charJ]];
+>>>>>>> 33615dcb43babc2fd43c13e734a5b8ed6be2f3e6
 
                     // update the matrices
                     game[newI][newJ] = water[newI][newJ];
@@ -820,8 +823,10 @@ function init() {
                     image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
                     image.src = map_elements[water[charI][charJ]];
 
+<<<<<<< HEAD
                     game[charI][charJ] = water[charI][charJ];
                     game[1][14] = "me"; // it pushes my character at that position
+=======
                 is_centered = 3;
                 canvas.style.transform = "translate(" + -(((20/9)*window.innerWidth)/20 * 11) + "px, " + -(((15/7)*window.innerHeight)/15 * 2) + "px)";
             }
@@ -834,35 +839,45 @@ function init() {
                 // the spikes push my character at certain positions
                 if (game[newI][newJ] === "spikes1" && direction === "right") {
                     game[13][7] = "me";
+>>>>>>> 33615dcb43babc2fd43c13e734a5b8ed6be2f3e6
 
                     image = new Image();
                     image.onload = drawCanvasImageElem(ctx, image, 1, 14);
                     image.src = map_elements["me"];
 
                     is_centered = 2;
+<<<<<<< HEAD
                     canvas.style.transform = "translate(" + (-1699) + "px, " + 0 + "px)";
+=======
                     canvas.style.transform = "translate(" + -(((20/9)*window.innerWidth)/20 * 3) + "px, " + -(((15/7)*window.innerHeight)/15 * 8) + "px)";
+>>>>>>> 33615dcb43babc2fd43c13e734a5b8ed6be2f3e6
                 }
                 else if (game[newI][newJ] === "rat2") {
                     image = new Image();
                     image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
                     image.src = map_elements[water[charI][charJ]];
+
+<<<<<<< HEAD
                     game[charI][charJ] = water[charI][charJ];
                     game[5][15] = "me";
+=======
                     is_centered = 2;
                     canvas.style.transform = "translate(" + -(((20/9)*window.innerWidth)/20 * 7) + "px, " + -(((15/7)*window.innerHeight)/15 * 8) + "px)";
                 }
                 else {
                     game[13][5] = "me";
+>>>>>>> 33615dcb43babc2fd43c13e734a5b8ed6be2f3e6
 
                     image = new Image();
                     image.onload = drawCanvasImageElem(ctx, image, 5, 15);
                     image.src = map_elements["me"];
 
+<<<<<<< HEAD
                     // this rat can take his diamond back from me
                     image = new Image();
                     image.onload = drawCanvasImageElem(ctx, image, 6, 13);
                     image.src = map_elements["diamond"];
+=======
                     is_centered = 2;
                     canvas.style.transform = "translate(" + -(((20/9)*window.innerWidth)/20) + "px, " + -(((15/7)*window.innerHeight)/15 * 8) + "px)";
                 }
@@ -877,6 +892,7 @@ function init() {
 
                 game[charI][charJ] = water[charI][charJ];
                 game[newI][newJ] = "me";
+>>>>>>> 33615dcb43babc2fd43c13e734a5b8ed6be2f3e6
 
                     game[6][13] = "diamond";
                     if (has_first_diamond === 1) {

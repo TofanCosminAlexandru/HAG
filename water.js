@@ -498,7 +498,7 @@ var map_elements = {
 function init() {
     /* --- MAP --- */
     var canvas = document.getElementById('canvas');
-    canvas.style.transform = "translate(-1881px, 0px)"; // (-11 * 171, 0 * 108)
+    canvas.style.transform = "translate(" + -((((20/9)*window.innerWidth)/20) * 11) + "px, 0px)"; // (-11 * ~~171, 0 * ~~108)
 
     // this function translates the canvas as the character moves
     function translate_canvas(is_centered, direction) {
@@ -515,30 +515,30 @@ function init() {
                 canvas.style.transform = "translate(" + x + "px, " + y + "px)";
             }
             else if (direction === "up") {
-                canvas.style.transform = "translate(" + x + "px, " + (y + 108) + "px)";
+                canvas.style.transform = "translate(" + x + "px, " + (y + (((15/7)*window.innerHeight)/15)) + "px)";
             }
             else if (direction === "down") {
-                canvas.style.transform = "translate(" + x + "px, " + (y - 108) + "px)";
+                canvas.style.transform = "translate(" + x + "px, " + (y - (((15/7)*window.innerHeight)/15)) + "px)";
             }
             else if (direction === "rightup") {
-                canvas.style.transform = "translate(" + x + "px, " + (y + 108) + "px)";
+                canvas.style.transform = "translate(" + x + "px, " + (y + (((15/7)*window.innerHeight)/15)) + "px)";
             }
             else if (direction === "leftup") {
-                canvas.style.transform = "translate(" + x + "px, " + (y + 108) + "px)";
+                canvas.style.transform = "translate(" + x + "px, " + (y + (((15/7)*window.innerHeight)/15)) + "px)";
             }
             else if (direction === "rightdown") {
-                canvas.style.transform = "translate(" + x + "px, " + (y - 108) + "px)";
+                canvas.style.transform = "translate(" + x + "px, " + (y - (((15/7)*window.innerHeight)/15)) + "px)";
             }
             else if (direction === "leftdown") {
-                canvas.style.transform = "translate(" + x + "px, " + (y - 108) + "px)";
+                canvas.style.transform = "translate(" + x + "px, " + (y - (((15/7)*window.innerHeight)/15)) + "px)";
             }
         }
         else if (is_centered === 2) {
             if (direction === "right") {
-                canvas.style.transform = "translate(" + (x - 171) + "px, " + y + "px)";
+                canvas.style.transform = "translate(" + (x - (((20/9)*window.innerWidth)/20)) + "px, " + y + "px)";
             }
             else if (direction === "left") {
-                canvas.style.transform = "translate(" + (x + 171) + "px, " + y + "px)";
+                canvas.style.transform = "translate(" + (x + (((20/9)*window.innerWidth)/20)) + "px, " + y + "px)";
             }
             else if (direction === "up") {
                 canvas.style.transform = "translate(" + x + "px, " + y + "px)";
@@ -547,42 +547,42 @@ function init() {
                 canvas.style.transform = "translate(" + x + "px, " + y + "px)";
             }
             else if (direction === "rightup") {
-                canvas.style.transform = "translate(" + (x - 171) + "px, " + y + "px)";
+                canvas.style.transform = "translate(" + (x - (((20/9)*window.innerWidth)/20)) + "px, " + y + "px)";
             }
             else if (direction === "leftup") {
-                canvas.style.transform = "translate(" + (x + 171) + "px, " + y + "px)";
+                canvas.style.transform = "translate(" + (x + (((20/9)*window.innerWidth)/20)) + "px, " + y + "px)";
             }
             else if (direction === "rightdown") {
-                canvas.style.transform = "translate(" + (x - 171) + "px, " + y + "px)";
+                canvas.style.transform = "translate(" + (x - (((20/9)*window.innerWidth)/20)) + "px, " + y + "px)";
             }
             else if (direction === "leftdown") {
-                canvas.style.transform = "translate(" + (x + 171) + "px, " + y + "px)";
+                canvas.style.transform = "translate(" + (x + (((20/9)*window.innerWidth)/20)) + "px, " + y + "px)";
             }
         }
         else if (is_centered === 3) {
             if (direction === "right") {
-                canvas.style.transform = "translate(" + (x - 171) + "px, " + y + "px)";
+                canvas.style.transform = "translate(" + (x - (((20/9)*window.innerWidth)/20)) + "px, " + y + "px)";
             }
             else if (direction === "left") {
-                canvas.style.transform = "translate(" + (x + 171) + "px, " + y + "px)";
+                canvas.style.transform = "translate(" + (x + (((20/9)*window.innerWidth)/20)) + "px, " + y + "px)";
             }
             else if (direction === "up") {
-                canvas.style.transform = "translate(" + x + "px, " + (y + 108) + "px)";
+                canvas.style.transform = "translate(" + x + "px, " + (y + (((15/7)*window.innerHeight)/15)) + "px)";
             }
             else if (direction === "down") {
-                canvas.style.transform = "translate(" + x + "px, " + (y - 108) + "px)";
+                canvas.style.transform = "translate(" + x + "px, " + (y - (((15/7)*window.innerHeight)/15)) + "px)";
             }
             else if (direction === "rightup") {
-                canvas.style.transform = "translate(" + (x - 171) + "px, " + (y + 108) + "px)";
+                canvas.style.transform = "translate(" + (x - (((20/9)*window.innerWidth)/20)) + "px, " + (y + (((15/7)*window.innerHeight)/15)) + "px)";
             }
             else if (direction === "leftup") {
-                canvas.style.transform = "translate(" + (x + 171) + "px, " + (y + 108) + "px)";
+                canvas.style.transform = "translate(" + (x + (((20/9)*window.innerWidth)/20)) + "px, " + (y + (((15/7)*window.innerHeight)/15)) + "px)";
             }
             else if (direction === "rightdown") {
-                canvas.style.transform = "translate(" + (x - 171) + "px, " + (y - 108) + "px)";
+                canvas.style.transform = "translate(" + (x - (((20/9)*window.innerWidth)/20)) + "px, " + (y - (((15/7)*window.innerHeight)/15)) + "px)";
             }
             else if (direction === "leftdown") {
-                canvas.style.transform = "translate(" + (x + 171) + "px, " + (y - 108) + "px)";
+                canvas.style.transform = "translate(" + (x + (((20/9)*window.innerWidth)/20)) + "px, " + (y - (((15/7)*window.innerHeight)/15)) + "px)";
             }
         }
     }
@@ -603,8 +603,8 @@ function init() {
     }
 
     // adjust the canvas to match the size of the screen
-    var height = window.innerHeight; // 1536
-    var width = window.innerWidth; // 759
+    var height = window.innerHeight; // 759
+    var width = window.innerWidth; // 1536
 
     canvas.style.width = (20/9)*width + "px";
     canvas.style.height = (15/7)*height + "px";
@@ -788,10 +788,20 @@ function init() {
                     image.onload = drawCanvasImageElem(ctx, image, newI, newJ);
                     image.src = map_elements[water[newI][newJ]];
 
+<<<<<<< HEAD
                     // draw my character on the new position
                     image = new Image();
                     image.onload = drawCanvasImageElem(ctx, image, newI, newJ);
                     image.src = map_elements["me"];
+=======
+                is_centered = 2;
+                canvas.style.transform = "translate(" + -((((20/9)*window.innerWidth)/20) * 10) + "px, " + 0 + "px)";
+            }
+            else if (game[newI][newJ] === "rat2") {
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+                image.src = map_elements[water[charI][charJ]];
+>>>>>>> 33615dcb43babc2fd43c13e734a5b8ed6be2f3e6
 
                     // update the matrices
                     game[newI][newJ] = water[newI][newJ];
@@ -813,32 +823,76 @@ function init() {
                     image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
                     image.src = map_elements[water[charI][charJ]];
 
+<<<<<<< HEAD
                     game[charI][charJ] = water[charI][charJ];
                     game[1][14] = "me"; // it pushes my character at that position
+=======
+                is_centered = 3;
+                canvas.style.transform = "translate(" + -(((20/9)*window.innerWidth)/20 * 11) + "px, " + -(((15/7)*window.innerHeight)/15 * 2) + "px)";
+            }
+            else if (game[newI][newJ] === "spikes1" || game[newI][newJ] === "spikes2" || game[newI][newJ] === "spikes3" || game[newI][newJ] === "spikes4") {
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
+                image.src = map_elements[water[charI][charJ]];
+
+                game[charI][charJ] = water[charI][charJ];
+                // the spikes push my character at certain positions
+                if (game[newI][newJ] === "spikes1" && direction === "right") {
+                    game[13][7] = "me";
+>>>>>>> 33615dcb43babc2fd43c13e734a5b8ed6be2f3e6
 
                     image = new Image();
                     image.onload = drawCanvasImageElem(ctx, image, 1, 14);
                     image.src = map_elements["me"];
 
                     is_centered = 2;
+<<<<<<< HEAD
                     canvas.style.transform = "translate(" + (-1699) + "px, " + 0 + "px)";
+=======
+                    canvas.style.transform = "translate(" + -(((20/9)*window.innerWidth)/20 * 3) + "px, " + -(((15/7)*window.innerHeight)/15 * 8) + "px)";
+>>>>>>> 33615dcb43babc2fd43c13e734a5b8ed6be2f3e6
                 }
                 else if (game[newI][newJ] === "rat2") {
                     image = new Image();
                     image.onload = drawCanvasImageElem(ctx, image, charI, charJ);
                     image.src = map_elements[water[charI][charJ]];
 
+<<<<<<< HEAD
                     game[charI][charJ] = water[charI][charJ];
                     game[5][15] = "me";
+=======
+                    is_centered = 2;
+                    canvas.style.transform = "translate(" + -(((20/9)*window.innerWidth)/20 * 7) + "px, " + -(((15/7)*window.innerHeight)/15 * 8) + "px)";
+                }
+                else {
+                    game[13][5] = "me";
+>>>>>>> 33615dcb43babc2fd43c13e734a5b8ed6be2f3e6
 
                     image = new Image();
                     image.onload = drawCanvasImageElem(ctx, image, 5, 15);
                     image.src = map_elements["me"];
 
+<<<<<<< HEAD
                     // this rat can take his diamond back from me
                     image = new Image();
                     image.onload = drawCanvasImageElem(ctx, image, 6, 13);
                     image.src = map_elements["diamond"];
+=======
+                    is_centered = 2;
+                    canvas.style.transform = "translate(" + -(((20/9)*window.innerWidth)/20) + "px, " + -(((15/7)*window.innerHeight)/15 * 8) + "px)";
+                }
+            }
+            else if (game[newI][newJ] === "gate" && has_key === 0) { // you don't have a key.. you'll receive a message that you must first find a key for the gate
+                showIndication("The gate is closed. <br> You need a key to open it.");
+            }
+            else if ((game[newI][newJ] === "gate" && has_key === 1) || water[charI][charJ] === "gate") { // now you can pass that gate
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, newI, newJ);
+                image.src = map_elements["me"];
+
+                game[charI][charJ] = water[charI][charJ];
+                game[newI][newJ] = "me";
+>>>>>>> 33615dcb43babc2fd43c13e734a5b8ed6be2f3e6
 
                     game[6][13] = "diamond";
                     if (has_first_diamond === 1) {
@@ -1136,11 +1190,11 @@ function init() {
             image.src = map_elements["me"];
             if (rat === "rat1") {
                 is_centered = 2;
-                canvas.style.transform = "translate(" + (-1699) + "px, " + 0 + "px)";
+                canvas.style.transform = "translate(" + -((((20/9)*window.innerWidth)/20) * 10) + "px, " + 0 + "px)";
             }
             else if (rat === "rat2") {
                 is_centered = 3;
-                canvas.style.transform = "translate(" + (-1870) + "px, " + (-216) + "px)";
+                canvas.style.transform = "translate(" + -(((20/9)*window.innerWidth)/20 * 11) + "px, " + -(((15/7)*window.innerHeight)/15 * 2) + "px)";
             }
         }
 
@@ -1215,7 +1269,7 @@ function init() {
                     image.src = map_elements["me"];
 
                     is_centered = 2;
-                    canvas.style.transform = "translate(" + (-502) + "px, " + (-864) + "px)";
+                    canvas.style.transform = "translate(" + -(((20/9)*window.innerWidth)/20 * 3) + "px, " + -(((15/7)*window.innerHeight)/15 * 8) + "px)";
                 }
                 else {
                     game[13][5] = "me";
@@ -1225,7 +1279,7 @@ function init() {
                     image.src = map_elements["me"];
 
                     is_centered = 2;
-                    canvas.style.transform = "translate(" + (-160) + "px, " + (-864) + "px)";
+                    canvas.style.transform = "translate(" + -(((20/9)*window.innerWidth)/20) + "px, " + -(((15/7)*window.innerHeight)/15 * 8) + "px)";
                 }
             }
 

@@ -1179,7 +1179,7 @@ function init() {
                         showIndication("Chapter Completed! <br><br> Bidi has reached the vulcano site!"); // we reached the end of the level
 
                         // redirecting to the levels page
-                        window.location.replace("Proiect/HAG/levels.html");
+                        window.location.replace("levels.html");
 
                         is_centered = compute_is_centered(charI, charJ, newI, newJ);
                         translate_canvas(is_centered, direction);

@@ -26,6 +26,7 @@ body {
 
 .question_div_container {
     cursor: url(images/my_cursor.png), auto;
+    background-color: rgba(0, 0, 0, 0.7);
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -88,7 +89,7 @@ body {
 
 .indication_div_container {
     visibility: visible;
-
+    background-color: rgba(0, 0, 0, 0.7);
     position: fixed;
     z-index: 3;
     top: 0;

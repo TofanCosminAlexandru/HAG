@@ -1850,7 +1850,7 @@ function init() {
             image.onload = drawCanvasImageElem(ctx, image, getObjectCoord("well")[0], getObjectCoord("well")[1]);
             image.src = map_elements["well"];
 
-            window.location.replace("/HAG/levels.html");
+            window.location.replace("levels.html");
         }
     }
 

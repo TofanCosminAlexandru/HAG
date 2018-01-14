@@ -502,8 +502,8 @@ function init() {
 
     // this function translates the canvas as the character moves
     function translate_canvas(is_centered, direction) {
-        var x = parseInt(canvas.style.transform.split("(")[1].split(",")[0].split("px")[0]);
-        var y = parseInt(canvas.style.transform.split("(")[1].split(", ")[1].split("px")[0]);
+        x = parseInt(canvas.style.transform.split("(")[1].split(",")[0].split("px")[0]);
+        y = parseInt(canvas.style.transform.split("(")[1].split(", ")[1].split("px")[0]);
         if (is_centered === 0) {
 
         }
@@ -593,10 +593,10 @@ function init() {
         if ((newI > 3 && newI < 11) || ((newI === 3 || newI === 11) && (charI > 3 && charI < 11))) {
             is_centered = 1;
         }
-        else if ((newJ > 4 && newJ < 15) || ((newJ === 4 || newJ === 15) && (charJ > 4 && charJ < 15))) {
+        else if ((newJ > 4 && newJ < 15 ) || ((newJ === 4 || newJ === 15) && (charJ > 4 && charJ < 15))) {
             is_centered = 2;
         }
-        if (((newI > 3 && newI < 11) || ((newI === 3 || newI === 11) && (charI > 3 && charI < 11))) && ((newJ > 4 && newJ < 15) || ((newJ === 4 || newJ === 15) && (charJ > 4 && charJ < 15)))) {
+        if (((newI > 3 && newI < 11) || ((newI === 3 || newI === 11) && (charI > 3 && charI < 11))) && ((newJ > 4 && newJ < 15 ) || ((newJ === 4 || newJ === 15) && (charJ > 4 && charJ < 15)))) {
             is_centered = 3;
         }
         return is_centered;

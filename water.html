@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang = "en-US">
+    <head>
+        <meta charset = "utf-8">
+        <title> HTTP Adventure Game </title>
+
+
+        <meta name = "author" content = "Mihalachi Bogdan-Marian, Tofan Cosmin-Alexandru, Nemtoc Ciprian">
+        <meta name = "description" content = "HAG (HTTP Adventure Game) is a platform for students to learn the HTTP Protocol while playing through a real game.">
+        <meta name = "viewport" content = "width=device-width, initial-scale=1">
+        <link rel = "shortcut icon" href = "images/logoV2.svg" type = "image/x-icon">
+        <link rel = "stylesheet" href = "water.css">
+    </head>
+
+    <body onload = "init()">
+        <main>
+            <canvas id = "canvas" width = "4000px" height = "3000px"> Your browser does not support the HTML5 canvas tag. </canvas>
+
+            <div class = "indication_div_container">
+                <div class = "indication_div">
+                    <div class = "indication">
+                        <p id = "indication_text">  </p>
+                    </div>
+                    <div class = "exit_button">
+                        <p id = "exit_button_text"> Next </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class = "question_div_container">
+                <div class = "question_div">
+                    <div class = "question">
+                        <p id = "question_text">  </p>
+                    </div>
+                    <div class = "answers">
+                        <ul id = "options">
+                            <li id = "option1">  </li>
+                            <li id = "option2">  </li>
+                            <li id = "option3">  </li>
+                            <li id = "option4">  </li>
+                        </ul>
+                    </div>
+                    <div class = "clue">
+                        <p id = "clue"> </p>
+                    </div>
+                    <div class = "submit_button">
+                        <p id = "submit_button_text"> Submit </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class = "rewards">
+                <div class = "gems">
+                    <h3 class = "gems-score"> 0 </h3>
+                </div>
+                <div class = "stars">
+                    <h3 class = "stars-score"> 0 </h3>
+                </div>
+            </div>
+
+            <div class = "menu" id = "menu">
+                <a href = "levels.html"> <button class = "color-change1"> Back </button> </a>
+            </div>
+        </main>
+        <script type = "application/javascript" src = "water.js"> </script>
+    </body>
+
+</html>

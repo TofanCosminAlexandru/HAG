@@ -2,7 +2,7 @@ var diamonds = 0;
 var points = 0;
 var count_damage_bridge = 1;
 var count_forester_tips = 2, count_forester_questions = 1;
-var count_willow_tips = 1, count_willow_questions = 1;
+var count_willow_tips = 2, count_willow_questions = 1;
 var keyGate1 = 0, keyGate2 = 0;
 var count_flower_tips = 1, count_flower_questions = 1;
 var count_priest_tips = 1;
@@ -1759,7 +1759,7 @@ function init() {
 
         if(getCharactherCoord("me")[0] === getObjectCoord("willow")[0] && getCharactherCoord("me")[1] === getObjectCoord("willow")[1]){
             count_willow_tips -= 1;
-            if(count_willow_tips === 0){
+            if(count_willow_tips === 1){
                 showQuestion();
                 count_willow_questions -= 1;
             }
@@ -1767,7 +1767,7 @@ function init() {
 
         if(getCharactherCoord("me")[0] === 4 && getCharactherCoord("me")[1] === 4){
             count_willow_tips -= 1;
-            if(count_willow_tips === 0){
+            if(count_willow_tips === 1){
                 showQuestion();
                 count_willow_questions -= 1;
             }
@@ -1775,7 +1775,7 @@ function init() {
 
         if(getCharactherCoord("me")[0] === 3 && getCharactherCoord("me")[1] === 4){
             count_willow_tips -= 1;
-            if(count_willow_tips === 0){
+            if(count_willow_tips === 1){
                 showQuestion();
                 count_willow_questions -= 1;
             }
@@ -1859,26 +1859,60 @@ function init() {
         el.style.visibility = "visible";
         el.style.visibility = (el.style.visibility === "visible") ? "hidden" : "visible";
 
-        if(count_forester_tips > 0 && count_forester_questions === 0) {
-            count_forester_tips -= 1;
-            el = document.getElementsByClassName("indication_div_container")[0];
-            document.getElementById("indication_text").innerHTML = "You can check out the village over the river. <br> Might be you find other challenges.";
-            document.getElementsByClassName("indication")[0].style = "margin-top: 0";
-            el.style.visibility = "visible";
-        }
+        // if(count_forester_tips === 1 && count_forester_questions === 0) {
+        //     count_forester_tips -= 1;
+        //     el = document.getElementsByClassName("indication_div_container")[0];
+        //     document.getElementById("indication_text").innerHTML = "You can check out the village over the river. <br> Might be you find other challenges.";
+        //     document.getElementsByClassName("indication")[0].style = "margin-top: 0";
+        //     el.style.visibility = "visible";
+        // }
 
         if(correctAnswer === 1){
-            el = document.getElementsByClassName("indication_div_container")[0];
-            document.getElementById("indication_text").innerHTML = "Correct answer! You received a star!";
-            document.getElementsByClassName("indication")[0].style = "margin-top: 0";
-            el.style.visibility = "visible";
+            if(count_forester_tips === 1 && count_forester_questions === 0) {
+                count_forester_tips -= 1;
+                el = document.getElementsByClassName("indication_div_container")[0];
+                document.getElementById("indication_text").innerHTML = "Correct answer! You received a star! <br> You can check out the village over the river. <br> Might be you find other challenges.";
+                document.getElementsByClassName("indication")[0].style = "margin-top: 0";
+                el.style.visibility = "visible";
+            }
+            else
+            if(count_willow_tips === 1 && count_willow_questions === 0) {
+                count_willow_tips -= 1;
+                el = document.getElementsByClassName("indication_div_container")[0];
+                document.getElementById("indication_text").innerHTML = "Correct answer! You received a star! <br> You can check out the village over the river. <br> Might be you find other challenges.";
+                document.getElementsByClassName("indication")[0].style = "margin-top: 0";
+                el.style.visibility = "visible";
+            }
+            else {
+                el = document.getElementsByClassName("indication_div_container")[0];
+                document.getElementById("indication_text").innerHTML = "Correct answer! You received a star!";
+                document.getElementsByClassName("indication")[0].style = "margin-top: 0";
+                el.style.visibility = "visible";
+            }
         }
 
         if(correctAnswer === 0){
-            el = document.getElementsByClassName("indication_div_container")[0];
-            document.getElementById("indication_text").innerHTML = "Wrong answer! Maybe next time.";
-            document.getElementsByClassName("indication")[0].style = "margin-top: 0";
-            el.style.visibility = "visible";
+            if(count_forester_tips === 1 && count_forester_questions === 0) {
+                count_forester_tips -= 1;
+                el = document.getElementsByClassName("indication_div_container")[0];
+                document.getElementById("indication_text").innerHTML = "Wrong answer! Maybe next time. <br> You can check out the village over the river. <br> Might be you find other challenges.";
+                document.getElementsByClassName("indication")[0].style = "margin-top: 0";
+                el.style.visibility = "visible";
+            }
+            else
+            if(count_willow_tips === 1 && count_willow_questions === 0) {
+                count_willow_tips -= 1;
+                el = document.getElementsByClassName("indication_div_container")[0];
+                document.getElementById("indication_text").innerHTML = "Correct answer! You received a star! <br> You can check out the village over the river. <br> Might be you find other challenges.";
+                document.getElementsByClassName("indication")[0].style = "margin-top: 0";
+                el.style.visibility = "visible";
+            }
+            else {
+                el = document.getElementsByClassName("indication_div_container")[0];
+                document.getElementById("indication_text").innerHTML = "Wrong answer! Maybe next time.";
+                document.getElementsByClassName("indication")[0].style = "margin-top: 0";
+                el.style.visibility = "visible";
+            }
         }
     }
 

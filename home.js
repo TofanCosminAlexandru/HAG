@@ -39,9 +39,6 @@ function register(){
 	logo[0].style.visibility = (logo[0].style.visibility === "hidden") ? "visible" : "hidden";
 }
 
-
-
-
 function check_login() {
 	var data = '{ "users" : [' +
 				'{ "username":"John" , "password":"Doe" },' +
@@ -54,13 +51,13 @@ function check_login() {
 	var check = false;
 	var adapt = document.getElementsByClassName("login")[0];
 	for(var i=0; i<obj.users.length; i++){
-		if(username == obj.users[i].username && obj.users[i].password == pass){
+		if(username === obj.users[i].username && obj.users[i].password === pass){
 			adapt.setAttribute('action','levels.html?user=' + username);
 			alert(adapt.action);
 			var check = true;		
 		}
 	}
-	if(check == false){
+	if(check === false){
 		alert("Wrong Username or Password");
 	}
 }

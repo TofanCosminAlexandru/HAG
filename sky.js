@@ -873,434 +873,444 @@ function init() {
             // nothing happens because you can't get out of the map
         }
         else {
-            if (checkMove(newI, newJ) === true) { // the character can step on that element
-                if (game[newI][newJ] === "diamond") { // the element is diamond
-                    if (newI === 17) { // the element is the sun's diamond
-                        has_suns_diamond = 1;
-                    }
-                    diamonds++; // increase the number of diamonds
-
-                    // draw ground on the diamond's position
-                    drawCanvasImageElem(ctx, newI, newJ, sky[newI][newJ]);
-
-                    // draw my character on the new position
-                    drawCanvasImageElem(ctx, newI, newJ, "me");
-
-                    // update the matrices
-                    game[newI][newJ] = sky[newI][newJ];
-                    game[charI][charJ] = sky[charI][charJ];
-                    game[newI][newJ] = "me";
-
-                    // draw ground on my characters last position
-                    if (newI === 0 || newI === 3) {
-                        drawCanvasImageElem(ctx, charI, charJ, "sky");
-                        drawCanvasImageElem(ctx, charI, charJ, "cloud");
-                    }
-                    else {
-                        drawCanvasImageElem(ctx, charI, charJ, sky[charI][charJ]);
-                    }
-
-                    //console.log("Nr. of diamonds: ", diamonds);
-
-                    if (sky[charI][charJ].match(/cloud[1-9]*[0-8]*/) !== null && game[charI][charJ] === "me") {
-                        is_centered = compute_is_centered(charI, charJ, newI, newJ);
-                        translate_canvas(is_centered, direction);
-                    }
-                }
-                else if (game[newI][newJ] === "mushroom" && has_mushroom === 0) {
-                    has_mushroom = 1;
-                    drawCanvasImageElem(ctx, newI, newJ, "ground");
-                    drawCanvasImageElem(ctx, newI, newJ, "me");
-                    drawCanvasImageElem(ctx, charI, charJ, "sky");
-                    drawCanvasImageElem(ctx, charI, charJ, "cloud");
-
-                    game[newI][newJ] = "me";
-                    game[charI][charJ] = sky[charI][charJ];
-
-                    if (sky[charI][charJ].match(/cloud[1-9]*[0-8]*/) !== null && game[charI][charJ] === "me") {
-                        is_centered = compute_is_centered(charI, charJ, newI, newJ);
-                        translate_canvas(is_centered, direction);
-                    }
-
-                    showIndication("You found a magical mushroom!");
-                }
-                else if (game[newI][newJ].match(/ray[1-9]*[0-7]*/) !== null) {
-                    // the ray push my character at certain positions
-                    if (game[newI][newJ] === "ray1" || game[newI][newJ] === "ray2" || game[newI][newJ] === "ray3") {
-                        drawCanvasImageElem(ctx, charI, charJ, "ground");
-                        drawCanvasImageElem(ctx, charI, charJ, "ground");
-
-                        game[charI][charJ] = "ground";
-
-                        game[17][6] = "me";
-                        image.onload = drawCanvasImageElem(ctx, 17, 6, "me");
-
-                        is_centered = 2;
-                        canvas.style.transform = "translate(" + -(((22/11)*window.innerWidth)/22) + "px, " + -(((18/9)*window.innerHeight)/18 * 9) + "px)";
-                    }
-                    else if (game[newI][newJ] === "ray4" || game[newI][newJ] === "ray5" || game[newI][newJ] === "ray6" || game[newI][newJ] === "ray7" || game[newI][newJ] === "ray8" || game[newI][newJ] === "ray9" || game[newI][newJ] === "ray10" || game[newI][newJ] === "ray11") {
-                        if (charI === 13 && charJ === 13) {
-                            drawCanvasImageElem(ctx, charI, charJ, "sky");
-                            drawCanvasImageElem(ctx, charI, charJ, "cloud");
-                            game[getElementCoord("me")[0]][getElementCoord("me")[1]] = "cloud8";
-                        }
-                        else {
-                            drawCanvasImageElem(ctx, charI, charJ, "ground");
-                            drawCanvasImageElem(ctx, charI, charJ, "ground");
-
-                            game[charI][charJ] = "ground";
-                        }
-
-                        game[17][12] = "me";
-                        image.onload = drawCanvasImageElem(ctx, 17, 12, "me");
-
-                        is_centered = 2;
-                        canvas.style.transform = "translate(" + -(((22/11)*window.innerWidth)/22 * 7) + "px, " + -(((18/9)*window.innerHeight)/18 * 9) + "px)";
-                    }
-                    else {
-                        if (charI === 14 && charJ === 18) {
-                            drawCanvasImageElem(ctx, charI, charJ, "sky");
-                            drawCanvasImageElem(ctx, charI, charJ, "cloud");
-                            game[getElementCoord("me")[0]][getElementCoord("me")[1]] = "cloud11";
-                        }
-                        else {
-                            drawCanvasImageElem(ctx, charI, charJ, "ground");
-                            drawCanvasImageElem(ctx, charI, charJ, "ground");
-
-                            game[charI][charJ] = "ground";
-                        }
-
-                        game[15][17] = "me";
-                        image.onload = drawCanvasImageElem(ctx, 15, 17, "me");
-
-                        if (has_suns_diamond === 1) {
-                            has_suns_diamond = 0;
-                            diamonds--;
-
-                            drawCanvasImageElem(ctx, 17, 17, "diamond");
-                            game[17][17] = "diamond";
-                        }
-
-                        if (has_dragons_breath_potion === 1) {
-                            has_dragons_breath_potion = 0;
-
-                            drawCanvasImageElem(ctx, 17, 21, "potion");
-                            game[17][21] = "potion";
-                        }
-
-                        is_centered = 2;
-                        canvas.style.transform = "translate(" + -(((22/11)*window.innerWidth)/22 * 11) + "px, " + -(((18/9)*window.innerHeight)/18 * 9) + "px)";
-                    }
-                }
-                else if (sky[charI][charJ].match(/cloud[1-9]*[0-8]*/) !== null && game[charI][charJ] === "me") {
-                    //console.log(sky[charI][charJ].match(/cloud[1-9]*[0-8]*/));
-                    drawCanvasImageElem(ctx, charI, charJ, "sky");
-                    drawCanvasImageElem(ctx, charI, charJ, "cloud");
-
-                    game[charI][charJ] = "cloud";
-                    game[newI][newJ] = "me";
-
-                    //is_centered = compute_is_centered(charI, charJ, newI, newJ)
-                    //translate_canvas(is_centered, direction);
-                }
-                if (sky[charI][charJ] === "castle" && game[charI][charJ] === "me") {
-                    drawCanvasImageElem(ctx, charI, charJ, "sky");
-                    drawCanvasImageElem(ctx, charI, charJ, "castle");
-                    drawCanvasImageElem(ctx, newI, newJ, "me");
-
-                    game[charI][charJ] = "castle";
-                    game[newI][newJ] = "me";
-
-                    is_centered = compute_is_centered(charI, charJ, newI, newJ);
-                    translate_canvas(is_centered, direction);
-                }
-                else if (game[newI][newJ].match(/ray[1-9]*[0-7]*/) !== null) {
-                    // the ray push my character at certain positions
-                    if (game[newI][newJ] === "ray1" || game[newI][newJ] === "ray2" || game[newI][newJ] === "ray3") {
-                        drawCanvasImageElem(ctx, charI, charJ, "ground");
-                        drawCanvasImageElem(ctx, charI, charJ, "ground");
-
-                        game[charI][charJ] = "ground";
-
-                        game[17][6] = "me";
-                        image.onload = drawCanvasImageElem(ctx, 17, 6, "me");
-
-                        is_centered = 2;
-                        canvas.style.transform = "translate(" + -(((22/11)*window.innerWidth)/22) + "px, " + -(((18/9)*window.innerHeight)/18 * 9) + "px)";
-                    }
-                    else if (game[newI][newJ] === "ray4" || game[newI][newJ] === "ray5" || game[newI][newJ] === "ray6" || game[newI][newJ] === "ray7" || game[newI][newJ] === "ray8" || game[newI][newJ] === "ray9" || game[newI][newJ] === "ray10" || game[newI][newJ] === "ray11") {
-                        if (charI === 13 && charJ === 13) {
-                            drawCanvasImageElem(ctx, charI, charJ, "sky");
-                            drawCanvasImageElem(ctx, charI, charJ, "cloud");
-                        }
-                        else {
-                            drawCanvasImageElem(ctx, charI, charJ, "ground");
-                            drawCanvasImageElem(ctx, charI, charJ, "ground");
-
-                            game[charI][charJ] = "ground";
-                        }
-
-                        game[17][12] = "me";
-                        image.onload = drawCanvasImageElem(ctx, 17, 12, "me");
-
-                        is_centered = 2;
-                        canvas.style.transform = "translate(" + -(((22/11)*window.innerWidth)/22 * 7) + "px, " + -(((18/9)*window.innerHeight)/18 * 9) + "px)";
-                    }
-                    else {
-                        if (charI === 14 && charJ === 18) {
-                            drawCanvasImageElem(ctx, charI, charJ, "sky");
-                            drawCanvasImageElem(ctx, charI, charJ, "cloud");
-                        }
-                        else {
-                            drawCanvasImageElem(ctx, charI, charJ, "ground");
-                            drawCanvasImageElem(ctx, charI, charJ, "ground");
-
-                            game[charI][charJ] = "ground";
-                        }
-
-                        game[15][17] = "me";
-                        image.onload = drawCanvasImageElem(ctx, 15, 17, "me");
-
-                        if (has_suns_diamond === 1) {
-                            has_suns_diamond = 0;
-                            diamonds--;
-
-                            drawCanvasImageElem(ctx, 17, 17, "diamond");
-                            game[17][17] = "diamond";
-                        }
-
-                        if (has_dragons_breath_potion === 1) {
-                            has_dragons_breath_potion = 0;
-
-                            drawCanvasImageElem(ctx, 17, 21, "potion");
-                            game[17][21] = "potion";
-                        }
-
-                        is_centered = 2;
-                        canvas.style.transform = "translate(" + -(((22/11)*window.innerWidth)/22 * 11) + "px, " + -(((18/9)*window.innerHeight)/18 * 9) + "px)";
-                    }
-                }
-                else if ((sky[charI][charJ] === "gate2" || sky[charI][charJ] === "gate3") && game[charI][charJ] === "me") {
-                    drawCanvasImageElem(ctx, charI, charJ, "floor");
-                    if (sky[charI][charJ] === "gate2") {
-                        drawCanvasImageElem(ctx, charI, charJ, "gate2");
-                    }
-                    else if (sky[charI][charJ] === "gate3") {
-                        drawCanvasImageElem(ctx, charI, charJ, "gate3");
-                    }
-                    drawCanvasImageElem(ctx, newI, newJ, "me");
-
-                    if (sky[charI][charJ] === "gate2") {
-                        game[charI][charJ] = "gate2";
-                    }
-                    else if (sky[charI][charJ] === "gate3") {
-                        game[charI][charJ] = "gate3";
-                    }
-                    game[newI][newJ] = "me";
-
-                    if (sky[charI][charJ] === "gate2" && has_king_asked === 0) {
-                        showIndication("The king was in an audience. But as soon as the king saw Bidi, he urged him to come forward immediately.")
-                    }
-
-                    is_centered = compute_is_centered(charI, charJ, newI, newJ);
-                    translate_canvas(is_centered, direction);
-                }
-                else if (sky[charI][charJ] === "broken_portal" && game[charI][charJ] === "me") {
-                    drawCanvasImageElem(ctx, charI, charJ, "ground");
-                    drawCanvasImageElem(ctx, charI, charJ, "broken_portal");
-                    drawCanvasImageElem(ctx, newI, newJ, "me");
-
-                    game[charI][charJ] = "broken_portal";
-                    game[newI][newJ] = "me";
-
-                    is_centered = compute_is_centered(charI, charJ, newI, newJ);
-                    translate_canvas(is_centered, direction);
-                }
-                else if (game[newI][newJ] === "gate1" && has_key === 0) { // you don't have a key.. you'll receive a message that you must first find a key for the gate
-                    showIndication("The gate is closed. <br> You need a key to open it.");
-                }
-                else if ((game[newI][newJ] === "gate1" && has_key === 1) || sky[charI][charJ] === "gate1") { // now you can pass that gate
-                    drawCanvasImageElem(ctx, newI, newJ, "me");
-
-                    game[charI][charJ] = sky[charI][charJ];
-                    game[newI][newJ] = "me";
-
-                    if (sky[charI][charJ] === "gate1") { // we draw ground first so that the gate won't overlap my character
-                        drawCanvasImageElem(ctx, charI, charJ, "ground");
-                    }
-
-                    drawCanvasImageElem(ctx, charI, charJ, sky[charI][charJ]);
-
-                    is_centered = compute_is_centered(charI, charJ, newI, newJ);
-                    translate_canvas(is_centered, direction);
-                }
-                else if (game[newI][newJ] === "potion" && has_dragons_breath_potion === 0) {
-                    has_dragons_breath_potion = 1;
-                    drawCanvasImageElem(ctx, newI, newJ, "ground");
-                    drawCanvasImageElem(ctx, newI, newJ, "me");
-                    drawCanvasImageElem(ctx, charI, charJ, "ground");
-
-                    game[newI][newJ] = "me";
-                    game[charI][charJ] = sky[charI][charJ];
-
-                    is_centered = compute_is_centered(charI, charJ, newI, newJ);
-                    translate_canvas(is_centered, direction);
-
-                    showIndication("You found dragon's breath potion!");
-                }
-                else if (game[newI][newJ] === "key" && has_key === 0) {
-                    has_key = 1;
-                    drawCanvasImageElem(ctx, newI, newJ, "ground");
-                    drawCanvasImageElem(ctx, newI, newJ, "me");
-                    drawCanvasImageElem(ctx, charI, charJ, "ground");
-
-                    game[newI][newJ] = "me";
-                    game[charI][charJ] = sky[charI][charJ];
-
-                    is_centered = compute_is_centered(charI, charJ, newI, newJ);
-                    translate_canvas(is_centered, direction);
-                }
-                else if (game[newI][newJ] === "portal_to_earth" && newI === 1) {
-                    drawCanvasImageElem(ctx, image, 1, 0, "me");
-
-                    game[1][0] = "me";
-
-                    drawCanvasImageElem(ctx, charI, charJ, "ground");
-
-                    showIndication("Chapter Completed! <br><br> Bidi has reached the vulcano site!"); // we reached the end of the level
-
-                    // redirecting to the levels page
-                    window.location.replace("Proiect/HAG/levels.html");
-
-                    is_centered = compute_is_centered(charI, charJ, newI, newJ);
-                    translate_canvas(is_centered, direction);
-                }
-                else if (game[newI][newJ] === "angel2" && has_guardian_angel_asked === 0) {
-                    showIndication("Hello! My name is Helena and I'm the guardian of the key. <br> You have to prove you're worthy of it by answering this HTTP question!");
-                }
-                else if (game[newI][newJ] === "sick_sun" && (has_mushroom === 0 || has_dragons_breath_potion === 0 || has_pegasus_feather === 0)) {
-                    showIndication("(coughting) Come back when you have all the ingredients.");
-                }
-                else if (game[newI][newJ] === "sick_sun" && has_mushroom === 1 && has_dragons_breath_potion === 1 && has_pegasus_feather === 1 && has_sun_asked === 0) {
-                    showIndication("I'm shining agaaaiiin!!! <br> Until the portal is ready, let's play my favourite game. <br> I ask you a question and you have to pick up a wrong answer!");
-
-                    drawCanvasImageElem(ctx, 6, 10, "sky");
-                    drawCanvasImageElem(ctx, 6, 10, "healed_sun");
-
-                    game[6][10] = "healed_sun";
-                }
-                else if (((newI === 9 && newJ === 12) || (newI === 9 && newJ === 13) || (newI === 8 && newJ === 13) || (newI === 7 && newJ === 13)
-                        || (newI === 7 && newJ === 12) || (newI === 9 && newJ === 11) || (newI === 8 && newJ === 11)
-                        || (newI === 7 && newJ === 11)) && has_sun_told_you_of_his_disease === 0) {
-                    has_sun_told_you_of_his_disease = 1;
-                    showIndication("Son, I'am one of your suns. (coughting) <br> I have a rare disease. (coughting) Please help me get my health back by bringing me a mushroom, a pegasus feather and a potion with dragon's breath. <br> Healthy, I can repair that portal and get you to the king. Return to me when you have the ingredients. (coughting) <br> You'll find me by the shadow of the pillars over there.");
-
-                    drawCanvasImageElem(ctx, 8, 12, "sky");
-                    drawCanvasImageElem(ctx, 6, 10, "sick_sun");
-
-                    game[8][12] = "sky";
-                    game[6][10] = "sick_sun";
-
-                    drawCanvasImageElem(ctx, newI, newJ, "me");
-                    game[newI][newJ] = "me";
-
-                    is_centered = compute_is_centered(charI, charJ, newI, newJ);
-                    translate_canvas(is_centered, direction);
-                }
-                else if (game[newI][newJ] === "portal" && (direction === "left" || direction === "leftdown" || direction === "leftup")) {
-                    drawCanvasImageElem(ctx, charI, charJ, "ground");
-                    drawCanvasImageElem(ctx, 8, 5, "me");
-
-                    game[charI][charJ] = "ground";
-                    game[8][5] = "me";
-
-                    is_centered = 3;
-                    canvas.style.transform = "translate(" + 0 + "px, " + -(((18/9)*window.innerHeight)/18 * 4) + "px)";
-                }
-                else if (game[newI][newJ] === "portal" && direction === "right") {
-                    drawCanvasImageElem(ctx, charI, charJ, "ground");
-                    drawCanvasImageElem(ctx, 8, 11, "me");
-
-                    game[charI][charJ] = "ground";
-                    game[8][11] = "me";
-
-                    is_centered = 3;
-                    canvas.style.transform = "translate(" + -(((22/11)*window.innerWidth)/22 * 6) + "px, " + -(((18/9)*window.innerHeight)/18 * 4) + "px)";
-                }
-                else if (game[newI][newJ] === "pegasus" && has_pegasus_asked === 0) {
-                    showIndication("So you want one of my precious feathers to heal a sun. <br> Hmm.. let me think. <br> Very well, but you have to answer me a question and scratch my back!");
-                }
-                else if (game[newI][newJ] === "pegasus" && has_pegasus_asked === 1) {
-                    showIndication("Ihahaaaa!!!");
-                }
-                else if (((newI === 8 && newJ === 4) || (newI === 7 && newJ === 4)) && has_pixie_asked === 0) {
-                    drawCanvasImageElem(ctx, newI, newJ, "me");
-                    drawCanvasImageElem(ctx, charI, charJ, sky[charI][charJ]);
-
-                    game[charI][charJ] = sky[charI][charJ];
-                    game[newI][newJ] = "me";
-
-                    showIndication("Good morning! The king awaits you in the throne room. <br> The queen is not here in heaven. She had some urgent business in The Desert of Kahim. <br> But, knowing of your coming, she told me to ask you this question.");
-
-                    is_centered = compute_is_centered(charI, charJ, newI, newJ);
-                    translate_canvas(is_centered, direction);
-                }
-                else if (newI === 2 && newJ === 4 && has_king_asked === 0) {
-                    drawCanvasImageElem(ctx, newI, newJ, "me");
-                    drawCanvasImageElem(ctx, charI, charJ, sky[charI][charJ]);
-
-                    game[charI][charJ] = sky[charI][charJ];
-                    game[newI][newJ] = "me";
-
-                    showIndication("Good day to you, adventurer Bidi. <br> I was informed of all your acts of bravery and of knowledge of the HTTP protocol. So I have a quest for you. <br> You'll be tested with harder notions of the protocol soon. Let's see if you are truly worthy of the praise.");
-
-                    is_centered = compute_is_centered(charI, charJ, newI, newJ);
-                    translate_canvas(is_centered, direction);
-                }
-                else { // in front of us is ground or cloud or broken portal or ...
-                    drawCanvasImageElem(ctx, newI, newJ, "me");
-                    drawCanvasImageElem(ctx, charI, charJ, sky[charI][charJ]);
-
-                    game[charI][charJ] = sky[charI][charJ];
-                    game[newI][newJ] = "me";
-
-                    is_centered = compute_is_centered(charI, charJ, newI, newJ);
-                    translate_canvas(is_centered, direction);
+            if(document.getElementsByClassName("indication_div_container")[0].style.visibility === 'visible' || document.getElementsByClassName("question_div_container")[0].style.visibility === 'visible'){
+                document.onkeydown = function () {
+                    return false;
                 }
             }
-            else { // the character can't step on that element
-                if (game[newI][newJ] === "stone" && (direction === "up" || direction === "down" || direction === "left" || direction === "right") && game[newI2][newJ2] === "sky") {
-                    // the stone is in front of the sky so it can pe pushed to create a new path
-                    drawCanvasImageElem(ctx, newI, newJ, "ground");
+            else {
+                if (checkMove(newI, newJ) === true) { // the character can step on that element
+                    if (game[newI][newJ] === "diamond") { // the element is diamond
+                        if (newI === 17) { // the element is the sun's diamond
+                            has_suns_diamond = 1;
+                        }
+                        diamonds++; // increase the number of diamonds
+                        document.getElementsByClassName("gems-score")[0].innerHTML = String(diamonds);
 
-                    drawCanvasImageElem(ctx, newI2, newJ2, "ground");
+                        // draw ground on the diamond's position
+                        drawCanvasImageElem(ctx, newI, newJ, sky[newI][newJ]);
 
-                    game[newI][newJ] = "ground";
-                    game[newI2][newJ2] = "ground";
-                    sky[newI2][newJ2] = "ground";
+                        // draw my character on the new position
+                        drawCanvasImageElem(ctx, newI, newJ, "me");
+
+                        // update the matrices
+                        game[newI][newJ] = sky[newI][newJ];
+                        game[charI][charJ] = sky[charI][charJ];
+                        game[newI][newJ] = "me";
+
+                        // draw ground on my characters last position
+                        if (newI === 0 || newI === 3) {
+                            drawCanvasImageElem(ctx, charI, charJ, "sky");
+                            drawCanvasImageElem(ctx, charI, charJ, "cloud");
+                        }
+                        else {
+                            drawCanvasImageElem(ctx, charI, charJ, sky[charI][charJ]);
+                        }
+
+                        //console.log("Nr. of diamonds: ", diamonds);
+
+                        if (sky[charI][charJ].match(/cloud[1-9]*[0-8]*/) !== null && game[charI][charJ] === "me") {
+                            is_centered = compute_is_centered(charI, charJ, newI, newJ);
+                            translate_canvas(is_centered, direction);
+                        }
+                    }
+                    else if (game[newI][newJ] === "mushroom" && has_mushroom === 0) {
+                        has_mushroom = 1;
+                        drawCanvasImageElem(ctx, newI, newJ, "ground");
+                        drawCanvasImageElem(ctx, newI, newJ, "me");
+                        drawCanvasImageElem(ctx, charI, charJ, "sky");
+                        drawCanvasImageElem(ctx, charI, charJ, "cloud");
+
+                        game[newI][newJ] = "me";
+                        game[charI][charJ] = sky[charI][charJ];
+
+                        if (sky[charI][charJ].match(/cloud[1-9]*[0-8]*/) !== null && game[charI][charJ] === "me") {
+                            is_centered = compute_is_centered(charI, charJ, newI, newJ);
+                            translate_canvas(is_centered, direction);
+                        }
+
+                        showIndication("You found a magical mushroom!");
+                    }
+                    else if (game[newI][newJ].match(/ray[1-9]*[0-7]*/) !== null) {
+                        // the ray push my character at certain positions
+                        if (game[newI][newJ] === "ray1" || game[newI][newJ] === "ray2" || game[newI][newJ] === "ray3") {
+                            drawCanvasImageElem(ctx, charI, charJ, "ground");
+                            drawCanvasImageElem(ctx, charI, charJ, "ground");
+
+                            game[charI][charJ] = "ground";
+
+                            game[17][6] = "me";
+                            image.onload = drawCanvasImageElem(ctx, 17, 6, "me");
+
+                            is_centered = 2;
+                            canvas.style.transform = "translate(" + -(((22 / 11) * window.innerWidth) / 22) + "px, " + -(((18 / 9) * window.innerHeight) / 18 * 9) + "px)";
+                        }
+                        else if (game[newI][newJ] === "ray4" || game[newI][newJ] === "ray5" || game[newI][newJ] === "ray6" || game[newI][newJ] === "ray7" || game[newI][newJ] === "ray8" || game[newI][newJ] === "ray9" || game[newI][newJ] === "ray10" || game[newI][newJ] === "ray11") {
+                            if (charI === 13 && charJ === 13) {
+                                drawCanvasImageElem(ctx, charI, charJ, "sky");
+                                drawCanvasImageElem(ctx, charI, charJ, "cloud");
+                                game[getElementCoord("me")[0]][getElementCoord("me")[1]] = "cloud8";
+                            }
+                            else {
+                                drawCanvasImageElem(ctx, charI, charJ, "ground");
+                                drawCanvasImageElem(ctx, charI, charJ, "ground");
+
+                                game[charI][charJ] = "ground";
+                            }
+
+                            game[17][12] = "me";
+                            image.onload = drawCanvasImageElem(ctx, 17, 12, "me");
+
+                            is_centered = 2;
+                            canvas.style.transform = "translate(" + -(((22 / 11) * window.innerWidth) / 22 * 7) + "px, " + -(((18 / 9) * window.innerHeight) / 18 * 9) + "px)";
+                        }
+                        else {
+                            if (charI === 14 && charJ === 18) {
+                                drawCanvasImageElem(ctx, charI, charJ, "sky");
+                                drawCanvasImageElem(ctx, charI, charJ, "cloud");
+                                game[getElementCoord("me")[0]][getElementCoord("me")[1]] = "cloud11";
+                            }
+                            else {
+                                drawCanvasImageElem(ctx, charI, charJ, "ground");
+                                drawCanvasImageElem(ctx, charI, charJ, "ground");
+
+                                game[charI][charJ] = "ground";
+                            }
+
+                            game[15][17] = "me";
+                            image.onload = drawCanvasImageElem(ctx, 15, 17, "me");
+
+                            if (has_suns_diamond === 1) {
+                                has_suns_diamond = 0;
+                                diamonds--;
+                                document.getElementsByClassName("gems-score")[0].innerHTML = String(diamonds);
+
+                                drawCanvasImageElem(ctx, 17, 17, "diamond");
+                                game[17][17] = "diamond";
+                            }
+
+                            if (has_dragons_breath_potion === 1) {
+                                has_dragons_breath_potion = 0;
+
+                                drawCanvasImageElem(ctx, 17, 21, "potion");
+                                game[17][21] = "potion";
+                            }
+
+                            is_centered = 2;
+                            canvas.style.transform = "translate(" + -(((22 / 11) * window.innerWidth) / 22 * 11) + "px, " + -(((18 / 9) * window.innerHeight) / 18 * 9) + "px)";
+                        }
+                    }
+                    else if (sky[charI][charJ].match(/cloud[1-9]*[0-8]*/) !== null && game[charI][charJ] === "me") {
+                        //console.log(sky[charI][charJ].match(/cloud[1-9]*[0-8]*/));
+                        drawCanvasImageElem(ctx, charI, charJ, "sky");
+                        drawCanvasImageElem(ctx, charI, charJ, "cloud");
+
+                        game[charI][charJ] = "cloud";
+                        game[newI][newJ] = "me";
+
+                        //is_centered = compute_is_centered(charI, charJ, newI, newJ)
+                        //translate_canvas(is_centered, direction);
+                    }
+                    if (sky[charI][charJ] === "castle" && game[charI][charJ] === "me") {
+                        drawCanvasImageElem(ctx, charI, charJ, "sky");
+                        drawCanvasImageElem(ctx, charI, charJ, "castle");
+                        drawCanvasImageElem(ctx, newI, newJ, "me");
+
+                        game[charI][charJ] = "castle";
+                        game[newI][newJ] = "me";
+
+                        is_centered = compute_is_centered(charI, charJ, newI, newJ);
+                        translate_canvas(is_centered, direction);
+                    }
+                    else if (game[newI][newJ].match(/ray[1-9]*[0-7]*/) !== null) {
+                        // the ray push my character at certain positions
+                        if (game[newI][newJ] === "ray1" || game[newI][newJ] === "ray2" || game[newI][newJ] === "ray3") {
+                            drawCanvasImageElem(ctx, charI, charJ, "ground");
+                            drawCanvasImageElem(ctx, charI, charJ, "ground");
+
+                            game[charI][charJ] = "ground";
+
+                            game[17][6] = "me";
+                            image.onload = drawCanvasImageElem(ctx, 17, 6, "me");
+
+                            is_centered = 2;
+                            canvas.style.transform = "translate(" + -(((22 / 11) * window.innerWidth) / 22) + "px, " + -(((18 / 9) * window.innerHeight) / 18 * 9) + "px)";
+                        }
+                        else if (game[newI][newJ] === "ray4" || game[newI][newJ] === "ray5" || game[newI][newJ] === "ray6" || game[newI][newJ] === "ray7" || game[newI][newJ] === "ray8" || game[newI][newJ] === "ray9" || game[newI][newJ] === "ray10" || game[newI][newJ] === "ray11") {
+                            if (charI === 13 && charJ === 13) {
+                                drawCanvasImageElem(ctx, charI, charJ, "sky");
+                                drawCanvasImageElem(ctx, charI, charJ, "cloud");
+                            }
+                            else {
+                                drawCanvasImageElem(ctx, charI, charJ, "ground");
+                                drawCanvasImageElem(ctx, charI, charJ, "ground");
+
+                                game[charI][charJ] = "ground";
+                            }
+
+                            game[17][12] = "me";
+                            image.onload = drawCanvasImageElem(ctx, 17, 12, "me");
+
+                            is_centered = 2;
+                            canvas.style.transform = "translate(" + -(((22 / 11) * window.innerWidth) / 22 * 7) + "px, " + -(((18 / 9) * window.innerHeight) / 18 * 9) + "px)";
+                        }
+                        else {
+                            if (charI === 14 && charJ === 18) {
+                                drawCanvasImageElem(ctx, charI, charJ, "sky");
+                                drawCanvasImageElem(ctx, charI, charJ, "cloud");
+                            }
+                            else {
+                                drawCanvasImageElem(ctx, charI, charJ, "ground");
+                                drawCanvasImageElem(ctx, charI, charJ, "ground");
+
+                                game[charI][charJ] = "ground";
+                            }
+
+                            game[15][17] = "me";
+                            image.onload = drawCanvasImageElem(ctx, 15, 17, "me");
+
+                            if (has_suns_diamond === 1) {
+                                has_suns_diamond = 0;
+                                diamonds--;
+                                document.getElementsByClassName("gems-score")[0].innerHTML = String(diamonds);
+
+                                drawCanvasImageElem(ctx, 17, 17, "diamond");
+                                game[17][17] = "diamond";
+                            }
+
+                            if (has_dragons_breath_potion === 1) {
+                                has_dragons_breath_potion = 0;
+
+                                drawCanvasImageElem(ctx, 17, 21, "potion");
+                                game[17][21] = "potion";
+                            }
+
+                            is_centered = 2;
+                            canvas.style.transform = "translate(" + -(((22 / 11) * window.innerWidth) / 22 * 11) + "px, " + -(((18 / 9) * window.innerHeight) / 18 * 9) + "px)";
+                        }
+                    }
+                    else if ((sky[charI][charJ] === "gate2" || sky[charI][charJ] === "gate3") && game[charI][charJ] === "me") {
+                        drawCanvasImageElem(ctx, charI, charJ, "floor");
+                        if (sky[charI][charJ] === "gate2") {
+                            drawCanvasImageElem(ctx, charI, charJ, "gate2");
+                        }
+                        else if (sky[charI][charJ] === "gate3") {
+                            drawCanvasImageElem(ctx, charI, charJ, "gate3");
+                        }
+                        drawCanvasImageElem(ctx, newI, newJ, "me");
+
+                        if (sky[charI][charJ] === "gate2") {
+                            game[charI][charJ] = "gate2";
+                        }
+                        else if (sky[charI][charJ] === "gate3") {
+                            game[charI][charJ] = "gate3";
+                        }
+                        game[newI][newJ] = "me";
+
+                        if (sky[charI][charJ] === "gate2" && has_king_asked === 0) {
+                            showIndication("The king was in an audience. But as soon as the king saw Bidi, he urged him to come forward immediately.")
+                        }
+
+                        is_centered = compute_is_centered(charI, charJ, newI, newJ);
+                        translate_canvas(is_centered, direction);
+                    }
+                    else if (sky[charI][charJ] === "broken_portal" && game[charI][charJ] === "me") {
+                        drawCanvasImageElem(ctx, charI, charJ, "ground");
+                        drawCanvasImageElem(ctx, charI, charJ, "broken_portal");
+                        drawCanvasImageElem(ctx, newI, newJ, "me");
+
+                        game[charI][charJ] = "broken_portal";
+                        game[newI][newJ] = "me";
+
+                        is_centered = compute_is_centered(charI, charJ, newI, newJ);
+                        translate_canvas(is_centered, direction);
+                    }
+                    else if (game[newI][newJ] === "gate1" && has_key === 0) { // you don't have a key.. you'll receive a message that you must first find a key for the gate
+                        showIndication("The gate is closed. <br> You need a key to open it.");
+                    }
+                    else if ((game[newI][newJ] === "gate1" && has_key === 1) || sky[charI][charJ] === "gate1") { // now you can pass that gate
+                        drawCanvasImageElem(ctx, newI, newJ, "me");
+
+                        game[charI][charJ] = sky[charI][charJ];
+                        game[newI][newJ] = "me";
+
+                        if (sky[charI][charJ] === "gate1") { // we draw ground first so that the gate won't overlap my character
+                            drawCanvasImageElem(ctx, charI, charJ, "ground");
+                        }
+
+                        drawCanvasImageElem(ctx, charI, charJ, sky[charI][charJ]);
+
+                        is_centered = compute_is_centered(charI, charJ, newI, newJ);
+                        translate_canvas(is_centered, direction);
+                    }
+                    else if (game[newI][newJ] === "potion" && has_dragons_breath_potion === 0) {
+                        has_dragons_breath_potion = 1;
+                        drawCanvasImageElem(ctx, newI, newJ, "ground");
+                        drawCanvasImageElem(ctx, newI, newJ, "me");
+                        drawCanvasImageElem(ctx, charI, charJ, "ground");
+
+                        game[newI][newJ] = "me";
+                        game[charI][charJ] = sky[charI][charJ];
+
+                        is_centered = compute_is_centered(charI, charJ, newI, newJ);
+                        translate_canvas(is_centered, direction);
+
+                        showIndication("You found dragon's breath potion!");
+                    }
+                    else if (game[newI][newJ] === "key" && has_key === 0) {
+                        has_key = 1;
+                        drawCanvasImageElem(ctx, newI, newJ, "ground");
+                        drawCanvasImageElem(ctx, newI, newJ, "me");
+                        drawCanvasImageElem(ctx, charI, charJ, "ground");
+
+                        game[newI][newJ] = "me";
+                        game[charI][charJ] = sky[charI][charJ];
+
+                        is_centered = compute_is_centered(charI, charJ, newI, newJ);
+                        translate_canvas(is_centered, direction);
+                    }
+                    else if (game[newI][newJ] === "portal_to_earth" && newI === 1) {
+                        drawCanvasImageElem(ctx, image, 1, 0, "me");
+
+                        game[1][0] = "me";
+
+                        drawCanvasImageElem(ctx, charI, charJ, "ground");
+
+                        showIndication("Chapter Completed! <br><br> Bidi has reached the vulcano site!"); // we reached the end of the level
+
+                        // redirecting to the levels page
+                        window.location.replace("Proiect/HAG/levels.html");
+
+                        is_centered = compute_is_centered(charI, charJ, newI, newJ);
+                        translate_canvas(is_centered, direction);
+                    }
+                    else if (game[newI][newJ] === "angel2" && has_guardian_angel_asked === 0) {
+                        showIndication("Hello! My name is Helena and I'm the guardian of the key. <br> You have to prove you're worthy of it by answering this HTTP question!");
+                    }
+                    else if (game[newI][newJ] === "sick_sun" && (has_mushroom === 0 || has_dragons_breath_potion === 0 || has_pegasus_feather === 0)) {
+                        showIndication("(coughting) Come back when you have all the ingredients.");
+                    }
+                    else if (game[newI][newJ] === "sick_sun" && has_mushroom === 1 && has_dragons_breath_potion === 1 && has_pegasus_feather === 1 && has_sun_asked === 0) {
+                        showIndication("I'm shining agaaaiiin!!! <br> Until the portal is ready, let's play my favourite game. <br> I ask you a question and you have to pick up a wrong answer!");
+
+                        drawCanvasImageElem(ctx, 6, 10, "sky");
+                        drawCanvasImageElem(ctx, 6, 10, "healed_sun");
+
+                        game[6][10] = "healed_sun";
+                    }
+                    else if (((newI === 9 && newJ === 12) || (newI === 9 && newJ === 13) || (newI === 8 && newJ === 13) || (newI === 7 && newJ === 13)
+                            || (newI === 7 && newJ === 12) || (newI === 9 && newJ === 11) || (newI === 8 && newJ === 11)
+                            || (newI === 7 && newJ === 11)) && has_sun_told_you_of_his_disease === 0) {
+                        has_sun_told_you_of_his_disease = 1;
+                        showIndication("Son, I'am one of your suns. (coughting) <br> I have a rare disease. (coughting) Please help me get my health back by bringing me a mushroom, a pegasus feather and a potion with dragon's breath. <br> Healthy, I can repair that portal and get you to the king. Return to me when you have the ingredients. (coughting) <br> You'll find me by the shadow of the pillars over there.");
+
+                        drawCanvasImageElem(ctx, 8, 12, "sky");
+                        drawCanvasImageElem(ctx, 6, 10, "sick_sun");
+
+                        game[8][12] = "sky";
+                        game[6][10] = "sick_sun";
+
+                        drawCanvasImageElem(ctx, newI, newJ, "me");
+                        game[newI][newJ] = "me";
+
+                        is_centered = compute_is_centered(charI, charJ, newI, newJ);
+                        translate_canvas(is_centered, direction);
+                    }
+                    else if (game[newI][newJ] === "portal" && (direction === "left" || direction === "leftdown" || direction === "leftup")) {
+                        drawCanvasImageElem(ctx, charI, charJ, "ground");
+                        drawCanvasImageElem(ctx, 8, 5, "me");
+
+                        game[charI][charJ] = "ground";
+                        game[8][5] = "me";
+
+                        is_centered = 3;
+                        canvas.style.transform = "translate(" + 0 + "px, " + -(((18 / 9) * window.innerHeight) / 18 * 4) + "px)";
+                    }
+                    else if (game[newI][newJ] === "portal" && direction === "right") {
+                        drawCanvasImageElem(ctx, charI, charJ, "ground");
+                        drawCanvasImageElem(ctx, 8, 11, "me");
+
+                        game[charI][charJ] = "ground";
+                        game[8][11] = "me";
+
+                        is_centered = 3;
+                        canvas.style.transform = "translate(" + -(((22 / 11) * window.innerWidth) / 22 * 6) + "px, " + -(((18 / 9) * window.innerHeight) / 18 * 4) + "px)";
+                    }
+                    else if (game[newI][newJ] === "pegasus" && has_pegasus_asked === 0) {
+                        showIndication("So you want one of my precious feathers to heal a sun. <br> Hmm.. let me think. <br> Very well, but you have to answer me a question and scratch my back!");
+                    }
+                    else if (game[newI][newJ] === "pegasus" && has_pegasus_asked === 1) {
+                        showIndication("Ihahaaaa!!!");
+                    }
+                    else if (((newI === 8 && newJ === 4) || (newI === 7 && newJ === 4)) && has_pixie_asked === 0) {
+                        drawCanvasImageElem(ctx, newI, newJ, "me");
+                        drawCanvasImageElem(ctx, charI, charJ, sky[charI][charJ]);
+
+                        game[charI][charJ] = sky[charI][charJ];
+                        game[newI][newJ] = "me";
+
+                        showIndication("Good morning! The king awaits you in the throne room. <br> The queen is not here in heaven. She had some urgent business in The Desert of Kahim. <br> But, knowing of your coming, she told me to ask you this question.");
+
+                        is_centered = compute_is_centered(charI, charJ, newI, newJ);
+                        translate_canvas(is_centered, direction);
+                    }
+                    else if (newI === 2 && newJ === 4 && has_king_asked === 0) {
+                        drawCanvasImageElem(ctx, newI, newJ, "me");
+                        drawCanvasImageElem(ctx, charI, charJ, sky[charI][charJ]);
+
+                        game[charI][charJ] = sky[charI][charJ];
+                        game[newI][newJ] = "me";
+
+                        showIndication("Good day to you, adventurer Bidi. <br> I was informed of all your acts of bravery and of knowledge of the HTTP protocol. So I have a quest for you. <br> You'll be tested with harder notions of the protocol soon. Let's see if you are truly worthy of the praise.");
+
+                        is_centered = compute_is_centered(charI, charJ, newI, newJ);
+                        translate_canvas(is_centered, direction);
+                    }
+                    else { // in front of us is ground or cloud or broken portal or ...
+                        drawCanvasImageElem(ctx, newI, newJ, "me");
+                        drawCanvasImageElem(ctx, charI, charJ, sky[charI][charJ]);
+
+                        game[charI][charJ] = sky[charI][charJ];
+                        game[newI][newJ] = "me";
+
+                        is_centered = compute_is_centered(charI, charJ, newI, newJ);
+                        translate_canvas(is_centered, direction);
+                    }
                 }
-                else if (game[newI][newJ] === "stone" && (direction === "up" || direction === "down" || direction === "left" || direction === "right") && game[newI2][newJ2] === "ground" && newI === 2 && newJ === 14) {
-                    drawCanvasImageElem(ctx, newI, newJ, "sky");
-                    drawCanvasImageElem(ctx, 1, 14, "sky");
+                else { // the character can't step on that element
+                    if (game[newI][newJ] === "stone" && (direction === "up" || direction === "down" || direction === "left" || direction === "right") && game[newI2][newJ2] === "sky") {
+                        // the stone is in front of the sky so it can pe pushed to create a new path
+                        drawCanvasImageElem(ctx, newI, newJ, "ground");
 
-                    drawCanvasImageElem(ctx, newI2, newJ2, "stone");
+                        drawCanvasImageElem(ctx, newI2, newJ2, "ground");
 
-                    game[newI][newJ] = "sky";
-                    game[1][14] = "sky";
-                    game[newI2][newJ2] = "stone";
+                        game[newI][newJ] = "ground";
+                        game[newI2][newJ2] = "ground";
+                        sky[newI2][newJ2] = "ground";
+                    }
+                    else if (game[newI][newJ] === "stone" && (direction === "up" || direction === "down" || direction === "left" || direction === "right") && game[newI2][newJ2] === "ground" && newI === 2 && newJ === 14) {
+                        drawCanvasImageElem(ctx, newI, newJ, "sky");
+                        drawCanvasImageElem(ctx, 1, 14, "sky");
 
-                    showIndication("When you moved that stone the wall collapsed and it destroyed the ground.");
-                }
-                else if (game[newI][newJ] === "stone" && (direction === "up" || direction === "down" || direction === "left" || direction === "right") && game[newI2][newJ2] === "ground") {
-                    drawCanvasImageElem(ctx, newI, newJ, "ground");
+                        drawCanvasImageElem(ctx, newI2, newJ2, "stone");
 
-                    drawCanvasImageElem(ctx, newI2, newJ2, "stone");
+                        game[newI][newJ] = "sky";
+                        game[1][14] = "sky";
+                        game[newI2][newJ2] = "stone";
 
-                    game[newI][newJ] = "ground";
-                    game[newI2][newJ2] = "stone";
-                }
-                else { // nothing happens because you can't jump over obstacles
-                    //alert("You can't jump over obstacles!");
+                        showIndication("When you moved that stone the wall collapsed and it destroyed the ground.");
+                    }
+                    else if (game[newI][newJ] === "stone" && (direction === "up" || direction === "down" || direction === "left" || direction === "right") && game[newI2][newJ2] === "ground") {
+                        drawCanvasImageElem(ctx, newI, newJ, "ground");
+
+                        drawCanvasImageElem(ctx, newI2, newJ2, "stone");
+
+                        game[newI][newJ] = "ground";
+                        game[newI2][newJ2] = "stone";
+                    }
+                    else { // nothing happens because you can't jump over obstacles
+                        //alert("You can't jump over obstacles!");
+                    }
                 }
             }
         }
@@ -2202,6 +2212,7 @@ function init() {
                     if (has_suns_diamond === 1) {
                         has_suns_diamond = 0;
                         diamonds--;
+                        document.getElementsByClassName("gems-score")[0].innerHTML = String(diamonds);
 
                         drawCanvasImageElem(ctx, 17, 17, "diamond");
                         game[17][17] = "diamond";
@@ -2311,15 +2322,16 @@ function init() {
     var submit_button = document.getElementById("submit_button_text");
     submit_button.onclick = function() { // after submitting the answer we announce the user whether he answered correctly or wrong
         if (chosen_option_nr === categories[category].questions[asked_questions[asked_questions.length - 1]].correct_answer) {
-            alert("Correct answer! You received a star!");
+            // alert("Correct answer! You received a star!");
             points++; // correct answers means more stars to your collection
+            document.getElementsByClassName("stars-score")[0].innerHTML = String(points);
             hideQuestion();
         }
         else if(chosen_option_nr === "") { // you have to select an answer before submitting
             //alert("You must first select an answer!");
         }
         else {
-            alert("Wrong answer!");
+            // alert("Wrong answer!");
             hideQuestion();
         }
     };
@@ -2328,6 +2340,8 @@ function init() {
     exit_button.onclick = function() {
         hideIndication();
     };
+
+    document.getElementsByClassName("indication_div_container")[0].style.visibility = "visible";
     document.getElementById("indication_text").innerHTML = "Chapter 3: " + categories[category].description + "<br><br>"
         + "Some objects can move and you can jump on them so they can take you to other places.";
 

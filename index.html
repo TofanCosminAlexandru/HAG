@@ -10,6 +10,19 @@
 		<link rel = "shortcut icon" href = "images/logoV2.svg" type = "image/x-icon">
 		<link rel = "stylesheet" href = "home.css">
 		<!--<script src = "home.js"></script>-->
+		<script src="https://www.gstatic.com/firebasejs/4.8.2/firebase.js"></script>
+		<script>
+			var config = {
+			apiKey: "AIzaSyCfnDkca7HKVGLekgckbVZWXaEZY-cRbqk",
+			authDomain: "hag-game.firebaseapp.com",
+			databaseURL: "https://hag-game.firebaseio.com",
+			projectId: "hag-game",
+			storageBucket: "hag-game.appspot.com",
+			messagingSenderId: "791209373333"
+			};
+			firebase.initializeApp(config);		
+
+		</script>
 	</head>
 
 	<body>
@@ -28,7 +41,7 @@
 
 		<div id = "login" >
 			<img src = "images/logoV2.svg" alt="Logo" class = "logo">
-			<form class = "login" action = "">
+			<form class = "login" action = "" method="GET">
 				<input type = "text" id = "login-user" class = "form-control" placeholder = "username"><br>
 				<input type = "password" id = "login-pass" class = "form-control" placeholder = "password">
 				<button type = "submit" value = "Submit" class = "login" onclick='check_login()'>LogIn</button>
@@ -39,11 +52,10 @@
 		<div id = "register">
 			<img src = "images/logoV2.svg" alt="Logo" class = "logo">
 			<form class = "register">
-				<input type = "text" id = "uname" class = "form-control" placeholder = "Username">
-				<input type = "password" id = "password" class = "form-control" placeholder = "Password">
-				<input type = "password" id = "confirmPass" class = "form-control" placeholder = "Confirm Password">
-				<input type = "email" id = "email" class = "form-control" placeholder = "Email">
-				<button type = "submit" class = "register">Register</button>
+				<input type = "text" id = "register-user" class = "form-control" placeholder = "Username">
+				<input type = "password" id = "register-pass" class = "form-control" placeholder = "Password">
+				<input type = "password" id = "register-confirmpass" class = "form-control" placeholder = "Confirm Password">
+				<button type = "submit" class = "register" onclick='register_new()'>Register</button>
 			</form>
 		</div>
 

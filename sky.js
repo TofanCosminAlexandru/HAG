@@ -469,7 +469,7 @@ var game = [["sky", "sky", "sky", "pillar", "throne", "pillar", "wall", "diamond
     ["sky", "wall", "pillar", "pillar", "gate2", "pillar", "pillar", "wall", "sky", "sky", "sky", "sky", "sky", "wall", "wall", "ground", "wall", "ground", "wall", "stone", "wall", "sky"],
     ["sky", "wall", "wall", "wall", "castle", "wall", "wall", "wall", "sky", "pillar", "sky", "sky", "sky", "sky", "sky", "stone", "wall", "ground", "wall", "sky", "wall", "sky"],
     ["sky", "sky", "sky", "pillar", "cloud", "pillar", "sky", "sky", "sky", "sky", "sky", "ground", "ground", "ground", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky"],
-    ["sky", "sky", "sky", "pixie", "ground", "ground", "broken_portal", "sky", "sky", "sky", "broken_portal", "ground", "sick_sun", "ground", "cloud17", "sky", "sky", "sky", "sky", "sky", "sky", "sky"],
+    ["sky", "sky", "sky", "pixie", "ground", "me", "broken_portal", "sky", "sky", "sky", "broken_portal", "ground", "sick_sun", "ground", "cloud17", "sky", "sky", "sky", "sky", "sky", "sky", "sky"],
     ["sky", "wall", "wall", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "ground", "ground", "ground", "sky", "sky", "sky", "sky", "sky", "cloud14", "sky", "cloud15"],
     ["cloud5", "wall", "ground", "cloud6", "sky", "sky", "wall", "wall", "key", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "cloud13", "cloud12", "sky", "sky", "sky"],
     ["sky", "ground", "sky", "ground", "stone", "ground", "sky", "wall", "angel2", "sky", "sky", "sky", "cloud9", "sky", "cloud10", "sky", "sky", "sky", "cloud11", "sky", "sky", "sky"],
@@ -478,7 +478,7 @@ var game = [["sky", "sky", "sky", "pillar", "throne", "pillar", "wall", "diamond
     ["sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "wall", "mushroom", "wall", "ray9", "ray10", "ray11", "wall", "sky", "sky", "sky", "sky", "sky"],
     ["ground", "cloud3", "sky", "sky", "sky", "sky", "cloud2", "ground", "ray3", "ground", "wall", "wall", "wall", "sky", "sun", "ray8", "wall", "ground", "ray14", "sky", "ray17", "ground"],
     ["sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sun", "ray2", "sky", "sky", "sky", "ray4", "ray5", "ray6", "wall", "sky", "sun", "ray13", "sun", "ray16"],
-    ["portal_to_earth", "me", "ground", "cloud1", "sky", "sky", "ground", "ground", "ray1", "ground", "ground", "gate1", "ground", "ground", "sky", "sky", "wall", "diamond", "ray12", "sky", "ray15", "potion"]];
+    ["portal_to_earth", "ground", "ground", "cloud1", "sky", "sky", "ground", "ground", "ray1", "ground", "ground", "gate1", "ground", "ground", "sky", "sky", "wall", "diamond", "ray12", "sky", "ray15", "potion"]];
 
 // map element --> corresponding picture
 var map_elements = {
@@ -553,7 +553,7 @@ var map_elements = {
 function init() {
     /* --- MAP --- */
     var canvas = document.getElementById('canvas');
-    canvas.style.transform = "translate(0px, " + -((((18/9)*window.innerHeight)/18) * 9) + "px)";
+    canvas.style.transform = "translate(0px, " + 0/*-((((18/9)*window.innerHeight)/18) * 9)*/ + "px)";
     var i, j, image;
 
     // this function translates the canvas as the character moves
@@ -1179,7 +1179,7 @@ function init() {
                         showIndication("Chapter Completed! <br><br> Bidi has reached the vulcano site!"); // we reached the end of the level
 
                         // redirecting to the levels page
-                        window.location.replace("levels.html");
+                        // window.location.replace("levels.html");
 
                         is_centered = compute_is_centered(charI, charJ, newI, newJ);
                         translate_canvas(is_centered, direction);
@@ -2444,6 +2444,11 @@ function init() {
 
         if (getElementCoord("me")[0] === 2 && getElementCoord("me")[1] === 4 && has_king_asked === 0) {
             showQuestion();
+        }
+
+        if (getElementCoord("me")[0] === 1 && getElementCoord("me")[1] === 0) {
+            // redirecting to the levels page
+            window.location.replace("levels.html");
         }
     }
 

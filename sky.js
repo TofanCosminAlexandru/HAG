@@ -2301,38 +2301,65 @@ function init() {
     for (i = 0; i < options.length; i++) {
         // we change the colour of the options according to whether the user moved the mouse pointer out, over them or he clicked on them
         options[i].onmouseover = function() {
-            if(chosen_option_nr !== this.getAttribute("id")[this.getAttribute("id").length - 1]) {
+            if(chosen_option_nr !== this.getAttribute("id")[this.getAttribute("id").length - 1] && submit_button.innerHTML === "Submit") {
                 this.setAttribute("style", "background-color: gold;");
             }
         };
         options[i].onmouseout = function() {
-            if(chosen_option_nr !== this.getAttribute("id")[this.getAttribute("id").length - 1]) {
+            if(chosen_option_nr !== this.getAttribute("id")[this.getAttribute("id").length - 1] && submit_button.innerHTML === "Submit") {
                 this.setAttribute("style", "background-color: tan;");
             }
         };
         options[i].onclick = function() {
-            for (var j = 0; j < options.length; j++) {
-                options[j].setAttribute("style", "background-color: tan;");
+            if(submit_button.innerHTML === "Submit") {
+                for (var j = 0; j < options.length; j++) {
+                    options[j].setAttribute("style", "background-color: tan;");
+                }
+                this.setAttribute("style", "background-color: darkorange;");
+                chosen_option_nr = this.getAttribute("id")[this.getAttribute("id").length - 1]; // on click we retain his option
             }
-            this.setAttribute("style", "background-color: darkorange;");
-            chosen_option_nr = this.getAttribute("id")[this.getAttribute("id").length - 1]; // on click we retain his option
+        }
+    }
+
+    var showCorrectAnswerInterval;
+    function showCorrectAnswer() {
+        showCorrectAnswerInterval = setInterval(function () {
+            var correct_answer = parseInt(categories[category].questions[asked_questions[asked_questions.length - 1]].correct_answer);
+            if (options[correct_answer - 1].style.backgroundColor !== "tan") {
+                options[correct_answer - 1].setAttribute("style", "background-color: tan;");
+            }
+            else {
+                options[correct_answer - 1].setAttribute("style", "background-color: darkorange;");
+            }
+        }, 400);
+        if (chosen_option_nr === categories[category].questions[asked_questions[asked_questions.length - 1]].correct_answer) {
+            document.getElementById("clue").innerHTML = "CORRECT ANSWER!!!";
+        }
+        else {
+            document.getElementById("clue").innerHTML = "WRONG ANSWER!!!"
         }
     }
 
     var submit_button = document.getElementById("submit_button_text");
+    submit_button.innerHTML = "Submit";
     submit_button.onclick = function() { // after submitting the answer we announce the user whether he answered correctly or wrong
-        if (chosen_option_nr === categories[category].questions[asked_questions[asked_questions.length - 1]].correct_answer) {
-            // alert("Correct answer! You received a star!");
-            points++; // correct answers means more stars to your collection
-            document.getElementsByClassName("stars-score")[0].innerHTML = String(points);
-            hideQuestion();
+        if (submit_button.innerHTML === "Next") {
+            if (document.getElementById("clue").innerHTML === "CORRECT ANSWER!!!") {
+                //alert("Correct answer! You received a star!");
+                points++; // correct answers means more stars to your collection
+                document.getElementsByClassName("stars-score")[0].innerHTML = String(points);
+                questionTriggersEvent();
+                hideQuestion();
+            }
+            else if (document.getElementById("clue").innerHTML === "WRONG ANSWER!!!") {
+                //alert("Wrong answer!");
+                questionTriggersEvent();
+                hideQuestion();
+            }
         }
-        else if(chosen_option_nr === "") { // you have to select an answer before submitting
-            //alert("You must first select an answer!");
-        }
-        else {
-            // alert("Wrong answer!");
-            hideQuestion();
+        if (chosen_option_nr !== "" && submit_button.innerHTML === "Submit") {
+            showCorrectAnswer();
+            submit_button.innerHTML = "Next";
         }
     };
 
@@ -2353,6 +2380,7 @@ function init() {
 
     // this function shows the question div with a question that hasn't been asked before
     function showQuestion() {
+        clearInterval(showCorrectAnswerInterval);
         chosen_option_nr = "";
         for (i = 0; i < options.length; i++) {
             options[i].setAttribute("style", "background-color: tan;");
@@ -2375,6 +2403,7 @@ function init() {
         document.getElementById("option3").innerHTML = categories[category].questions[rand].option3;
         document.getElementById("option4").innerHTML = categories[category].questions[rand].option4;
         document.getElementById("clue").innerHTML = categories[category].questions[rand].clue;
+        document.getElementById("submit_button_text").innerHTML = "Submit";
 
         var question_div_container = document.getElementsByClassName("question_div_container")[0];
         question_div_container.style.visibility = "visible";
@@ -2421,52 +2450,52 @@ function init() {
     // this function keeps the evidence of the question divs that trigger the appearance of an indication div right after they have been closed
     // according to the position of our character and whether the map's specific characters have asked their questions or not
     function questionTriggersEvent() {
-        if (getElementCoord("me")[0] === 12 && getElementCoord("me")[1] === 8 && has_guardian_angel_asked === 0) {
-            has_guardian_angel_asked = 1; // she has askes her question
+        if (chosen_option_nr !== "" && submit_button.innerHTML === "Next") {
+            if (getElementCoord("me")[0] === 12 && getElementCoord("me")[1] === 8 && has_guardian_angel_asked === 0) {
+                has_guardian_angel_asked = 1; // she has askes her question
 
-            drawCanvasImageElem(ctx, 11, 8, "ground");
-            drawCanvasImageElem(ctx, 11, 9, "angel2");
-            game[11][8] = "ground";
-        }
+                drawCanvasImageElem(ctx, 11, 8, "ground");
+                drawCanvasImageElem(ctx, 11, 9, "angel2");
+                game[11][8] = "ground";
+            }
 
-        if (getElementCoord("me")[0] === 7 && getElementCoord("me")[1] === 11 && has_sun_asked === 0) {
-            has_sun_asked = 1;
+            if (getElementCoord("me")[0] === 7 && getElementCoord("me")[1] === 11 && has_sun_asked === 0) {
+                has_sun_asked = 1;
 
-            drawCanvasImageElem(ctx, 8, 10, "ground");
-            drawCanvasImageElem(ctx, 8, 10, "portal");
+                drawCanvasImageElem(ctx, 8, 10, "ground");
+                drawCanvasImageElem(ctx, 8, 10, "portal");
 
-            game[8][10] = "portal";
+                game[8][10] = "portal";
 
-            drawCanvasImageElem(ctx, 8, 6, "ground");
-            drawCanvasImageElem(ctx, 8, 6, "portal");
+                drawCanvasImageElem(ctx, 8, 6, "ground");
+                drawCanvasImageElem(ctx, 8, 6, "portal");
 
-            game[8][6] = "portal";
+                game[8][6] = "portal";
 
-            showIndication("Again, thank you! Your portal is ready!")
-        }
+                showIndication("Again, thank you! Your portal is ready!")
+            }
 
-        if (getElementCoord("me")[0] === 3 && getElementCoord("me")[1] === 9 && has_pegasus_asked === 0) {
-            has_pegasus_asked = 1;
-            has_pegasus_feather = 1;
+            if (getElementCoord("me")[0] === 3 && getElementCoord("me")[1] === 9 && has_pegasus_asked === 0) {
+                has_pegasus_asked = 1;
+                has_pegasus_feather = 1;
 
-            showIndication("Here's the feather and the scratching tool! Ihahaaaa!!!")
-        }
+                showIndication("Here's the feather and the scratching tool! Ihahaaaa!!!")
+            }
 
-        if ((getElementCoord("me")[0] === 8 && getElementCoord("me")[1] === 4 && has_pixie_asked === 0) || (getElementCoord("me")[0] === 7 && getElementCoord("me")[1] === 4 && has_pixie_asked === 0)) {
-            has_pixie_asked = 1;
+            if ((getElementCoord("me")[0] === 8 && getElementCoord("me")[1] === 4 && has_pixie_asked === 0) || (getElementCoord("me")[0] === 7 && getElementCoord("me")[1] === 4 && has_pixie_asked === 0)) {
+                has_pixie_asked = 1;
 
-            showIndication("The door to the castle is open. You may enter. I wish you the very best!")
-        }
+                showIndication("The door to the castle is open. You may enter. I wish you the very best!")
+            }
 
-        if (getElementCoord("me")[0] === 2 && getElementCoord("me")[1] === 4 && has_king_asked === 0) {
-            has_king_asked = 1;
+            if (getElementCoord("me")[0] === 2 && getElementCoord("me")[1] === 4 && has_king_asked === 0) {
+                has_king_asked = 1;
 
-            showIndication("Ok, so the Malcha volcano has erupted and a stag was possessed by the powers of fire and it is now devastating the region. Go there and put an end to this threat. <br> You'll be tested with harder notions of the HTTP protocol, so beware. <br> I have opened a portal back to Earth. Take the gate to the left.")
+                showIndication("Ok, so the Malcha volcano has erupted and a stag was possessed by the powers of fire and it is now devastating the region. Go there and put an end to this threat. <br> You'll be tested with harder notions of the HTTP protocol, so beware. <br> I have opened a portal back to Earth. Take the gate to the left.")
+            }
         }
     }
 
     // after some indication divs are closed, a question div may appear; we attach the function to the "Next" button
     document.getElementsByClassName("exit_button")[0].addEventListener("click", indicationTriggersEvent, false);
-    // after some question divs are closed, an indication div may appear; we attach the function to the "Submit" button
-    document.getElementsByClassName("submit_button")[0].addEventListener("click", questionTriggersEvent, false);
 }

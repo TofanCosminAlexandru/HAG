@@ -1258,38 +1258,65 @@ function init() {
     for (i = 0; i < options.length; i++) {
         // we change the colour of the options according to whether the user moved the mouse pointer out, over them or he clicked on them
         options[i].onmouseover = function() {
-            if(chosen_option_nr !== this.getAttribute("id")[this.getAttribute("id").length - 1]) {
+            if(chosen_option_nr !== this.getAttribute("id")[this.getAttribute("id").length - 1] && submit_button.innerHTML === "Submit") {
                 this.setAttribute("style", "background-color: cornflowerblue;");
             }
         };
         options[i].onmouseout = function() {
-            if(chosen_option_nr !== this.getAttribute("id")[this.getAttribute("id").length - 1]) {
+            if(chosen_option_nr !== this.getAttribute("id")[this.getAttribute("id").length - 1] && submit_button.innerHTML === "Submit") {
                 this.setAttribute("style", "background-color: tan;");
             }
         };
         options[i].onclick = function() {
-            for (var j = 0; j < options.length; j++) {
-                options[j].setAttribute("style", "background-color: tan;");
+            if(submit_button.innerHTML === "Submit") {
+                for (var j = 0; j < options.length; j++) {
+                    options[j].setAttribute("style", "background-color: tan;");
+                }
+                this.setAttribute("style", "background-color: midnightblue;");
+                chosen_option_nr = this.getAttribute("id")[this.getAttribute("id").length - 1]; // on click we retain his option
             }
-            this.setAttribute("style", "background-color: midnightblue;");
-            chosen_option_nr = this.getAttribute("id")[this.getAttribute("id").length - 1]; // on click we retain his option
+        }
+    }
+
+    var showCorrectAnswerInterval;
+    function showCorrectAnswer() {
+        showCorrectAnswerInterval = setInterval(function () {
+            var correct_answer = parseInt(categories[category].questions[asked_questions[asked_questions.length - 1]].correct_answer);
+            if (options[correct_answer - 1].style.backgroundColor !== "tan") {
+                options[correct_answer - 1].setAttribute("style", "background-color: tan;");
+            }
+            else {
+                options[correct_answer - 1].setAttribute("style", "background-color: midnightblue;");
+            }
+        }, 400);
+        if (chosen_option_nr === categories[category].questions[asked_questions[asked_questions.length - 1]].correct_answer) {
+            document.getElementById("clue").innerHTML = "CORRECT ANSWER!!!";
+        }
+        else {
+            document.getElementById("clue").innerHTML = "WRONG ANSWER!!!"
         }
     }
 
     var submit_button = document.getElementById("submit_button_text");
+    submit_button.innerHTML = "Submit";
     submit_button.onclick = function() { // after submitting the answer we announce the user whether he answered correctly or wrong
-        if (chosen_option_nr === categories[category].questions[asked_questions[asked_questions.length - 1]].correct_answer) {
-            // alert("Correct answer! You received a star!");
-            points++; // correct answers means more stars to your collection
-            document.getElementsByClassName("stars-score")[0].innerHTML = String(points);
-            hideQuestion();
+        if (submit_button.innerHTML === "Next") {
+            if (document.getElementById("clue").innerHTML === "CORRECT ANSWER!!!") {
+                //alert("Correct answer! You received a star!");
+                points++; // correct answers means more stars to your collection
+                document.getElementsByClassName("stars-score")[0].innerHTML = String(points);
+                questionTriggersEvent();
+                hideQuestion();
+            }
+            else if (document.getElementById("clue").innerHTML === "WRONG ANSWER!!!") {
+                //alert("Wrong answer!");
+                questionTriggersEvent();
+                hideQuestion();
+            }
         }
-        else if(chosen_option_nr === "") { // you have to select an answer before submitting
-            //alert("You must first select an answer!");
-        }
-        else {
-            // alert("Wrong answer!");
-            hideQuestion();
+        if (chosen_option_nr !== "" && submit_button.innerHTML === "Submit") {
+            showCorrectAnswer();
+            submit_button.innerHTML = "Next";
         }
     };
 
@@ -1310,6 +1337,7 @@ function init() {
 
     // this function shows the question div with a question that hasn't been asked before
     function showQuestion() {
+        clearInterval(showCorrectAnswerInterval);
         chosen_option_nr = "";
         for (i = 0; i < options.length; i++) {
             options[i].setAttribute("style", "background-color: tan;");
@@ -1332,6 +1360,7 @@ function init() {
         document.getElementById("option3").innerHTML = categories[category].questions[rand].option3;
         document.getElementById("option4").innerHTML = categories[category].questions[rand].option4;
         document.getElementById("clue").innerHTML = categories[category].questions[rand].clue;
+        document.getElementById("submit_button_text").innerHTML = "Submit";
 
         var question_div_container = document.getElementsByClassName("question_div_container")[0];
         question_div_container.style.visibility = "visible";
@@ -1374,81 +1403,82 @@ function init() {
     // this function keeps the evidence of the question divs that trigger the appearance of an indication div right after they have been closed
     // according to the position of our character and whether the map's specific characters have asked their questions or not
     function questionTriggersEvent() {
-        if (getElementCoord("me")[0] === 13 && getElementCoord("me")[1] === 15 && has_medusa1_asked === 0) {
-            showIndication("Here's the key for you! <br> And might be you want a kiss?"); // her last message for us
-            has_medusa1_asked = 1; // she has askes her question
-            has_key = 1; // and she has a key for us
-        }
-
-        if (getElementCoord("me")[0] === 5 && getElementCoord("me")[1] === 7 && has_serpent_asked === 0) {
-            has_serpent_asked = 1;
-
-            // after the serpent asks his question he moves away from the path and lets us go forward
-            image = new Image();
-            image.onload = drawCanvasImageElem(ctx, image, 4, 7);
-            image.src = map_elements[water[4][7]];
-
-            image = new Image();
-            image.onload = drawCanvasImageElem(ctx, image, 5, 8);
-            image.src = map_elements["serpent"];
-
-            game[4][7] = "ground";
-        }
-
-        if (((getElementCoord("me")[0] === 6 && getElementCoord("me")[1] === 4) || (getElementCoord("me")[0] === 7 && getElementCoord("me")[1] === 4)) && has_dark_voice_asked === 0) {
-            has_dark_voice_asked = 1;
-
-            // the dark stranger disappears after he asks his question
-            image = new Image();
-            image.onload = drawCanvasImageElem(ctx, image, 6, 3);
-            image.src = map_elements[water[6][3]];
-        }
-
-        if (getElementCoord("me")[0] === 9 && getElementCoord("me")[1] === 3 && has_medusa2_asked === 0) {
-            showIndication("You may passsssssssss!");
-            has_medusa2_asked = 1;
-
-            image = new Image();
-            image.onload = drawCanvasImageElem(ctx, image, 10, 4);
-            image.src = map_elements[water[10][4]];
-
-            image = new Image();
-            image.onload = drawCanvasImageElem(ctx, image, 11, 3);
-            image.src = map_elements["medusa2"];
-
-            game[10][4] = "ground";
-            game[11][3] = "medusa2";
-        }
-
-        if (((getElementCoord("me")[0] === 4 && getElementCoord("me")[1] === 1) || (getElementCoord("me")[0] === 5 && getElementCoord("me")[1] === 1)) && has_minotaur_asked === 0) {
-            showIndication("By the way, the King of Heaven has entrusted me with telling you that he has an urgent task for you! <br> He has opened a gate to Heaven outside.");
-            has_minotaur_asked = 1;
-
-            image = new Image();
-            image.onload = drawCanvasImageElem(ctx, image, 4, 2);
-            image.src = map_elements[water[4][2]];
-
-            game[4][2] = "ground";
-
-            if (getElementCoord("me")[0] === 4 && getElementCoord("me")[1] === 1) {
-                image = new Image();
-                image.onload = drawCanvasImageElem(ctx, image, 5, 1);
-                image.src = map_elements["minotaur"];
-
-                game[5][1] = "minotaur";
+        if (chosen_option_nr !== "" && submit_button.innerHTML === "Next") {
+            if (getElementCoord("me")[0] === 13 && getElementCoord("me")[1] === 15 && has_medusa1_asked === 0) {
+                showIndication("Here's the key for you! <br> And might be you want a kiss?"); // her last message for us
+                has_medusa1_asked = 1; // she has askes her question
+                has_key = 1; // and she has a key for us
             }
-            else if (getElementCoord("me")[0] === 5 && getElementCoord("me")[1] === 1) {
-                image = new Image();
-                image.onload = drawCanvasImageElem(ctx, image, 4, 1);
-                image.src = map_elements["minotaur"];
 
-                game[4][1] = "minotaur";
+            if (getElementCoord("me")[0] === 5 && getElementCoord("me")[1] === 7 && has_serpent_asked === 0) {
+                has_serpent_asked = 1;
+
+                // after the serpent asks his question he moves away from the path and lets us go forward
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, 4, 7);
+                image.src = map_elements[water[4][7]];
+
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, 5, 8);
+                image.src = map_elements["serpent"];
+
+                game[4][7] = "ground";
+            }
+
+            if (((getElementCoord("me")[0] === 6 && getElementCoord("me")[1] === 4) || (getElementCoord("me")[0] === 7 && getElementCoord("me")[1] === 4)) && has_dark_voice_asked === 0) {
+                has_dark_voice_asked = 1;
+
+                // the dark stranger disappears after he asks his question
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, 6, 3);
+                image.src = map_elements[water[6][3]];
+            }
+
+            if (getElementCoord("me")[0] === 9 && getElementCoord("me")[1] === 3 && has_medusa2_asked === 0) {
+                showIndication("You may passsssssssss!");
+                has_medusa2_asked = 1;
+
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, 10, 4);
+                image.src = map_elements[water[10][4]];
+
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, 11, 3);
+                image.src = map_elements["medusa2"];
+
+                game[10][4] = "ground";
+                game[11][3] = "medusa2";
+            }
+
+            if (((getElementCoord("me")[0] === 4 && getElementCoord("me")[1] === 1) || (getElementCoord("me")[0] === 5 && getElementCoord("me")[1] === 1)) && has_minotaur_asked === 0) {
+                showIndication("By the way, the King of Heaven has entrusted me with telling you that he has an urgent task for you! <br> He has opened a gate to Heaven outside.");
+                has_minotaur_asked = 1;
+
+                image = new Image();
+                image.onload = drawCanvasImageElem(ctx, image, 4, 2);
+                image.src = map_elements[water[4][2]];
+
+                game[4][2] = "ground";
+
+                if (getElementCoord("me")[0] === 4 && getElementCoord("me")[1] === 1) {
+                    image = new Image();
+                    image.onload = drawCanvasImageElem(ctx, image, 5, 1);
+                    image.src = map_elements["minotaur"];
+
+                    game[5][1] = "minotaur";
+                }
+                else if (getElementCoord("me")[0] === 5 && getElementCoord("me")[1] === 1) {
+                    image = new Image();
+                    image.onload = drawCanvasImageElem(ctx, image, 4, 1);
+                    image.src = map_elements["minotaur"];
+
+                    game[4][1] = "minotaur";
+                }
             }
         }
     }
 
+
     // after some indication divs are closed, a question div may appear; we attach the function to the "Next" button
     document.getElementsByClassName("exit_button")[0].addEventListener("click", indicationTriggersEvent, false);
-    // after some question divs are closed, an indication div may appear; we attach the function to the "Submit" button
-    document.getElementsByClassName("submit_button")[0].addEventListener("click", questionTriggersEvent, false);
 }

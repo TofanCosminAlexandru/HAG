@@ -788,6 +788,11 @@ function init() {
                 image.src = map_elements[ground[charI][charJ]];
 
                 if(count_well_tips > 0) {
+
+                    var id = getParameterByName('id');
+                    var user = getParameterByName('user');
+                    writeUserData(parseInt(id), 1, points, diamonds);
+
                     el = document.getElementsByClassName("indication_div_container")[0];
                     document.getElementById("indication_text").innerHTML = "You have done Chapter 1. Well done!";
                     document.getElementsByClassName("indication")[0].style = "margin-top: 0";
@@ -1841,67 +1846,42 @@ function init() {
                 image.onload = drawCanvasImageElem(ctx, image, getObjectCoord("dog")[0], getObjectCoord("dog")[1]);
                 image.src = map_elements["grass"];
                 ground[getObjectCoord("dog")[0]][getObjectCoord("dog")[1]]="grass";
-
             }
         }
-
-
 
         if(getCharactherCoord("me")[0] === getObjectCoord("well")[0] && getCharactherCoord("me")[1] === getObjectCoord("well")[1]){
             count_well_tips -= 1;
-
-
-            function getParameterByName(name, url) {
-                if (!url) url = window.location.href;
-                name = name.replace(/[\[\]]/g, "\\$&");
-                var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-                    results = regex.exec(url);
-                if (!results) return null;
-                if (!results[2]) return '';
-                return decodeURIComponent(results[2].replace(/\+/g, " "));
-            }
-
-            function writeUserData(userId, lvl, nr_stars, nr_gems) {
-                firebase.database().ref('users/' + userId).update({
-                    ID: userId,
-                    level: lvl,
-                    stars: nr_stars,
-                    gems: nr_gems
-                });
-            }
-
             image = new Image();
             image.onload = drawCanvasImageElem(ctx, image, getObjectCoord("well")[0], getObjectCoord("well")[1]);
             image.src = map_elements["well"];
-
-            var id = getParameterByName('id');
-            var user = getParameterByName('user');
-            writeUserData(id, 1, points, diamonds);
-            // window.location.replace("levels.html");
-            location.href = "levels.html?id="+id+"&user="+user;
+            redirect();
         }
     }
 
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
 
+    function writeUserData(userId, lvl, nr_stars, nr_gems) {
+        firebase.database().ref('users/' + userId).update({
+            ID: userId,
+            level: lvl,
+            stars: nr_stars,
+            gems: nr_gems
+        });
+    }
 
-    // function getParameterByName(name, url) {
-    //     if (!url) url = window.location.href;
-    //     name = name.replace(/[\[\]]/g, "\\$&");
-    //     var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-    //         results = regex.exec(url);
-    //     if (!results) return null;
-    //     if (!results[2]) return '';
-    //     return decodeURIComponent(results[2].replace(/\+/g, " "));
-    // }
-    //
-    // function writeUserData(userId, lvl, nr_stars, nr_gems) {
-    //     firebase.database().ref('users/' + userId).update({
-    //         ID: userId,
-    //         level: lvl,
-    //         stars: nr_stars,
-    //         gems: nr_gems
-    //     });
-    // }
+    function redirect() {
+        var id = getParameterByName('id');
+        var user = getParameterByName('user');
+        location.href = "levels.html?id="+id+"&user="+user;
+    }
 
     function hideQuestion(){
         var el = document.getElementsByClassName("question_div_container")[0];

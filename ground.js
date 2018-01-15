@@ -32,6 +32,8 @@ function init() {
     var canvas = document.getElementById('canvas');
     var height = window.innerHeight;
     var width = window.innerWidth;
+    //writeUserData(3, 1, 5, 12);
+    // writeUserData(2, 1, 2, 5);
 
     canvas.style.width = width  + "px";
     canvas.style.height = height + "px";
@@ -1034,7 +1036,7 @@ function init() {
         var charJ = getCharactherCoord("me")[1];
 
         if(document.getElementsByClassName("indication_div_container")[0].style.visibility === 'visible' || document.getElementsByClassName("question_div_container")[0].style.visibility === 'visible'){
-            document.onkeydown = function (e) {
+            document.onkeydown = function () {
                 return false;
             }
         }
@@ -1085,7 +1087,7 @@ function init() {
         var charJ = getCharactherCoord("me")[1];
 
         if(document.getElementsByClassName("indication_div_container")[0].style.visibility === 'visible' || document.getElementsByClassName("question_div_container")[0].style.visibility === 'visible'){
-            document.onkeydown = function (e) {
+            document.onkeydown = function () {
                 return false;
             }
         }
@@ -1843,18 +1845,63 @@ function init() {
             }
         }
 
+
+
         if(getCharactherCoord("me")[0] === getObjectCoord("well")[0] && getCharactherCoord("me")[1] === getObjectCoord("well")[1]){
             count_well_tips -= 1;
+
+
+            function getParameterByName(name, url) {
+                if (!url) url = window.location.href;
+                name = name.replace(/[\[\]]/g, "\\$&");
+                var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                    results = regex.exec(url);
+                if (!results) return null;
+                if (!results[2]) return '';
+                return decodeURIComponent(results[2].replace(/\+/g, " "));
+            }
+
+            function writeUserData(userId, lvl, nr_stars, nr_gems) {
+                firebase.database().ref('users/' + userId).update({
+                    ID: userId,
+                    level: lvl,
+                    stars: nr_stars,
+                    gems: nr_gems
+                });
+            }
 
             image = new Image();
             image.onload = drawCanvasImageElem(ctx, image, getObjectCoord("well")[0], getObjectCoord("well")[1]);
             image.src = map_elements["well"];
 
-
-
-            window.location.replace("levels.html");
+            var id = getParameterByName('id');
+            var user = getParameterByName('user');
+            writeUserData(id, 1, points, diamonds);
+            // window.location.replace("levels.html");
+            location.href = "levels.html?id="+id+"&user="+user;
         }
     }
+
+
+
+    // function getParameterByName(name, url) {
+    //     if (!url) url = window.location.href;
+    //     name = name.replace(/[\[\]]/g, "\\$&");
+    //     var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+    //         results = regex.exec(url);
+    //     if (!results) return null;
+    //     if (!results[2]) return '';
+    //     return decodeURIComponent(results[2].replace(/\+/g, " "));
+    // }
+    //
+    // function writeUserData(userId, lvl, nr_stars, nr_gems) {
+    //     firebase.database().ref('users/' + userId).update({
+    //         ID: userId,
+    //         level: lvl,
+    //         stars: nr_stars,
+    //         gems: nr_gems
+    //     });
+    // }
 
     function hideQuestion(){
         var el = document.getElementsByClassName("question_div_container")[0];
@@ -1905,7 +1952,7 @@ function init() {
             if(count_willow_tips === 1 && count_willow_questions === 0) {
                 count_willow_tips -= 1;
                 el = document.getElementsByClassName("indication_div_container")[0];
-                document.getElementById("indication_text").innerHTML = "Correct answer! You received a star! <br> You can check out the village over the river. <br> Might be you find other challenges.";
+                document.getElementById("indication_text").innerHTML = "Wrong answer! Maybe next time. <br> You can check out the village over the river. <br> Might be you find other challenges.";
                 document.getElementsByClassName("indication")[0].style = "margin-top: 0";
                 el.style.visibility = "visible";
             }

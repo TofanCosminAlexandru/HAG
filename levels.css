@@ -68,6 +68,7 @@ body{
 
 .portal .portals .level.ground {
 	background: transparent url(images/ground.svg) no-repeat center center;
+    filter: grayscale(80%);
 }
 
 .portal .portals .level.water {
@@ -303,10 +304,17 @@ img.profile{
     border-radius: 50%;
     margin: auto;
 }
-h2.score{
+h2.score-diamond{
     display: inline-flex;
     font-family: "Roboto", sans-serif;
     font-size: 30px;
+	color: white;
+}
+h2.score-star{
+	display: inline-flex;
+	font-family: "Roboto", sans-serif;
+	font-size: 30px;
+	color: white;
 }
 
 img.logo{
@@ -347,8 +355,8 @@ button#myacount {
     cursor: pointer;
 }
 
-#myacount .stats h2 {
-	color: white;
-	text-align: center;
-	text-shadow: black 2px 2px 0, black -2px -2px 0, black 2px -2px 0, black -2px 2px 0, black 2px 0 0, black 0 -2px 0, black -2px 0 0, black 0 2px 0;
-}
+/*#myacount .stats h2 {*/
+	/*color: white;*/
+	/*text-align: center;*/
+	/*text-shadow: black 2px 2px 0, black -2px -2px 0, black 2px -2px 0, black -2px 2px 0, black 2px 0 0, black 0 -2px 0, black -2px 0 0, black 0 2px 0;*/
+/*}*/

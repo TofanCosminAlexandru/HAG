@@ -9,12 +9,19 @@
 		<meta name = "viewport" content = "width = device-width, initial-scale = 1">
 		<link rel = "stylesheet" href = "levels.css">
 		<link rel = "shortcut icon" href = "images/logoV2.svg" type = "image/x-icon">
+        <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase.js"></script>
 		<script type="text/javascript">
-			function myacount() {
-			    var el = document.getElementById("myacount");
-			    el.style.visibility = (el.style.visibility === "visible") ? "hidden" : "visible";
-			}
+            var config = {
+                apiKey: "AIzaSyCfnDkca7HKVGLekgckbVZWXaEZY-cRbqk",
+                authDomain: "hag-game.firebaseapp.com",
+                databaseURL: "https://hag-game.firebaseio.com",
+                projectId: "hag-game",
+                storageBucket: "hag-game.appspot.com",
+                messagingSenderId: "791209373333"
+            };
+            firebase.initializeApp(config);
 		</script>
+
 	</head>
 
 	<body>
@@ -24,13 +31,13 @@
 
 			<div class="stats">
 				<img src="images/diamond.png" id="stats1">
-				<h2 class="score">20</h2>
+				<h2 class="score-diamond">20</h2>
 				<img src="images/star.png" id="stats2">
-				<h2 class="score">15</h2>
+				<h2 class="score-star">15</h2>
 			</div>
 
 			<form class="myacount">
-				<h1>User Name</h1>
+				<h1 class="usernametitle">User Name</h1>
 				<input type="text" id="uname" placeholder="username">
 				<input type="email" id="email" placeholder="Email">
 				<input type="file" name="fileToUpload" id="fileToUpload">

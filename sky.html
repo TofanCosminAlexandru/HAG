@@ -9,6 +9,18 @@
         <meta name = "viewport" content = "width=device-width, initial-scale=1">
         <link rel = "shortcut icon" href = "images/logoV2.svg" type = "image/x-icon">
         <link rel = "stylesheet" href = "sky.css">
+        <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase.js"></script>
+        <script>
+            var config = {
+                apiKey: "AIzaSyCfnDkca7HKVGLekgckbVZWXaEZY-cRbqk",
+                authDomain: "hag-game.firebaseapp.com",
+                databaseURL: "https://hag-game.firebaseio.com",
+                projectId: "hag-game",
+                storageBucket: "hag-game.appspot.com",
+                messagingSenderId: "791209373333"
+            };
+            firebase.initializeApp(config);
+        </script>
     </head>
 
     <body onload = "init()">

@@ -4,6 +4,16 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min; // the maximum is exclusive and the minimum is inclusive
 }
 
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
 var drawCanvasImageElem = function(ctx, image, row, col) { // draws an image element on the canvas
     return function() {
         ctx.drawImage(image, col * 200, row * 200, 200, 200);
@@ -951,10 +961,29 @@ function init() {
 
                     game[charI][charJ] = "me";
 
+                    var gem;
+                    var star;
+                    firebase.database().ref().once('value').then((snapshot) => {
+                        var data = snapshot.val();
+                        var id = getParameterByName('id');
+                        var found = 0;
+
+                        gem = data.users[id].gems;
+                        star = data.users[id].stars;
+
+                        var id = getParameterByName('id');
+                        var user = getParameterByName('user');
+                        points=points+star;
+                        diamonds=diamonds+gem;
+                        writeUserData(parseInt(id), 2, points, diamonds);
+                    });
+
                     showIndication("Chapter Completed! <br><br> Bidi has reached the sky!"); // we reached the end of the level
 
                     // redirecting to the levels page
                     // window.location.replace("levels.html");
+
+
 
                     is_centered = compute_is_centered(charI, charJ, newI, newJ);
                     translate_canvas(is_centered, direction);
@@ -1401,8 +1430,30 @@ function init() {
 
         if ((getElementCoord("me")[0] === 1 && getElementCoord("me")[1] === 1)) {
             // redirecting to the levels page
-            window.location.replace("levels.html");
+            // window.location.replace("levels.html");
+            var id = getParameterByName('id');
+            var user = getParameterByName('user');
+            location.href = "levels.html?id="+id+"&user="+user;
         }
+    }
+
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+
+    function writeUserData(userId, lvl, nr_stars, nr_gems) {
+        firebase.database().ref('users/' + userId).update({
+            ID: userId,
+            level: lvl,
+            stars: nr_stars,
+            gems: nr_gems
+        });
     }
 
     // this function keeps the evidence of the question divs that trigger the appearance of an indication div right after they have been closed

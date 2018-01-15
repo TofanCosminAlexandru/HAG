@@ -72,30 +72,17 @@ firebase.database().ref().once('value').then((snapshot) => {
     document.getElementsByClassName("stars-score")[0].innerHTML = String(stars);
     level = data.users[id].level;
 
-    var locked = document.getElementsByClassName("level-locked")
+    var locked = document.getElementsByClassName("level-locked");
 
-    // if(locked[level].innerHTML === "Locked" && level)
-
-    // if(locked[level].innerHTML == "Locked"){
-    console.log(level);
-    //document.getElementsByClassName(levels[level])
-    // console.log(document.getElementsByClassName(levels[level])[0].addEventListener());
     if(level === 0){
-        // console.log(document.getElementsByClassName(levels[level])[0]);
-        // console.log(levels[level]);
-        // console.log(document.getElementsByClassName(levels[level])[0]);
         locked[level].innerHTML = "";
         document.getElementsByClassName("level ground")[0].style.filter="grayscale(" + 0 + "%)";
 
         document.getElementsByClassName(levels[level])[0].addEventListener("click", function(e){
             location.href = "ground.html?id="+id+'&user='+user;
-            // window.location = "levels.html?user="+log_username;
         });
     }
     if(level === 1){
-        console.log(document.getElementsByClassName(levels[level-1])[0]);
-        console.log(levels[level]);
-        console.log(document.getElementsByClassName(levels[level])[0]);
         locked[level-1].innerHTML = "";
         document.getElementsByClassName("level ground")[0].style.filter="grayscale(" + 0 + "%)";
         locked[level].innerHTML = "";
@@ -103,28 +90,27 @@ firebase.database().ref().once('value').then((snapshot) => {
 
         document.getElementsByClassName(levels[level-1])[0].addEventListener("click", function(e){
             location.href = "ground.html?id="+id+'&user='+user;
-            // window.location = "levels.html?user="+log_username;
         });
         document.getElementsByClassName(levels[level])[0].addEventListener("click", function(e){
             location.href = "water.html?id="+id+'&user='+user;
-            // window.location = "levels.html?user="+log_username;
         });
     }
     if(level === 2){
-        console.log(document.getElementsByClassName(levels[level])[0]);
-        console.log(levels[level]);
-        console.log(document.getElementsByClassName(levels[level])[0]);
+        locked[level-2].innerHTML = "";
+        document.getElementsByClassName("level ground")[0].style.filter="grayscale(" + 0 + "%)";
+        locked[level-1].innerHTML = "";
+        document.getElementsByClassName("level water")[0].style.filter="grayscale(" + 0 + "%)";
+        locked[level].innerHTML = "";
+        document.getElementsByClassName("level cloud")[0].style.filter="grayscale(" + 0 + "%)";
+
         document.getElementsByClassName(levels[level-2])[0].addEventListener("click", function(e){
             location.href = "ground.html?id="+id+'&user='+user;
-            // window.location = "levels.html?user="+log_username;
         });
         document.getElementsByClassName(levels[level-1])[0].addEventListener("click", function(e){
             location.href = "water.html?id="+id+'&user='+user;
-            // window.location = "levels.html?user="+log_username;
         });
         document.getElementsByClassName(levels[level])[0].addEventListener("click", function(e){
             location.href = "sky.html?id="+id+'&user='+user;
-            // window.location = "levels.html?user="+log_username;
         });
     }
     // }

@@ -461,10 +461,10 @@ var water = [["tree", "tree", "tree", "wall", "wall", "wall", "wall", "wall", "w
 
 // matrix with all the game elements
 var game = [["tree", "tree", "tree", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall"],
-    ["tree", "stairs_to_heaven", "tree", "wall", "river", "ground", "ground", "ground", "wall", "river", "river", "river", "river", "wall", "ground", "river", "stone", "ground", "well_stairs", "wall"],
+    ["tree", "stairs_to_heaven", "tree", "wall", "river", "ground", "ground", "ground", "wall", "river", "river", "river", "river", "wall", "ground", "river", "stone", "me", "well_stairs", "wall"],
     ["tree", "tree", "well", "wall", "river", "ground", "wall", "ground", "wall", "ground", "river", "ground", "river", "wall", "ground", "river", "wall", "wall", "wall", "wall"],
     ["wall", "wall", "wall", "well_stairs", "river", "ground", "wall", "ground", "wall", "river", "stone", "stone", "stone", "wall", "ground", "river", "river", "river", "river", "wall"],
-    ["wall", "me", "minotaur", "river", "river", "stone", "wall", "serpent", "wall", "ground", "ground", "ground", "diamond", "wall", "ground", "ground", "ground", "ground", "rat1", "wall"],
+    ["wall", "ground", "minotaur", "river", "river", "stone", "wall", "serpent", "wall", "ground", "ground", "ground", "diamond", "wall", "ground", "ground", "ground", "ground", "rat1", "wall"],
     ["wall", "ground", "river", "river", "river", "river", "river", "river", "river", "river", "river", "river", "wall", "wall", "wall", "ground", "wall", "wall", "wall", "wall"],
     ["wall", "river", "river", "ground", "ground", "ground", "river", "ground", "river", "river", "wall", "stone", "wall", "diamond", "ground", "ground", "ground", "ground", "rat2", "wall"],
     ["wall", "stone", "wall", "wall", "ground", "river", "river", "stone", "river", "river", "wall", "ground", "wall", "wall", "wall", "wall", "ground", "wall", "wall", "wall"],
@@ -508,7 +508,7 @@ var map_elements = {
 function init() {
     /* --- MAP --- */
     var canvas = document.getElementById('canvas');
-    canvas.style.transform = "translate(" + 0/*-((((20/9)*window.innerWidth)/20) * 11)*/ + "px, 0px)"; // (-11 * ~~171, 0 * ~~108)
+    canvas.style.transform = "translate(" + -((((20/9)*window.innerWidth)/20) * 11) + "px, 0px)"; // (-11 * ~~171, 0 * ~~108)
 
     // this function translates the canvas as the character moves
     function translate_canvas(is_centered, direction) {

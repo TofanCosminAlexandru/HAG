@@ -3,7 +3,7 @@
 <head>
     <meta charset = "utf-8">
     <meta name="viewport" content="width=device-width">
-    <title> HTTP Adventure Game by Mihalachi Bogdan-Marian, Tofan Cosmin-Alexandru, Nemtoc Ciprian </title>
+    <title> HTTP Adventure Game </title>
     <meta name = "author" content = "Mihalachi Bogdan-Marian, Tofan Cosmin-Alexandru, Nemtoc Ciprian">
     <meta name = "description" content = "HAG (HTTP Adventure Game) is a platform for students to learn the HTTP Protocol while playing through a real game.">
     <link rel = "shortcut icon" href = "images/logoV2.svg" type = "image/x-icon">
@@ -12,16 +12,67 @@
 <body prefix = "schema: http://schema.org/
                 xsd: http://www.w3.org/2001/XMLSchema#
                 sa: https://ns.science.ai/">
+    <header>
+        <p class = "title"> HTTP ADVENTURE GAME </p>
+        <p class = "subtitle"> MIHALACHI BOGDAN-MARIAN, NEMTOC CIPRIAN, TOFAN COSMIN-ALEXANDRU </p>
+    </header>
+
     <article typeof = "schema:ScholarlyArticle" resource = "#">
         <h1> HTTP Adventure Game </h1>
+
         <section>
-            <h2> Authors </h2>
-            <p> Mihalachi Bogdan-Marian, Tofan Cosmin-Alexandru, Nemtoc Ciprian </p>
+            <ol>
+                <!-- The first author, Mihalachi Bogdan-Marian -->
+                <li property="schema:author" typeof="sa:ContributorRole">
+                    <a property="schema:author" typeof="schema:Person">
+                        <span property="schema:givenName">Bogdan-Marian</span>
+                        <span property="schema:familyName">Mihalachi</span>
+                    </a>
+                    <sup property="sa:roleContactPoint" typeof="schema:ContactPoint">
+                        <a property="schema:email" href="mailto:bogdani@mihalachi.com" title="corresponding author">✉</a>
+                    </sup>
+                </li>
+                <!-- The second author, Nemtoc Ciprian -->
+                <li property="schema:author" typeof="sa:ContributorRole">
+                    <a property="schema:author" typeof="schema:Person">
+                        <span property="schema:givenName">Ciprian</span>
+                        <span property="schema:familyName">Nemtoc</span>
+                    </a>
+                    <sup property="sa:roleContactPoint" typeof="schema:ContactPoint">
+                        <a property="schema:email" href="mailto:ciprian@nemtoc.com" title="corresponding author">✉</a>
+                    </sup>
+                </li>
+                <!-- The third author, Tofan Cosmin-Alexandru -->
+                <li property="schema:author" typeof="sa:ContributorRole">
+                    <a property="schema:author" typeof="schema:Person">
+                        <span property="schema:givenName">Cosmin-Alexandru</span>
+                        <span property="schema:familyName">Tofan</span>
+                    </a>
+                    <sup property="sa:roleContactPoint" typeof="schema:ContactPoint">
+                        <a property="schema:email" href="mailto:cosmin@tofan.com" title="corresponding author">✉</a>
+                    </sup>
+                </li>
+            </ol>
+            <!-- The affiliation list -->
+            <ol>
+                <li id="cliwhag">
+                    <a href="index.html" typeof="schema:Corporation">
+                        <span property="schema:name">cliw.hag</span>
+                    </a>
+                </li>
+            </ol>
         </section>
+
+
+
         <section>
-            <h2> Affiliations </h2>
-            <p> CLIW - HAG </p>
+
         </section>
+
     </article>
+
+    <footer>
+        <p> © 2017-2018 HTTP Adventure Game and individual contributions. Design & technology with passion from CBC. </p>
+    </footer>
 </body>
 

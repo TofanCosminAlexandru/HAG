@@ -1883,6 +1883,12 @@ function init() {
         location.href = "levels.html?id="+id+"&user="+user;
     }
 
+    document.getElementById("backbutton").addEventListener("click", function(){
+        var id = getParameterByName('id');
+        var user = getParameterByName('user');
+        location.href = "levels.html?id="+id+"&user="+user;
+    });
+
     function hideQuestion(){
         var el = document.getElementsByClassName("question_div_container")[0];
         el.style.visibility = "visible";

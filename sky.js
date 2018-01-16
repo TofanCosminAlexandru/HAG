@@ -2472,6 +2472,12 @@ function init() {
         }
     }
 
+    document.getElementById("backbutton").addEventListener("click", function(){
+        var id = getParameterByName('id');
+        var user = getParameterByName('user');
+        location.href = "levels.html?id="+id+"&user="+user;
+    });
+
     function getParameterByName(name, url) {
         if (!url) url = window.location.href;
         name = name.replace(/[\[\]]/g, "\\$&");

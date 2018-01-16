@@ -84,7 +84,7 @@ if(navigator.onLine) {
             });
         }
         if (level === 1) {
-            locked[level - 1].innerHTML = "";
+            locked[level - 1].innerHTML = "Completed";
             document.getElementsByClassName("level ground")[0].style.filter = "grayscale(" + 0 + "%)";
             locked[level].innerHTML = "";
             document.getElementsByClassName("level water")[0].style.filter = "grayscale(" + 0 + "%)";
@@ -97,9 +97,9 @@ if(navigator.onLine) {
             });
         }
         if (level === 2) {
-            locked[level - 2].innerHTML = "";
+            locked[level - 2].innerHTML = "Completed";
             document.getElementsByClassName("level ground")[0].style.filter = "grayscale(" + 0 + "%)";
-            locked[level - 1].innerHTML = "";
+            locked[level - 1].innerHTML = "Completed";
             document.getElementsByClassName("level water")[0].style.filter = "grayscale(" + 0 + "%)";
             locked[level].innerHTML = "";
             document.getElementsByClassName("level cloud")[0].style.filter = "grayscale(" + 0 + "%)";

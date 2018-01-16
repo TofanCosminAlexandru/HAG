@@ -30,8 +30,6 @@ function getParameterByName(name, url) {
 }
 
 function myacount() {
-    // var el = document.getElementById("myacount");
-    // el.style.visibility = (el.style.visibility === "visible") ? "hidden" : "visible";
     var el = document.getElementById("myacount");
     el.style.visibility = (el.style.visibility === "visible") ? "hidden" : "visible";
 }
@@ -78,7 +76,7 @@ firebase.database().ref().once('value').then((snapshot) => {
         locked[level].innerHTML = "";
         document.getElementsByClassName("level ground")[0].style.filter="grayscale(" + 0 + "%)";
 
-        document.getElementsByClassName(levels[level])[0].addEventListener("click", function(e){
+        document.getElementsByClassName(levels[level])[0].addEventListener("click", function(){
             location.href = "ground.html?id="+id+'&user='+user;
         });
     }
@@ -88,10 +86,10 @@ firebase.database().ref().once('value').then((snapshot) => {
         locked[level].innerHTML = "";
         document.getElementsByClassName("level water")[0].style.filter="grayscale(" + 0 + "%)";
 
-        document.getElementsByClassName(levels[level-1])[0].addEventListener("click", function(e){
+        document.getElementsByClassName(levels[level-1])[0].addEventListener("click", function(){
             location.href = "ground.html?id="+id+'&user='+user;
         });
-        document.getElementsByClassName(levels[level])[0].addEventListener("click", function(e){
+        document.getElementsByClassName(levels[level])[0].addEventListener("click", function(){
             location.href = "water.html?id="+id+'&user='+user;
         });
     }
@@ -103,13 +101,13 @@ firebase.database().ref().once('value').then((snapshot) => {
         locked[level].innerHTML = "";
         document.getElementsByClassName("level cloud")[0].style.filter="grayscale(" + 0 + "%)";
 
-        document.getElementsByClassName(levels[level-2])[0].addEventListener("click", function(e){
+        document.getElementsByClassName(levels[level-2])[0].addEventListener("click", function(){
             location.href = "ground.html?id="+id+'&user='+user;
         });
-        document.getElementsByClassName(levels[level-1])[0].addEventListener("click", function(e){
+        document.getElementsByClassName(levels[level-1])[0].addEventListener("click", function(){
             location.href = "water.html?id="+id+'&user='+user;
         });
-        document.getElementsByClassName(levels[level])[0].addEventListener("click", function(e){
+        document.getElementsByClassName(levels[level])[0].addEventListener("click", function(){
             location.href = "sky.html?id="+id+'&user='+user;
         });
     }

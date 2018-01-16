@@ -50,7 +50,8 @@ if(navigator.onLine) {
     var levels = {
         0: 'level ground',
         1: 'level water',
-        2: 'level cloud'
+        2: 'level cloud',
+        3: 'level fire'
     };
 
 
@@ -111,6 +112,26 @@ if(navigator.onLine) {
                 location.href = "water.html?id=" + id + '&user=' + user;
             });
             document.getElementsByClassName(levels[level])[0].addEventListener("click", function () {
+                location.href = "sky.html?id=" + id + '&user=' + user;
+            });
+        }
+        if (level === 3) {
+            locked[level - 3].innerHTML = "Completed";
+            document.getElementsByClassName("level ground")[0].style.filter = "grayscale(" + 0 + "%)";
+            locked[level - 2].innerHTML = "Completed";
+            document.getElementsByClassName("level water")[0].style.filter = "grayscale(" + 0 + "%)";
+            locked[level-1].innerHTML = "Completed";
+            document.getElementsByClassName("level cloud")[0].style.filter = "grayscale(" + 0 + "%)";
+            locked[level].innerHTML = "To Be Continued";
+            document.getElementsByClassName("level fire")[0].style.filter = "grayscale(" + 0 + "%)";
+
+            document.getElementsByClassName(levels[level - 3])[0].addEventListener("click", function () {
+                location.href = "ground.html?id=" + id + '&user=' + user;
+            });
+            document.getElementsByClassName(levels[level - 2])[0].addEventListener("click", function () {
+                location.href = "water.html?id=" + id + '&user=' + user;
+            });
+            document.getElementsByClassName(levels[level -1])[0].addEventListener("click", function () {
                 location.href = "sky.html?id=" + id + '&user=' + user;
             });
         }

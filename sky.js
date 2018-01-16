@@ -1190,7 +1190,7 @@ function init() {
                             var user = getParameterByName('user');
                             points=points+star;
                             diamonds=diamonds+gem;
-                            writeUserData(parseInt(id), 2, points, diamonds);
+                            writeUserData(parseInt(id), 3, points, diamonds);
                         });
 
                         showIndication("Chapter Completed! <br><br> Bidi has reached the vulcano site!"); // we reached the end of the level
